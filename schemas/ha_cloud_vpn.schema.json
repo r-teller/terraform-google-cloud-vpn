@@ -1,0 +1,1755 @@
+{
+    "$id": "ha_cloud_vpn.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Cloud VPNs",
+    "type": "array",
+    "uniqueItems": true,
+    "view": {
+        "btnSize": "medium",
+        "btnColor": "primary",
+        "deleteBtnSize": "medium"
+    },
+    "widget": "GenericList",
+    "items": {
+        "title": "Cloud VPN",
+        "description": "Google Cloud Virtual Private Network (VPN) lets you connect your existing network to your GCP network via an IPsec connection. Alternatively, you can use it to connect two different Google Cloud VPN gateways.",
+        "type": "object",
+        "properties": {
+            "vpn_type": {
+                "title": "VPN Type",
+                "type": "string",
+                "widget": "Select",
+                "default": "HA",
+                "oneOf": [
+                    {
+                        "const": "HA",
+                        "title": "High Availability VPN"
+                    },
+                    {
+                        "const": "CLASSIC",
+                        "title": "Classic VPN (Coming Soon)",
+                        "readOnly": true
+                    }
+                ]
+            }
+        },
+        "allOf": [
+            {
+                "if": {
+                    "properties": {
+                        "vpn_type": {
+                            "const": "HA"
+                        }
+                    },
+                    "required": [
+                        "vpn_type"
+                    ]
+                },
+                "then": {
+                    "widget": "Card",
+                    "title": "High Availability VPN",
+                    "additionalProperties": false,
+                    "properties": {
+                        "vpn_type": {
+                            "type": "string",
+                            "const": "HA"
+                        },
+                        "label": {
+                            "type": "string",
+                            "view": {
+                                "sizeXs": 4
+                            },
+                            "title": "Label",
+                            "deleteOnEmpty": true,
+                            "description": "This field will be used to combine with [environment] and [prefix] to generate a unique VPC name",
+                            "examples": [
+                                "pci",
+                                "hr",
+                                "finance",
+                                "b2b"
+                            ]
+                        },
+                        "environment": {
+                            "type": "string",
+                            "view": {
+                                "sizeXs": 4
+                            },
+                            "title": "Environment",
+                            "deleteOnEmpty": true,
+                            "description": "If specified this 'Environment' value will override the default value specified in the Terraform module",
+                            "examples": [
+                                "dev",
+                                "test",
+                                "stage",
+                                "prod"
+                            ]
+                        },
+                        "prefix": {
+                            "type": "string",
+                            "view": {
+                                "sizeXs": 4
+                            },
+                            "title": "Prefix",
+                            "deleteOnEmpty": true,
+                            "description": "If specified this 'Prefix' value will override the default value specified in the Terraform module",
+                            "examples": [
+                                "foo",
+                                "bar"
+                            ]
+                        },
+                        "project_id": {
+                            "$ref": "#/definitions/shared/properties/common/project_id"
+                        },
+                        "network": {
+                            "$ref": "#/definitions/shared/properties/common/network"
+                        },
+                        "region": {
+                            "title": "Region",
+                            "default": "US-CENTRAL1",
+                            "$ref": "regions.schema.json#/definitions/region"
+                        },
+                        "local_router": {
+                            "title": "Local Router",
+                            "type": "object",
+                            "widget": "Card",
+                            "deleteOnEmpty": true,
+                            "$ref": "#/definitions/shared/properties/local_router"
+                        },
+                        "local_vpn_gateway": {
+                            "title": "Local VPN Gateway",
+                            "type": "object",
+                            "widget": "Card",
+                            "deleteOnEmpty": true,
+                            "$ref": "#/definitions/shared/properties/local_vpn_gateway"
+                        },
+                        "remote_vpn_gateways": {
+                            "title": "Remote VPN Gateways",
+                            "type": "array",
+                            "uniqueItems": true,
+                            "widget": "GenericList",
+                            "view": {
+                                "btnColor": "secondary"
+                            },
+                            "items": {
+                                "title": "Remote VPN Gateway",
+                                "type": "object",
+                                "properties": {
+                                    "remote_vpn_gateway_type": {
+                                        "title": "Remote VPN Gateway Type",
+                                        "type": "string",
+                                        "widget": "Select",
+                                        "oneOf": [
+                                            {
+                                                "const": "GCP",
+                                                "title": "Google Cloud"
+                                            },
+                                            {
+                                                "const": "EXTERNAL",
+                                                "title": "On-Prem or Non-Google Cloud"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "remote_vpn_gateway_type"
+                                ],
+                                "allOf": [
+                                    {
+                                        "title": "Google Cloud",
+                                        "if": {
+                                            "properties": {
+                                                "remote_vpn_gateway_type": {
+                                                    "type": "string",
+                                                    "const": "GCP"
+                                                }
+                                            },
+                                            "required": [
+                                                "remote_vpn_gateway_type"
+                                            ]
+                                        },
+                                        "then": {
+                                            "title": "Google Cloud",
+                                            "properties": {
+                                                "remote_vpn_gateway": {
+                                                    "$ref": "#/definitions/shared/properties/remote_vpn_gateway_gcp"
+                                                },
+                                                "remote_router": {
+                                                    "$ref": "#/definitions/shared/properties/remote_router_gcp"
+                                                }
+                                            },
+                                            "enum": [
+                                                "remote_vpn_gateway_type",
+                                                "remote_vpn_gateway",
+                                                "remote_router"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "title": "On-Prem or Non-Google Cloud",
+                                        "if": {
+                                            "properties": {
+                                                "remote_vpn_gateway_type": {
+                                                    "type": "string",
+                                                    "const": "EXTERNAL"
+                                                }
+                                            },
+                                            "required": [
+                                                "remote_vpn_gateway_type"
+                                            ]
+                                        },
+                                        "then": {
+                                            "title": "On-Prem or Non-Google Cloud",
+                                            "properties": {
+                                                "remote_vpn_gateway": {
+                                                    "$ref": "#/definitions/shared/properties/remote_vpn_gateway_external"
+                                                },
+                                                "remote_router": {
+                                                    "$ref": "#/definitions/shared/properties/remote_router_external"
+                                                }
+                                            },
+                                            "propertyNames": {
+                                                "enum": [
+                                                    "remote_vpn_gateway_type",
+                                                    "remote_vpn_gateway",
+                                                    "remote_router"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "required": [
+                        "region"
+                    ]
+                }
+            }
+        ]
+    },
+    "definitions": {
+        "shared": {
+            "properties": {
+                "common": {
+                    "pre_existing": {
+                        "type": "boolean",
+                        "view": {
+                            "sizeXs": 4
+                        },
+                        "deleteOnEmpty": true,
+                        "title": "Pre-Existing",
+                        "description": "If true, this resource should be considered managed external to this module and should not be created and/or updated."
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                        "view": {
+                            "sizeXs": 4
+                        },
+                        "deleteOnEmpty": true,
+                        "description": "This field is used to specify an explict name to be used"
+                    },
+                    "unique_id": {
+                        "title": "Unique ID",
+                        "type": "string",
+                        "view": {
+                            "sizeXs": 4
+                        },
+                        "deleteOnEmpty": true,
+                        "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                    },
+                    "project_id": {
+                        "title": "Project ID",
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9-]{4,28}[a-z0-9]$",
+                        "view": {
+                            "sizeXs": 6
+                        },
+                        "deleteOnEmpty": true,
+                        "description": "If specified this 'Project ID' value will override the default value specified in the Terraform module",
+                        "examples": [
+                            "phrasal-bank-387121",
+                            "gold-setup-387121"
+                        ]
+                    },
+                    "network": {
+                        "title": "Network",
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                        "view": {
+                            "sizeXs": 6
+                        },
+                        "deleteOnEmpty": true,
+                        "description": "The name of the vpc network to be connected with using Cloud VPN.",
+                        "examples": [
+                            "prod-network"
+                        ]
+                    }
+                },
+                "local_router": {
+                    "type": "object",
+                    "widget": "Card",
+                    "deleteOnEmpty": true,
+                    "properties": {
+                        "name": {
+                            "$ref": "#/definitions/shared/properties/common/name"
+                        },
+                        "unique_id": {
+                            "title": "Unique ID (Local Router)",
+                            "$ref": "#/definitions/shared/properties/common/unique_id"
+                        },
+                        "pre_existing": {
+                            "$ref": "#/definitions/shared/properties/common/pre_existing"
+                        }
+                    },
+                    "propertyNames": {
+                        "enum": [
+                            "name",
+                            "unique_id",
+                            "pre_existing",
+                            "bgp"
+                        ]
+                    },
+                    "allOf": [
+                        {
+                            "if": {
+                                "properties": {
+                                    "pre_existing": {
+                                        "type": "boolean",
+                                        "const": true
+                                    }
+                                },
+                                "required": [
+                                    "pre_existing"
+                                ]
+                            },
+                            "then": {
+                                "title": "Local Router (Manged Externally)",
+                                "description": "If the `Local Router` is manged outside of this Terraform Module",
+                                "properties": {
+                                    "bgp": {
+                                        "title": "BGP",
+                                        "type": "object",
+                                        "deleteOnEmpty": true,
+                                        "properties": {
+                                            "asn": {
+                                                "$ref": "#/definitions/shared/properties/router_attributes/asn_pre_existing"
+                                            },
+                                            "local_subnet_advertisements": {
+                                                "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements_empty"
+                                            },
+                                            "custom_local_subnet_advertisements": {
+                                                "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
+                                            }
+                                        },
+                                        "propertyNames": {
+                                            "enum": [
+                                                "local_subnet_advertisements",
+                                                "custom_local_subnet_advertisements",
+                                                "asn"
+                                            ]
+                                        },
+                                        "required": [
+                                            "asn"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "name"
+                                ]
+                            },
+                            "else": {
+                                "title": "Local Router (Manged /w Terraform)",
+                                "description": "If the `Local Router` is manged within this Terraform Module",
+                                "properties": {
+                                    "bgp": {
+                                        "title": "BGP",
+                                        "type": "object",
+                                        "deleteOnEmpty": true,
+                                        "properties": {
+                                            "asn": {
+                                                "$ref": "#/definitions/shared/properties/router_attributes/asn"
+                                            },
+                                            "local_subnet_advertisements": {
+                                                "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements"
+                                            }
+                                        },
+                                        "propertyNames": {
+                                            "enum": [
+                                                "local_subnet_advertisements",
+                                                "custom_local_subnet_advertisements",
+                                                "asn"
+                                            ]
+                                        },
+                                        "allOf": [
+                                            {
+                                                "if": {
+                                                    "properties": {
+                                                        "local_subnet_advertisements": {
+                                                            "oneOf": [
+                                                                {
+                                                                    "title": "Advertise all subnets visible to the Cloud Router & all Custom subnets specified",
+                                                                    "type": "string",
+                                                                    "const": "DEFAULT_CUSTOM"
+                                                                },
+                                                                {
+                                                                    "title": "Advertise all Custom subnets specified",
+                                                                    "type": "string",
+                                                                    "const": "CUSTOM"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "local_subnet_advertisements"
+                                                    ]
+                                                },
+                                                "then": {
+                                                    "title": "Include Custom Subnet Advertisements",
+                                                    "description": "Include a User-specified list of individual IP ranges to advertise in custom mode",
+                                                    "properties": {
+                                                        "custom_local_subnet_advertisements": {
+                                                            "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
+                                                        }
+                                                    }
+                                                },
+                                                "else": {
+                                                    "title": "Do Not Include Custom Subnet Advertisements",
+                                                    "description": "Do not include any User-specified IP ranges to advertise, this field is not required and only included for UI generation",
+                                                    "properties": {
+                                                        "custom_local_subnet_advertisements": {
+                                                            "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                "local_vpn_gateway": {
+                    "type": "object",
+                    "widget": "Card",
+                    "deleteOnEmpty": true,
+                    "properties": {
+                        "name": {
+                            "$ref": "#/definitions/shared/properties/common/name"
+                        },
+                        "unique_id": {
+                            "title": "Unique ID (Local Router)",
+                            "$ref": "#/definitions/shared/properties/common/unique_id"
+                        },
+                        "pre_existing": {
+                            "$ref": "#/definitions/shared/properties/common/pre_existing"
+                        }
+                    },
+                    "propertyNames": {
+                        "enum": [
+                            "name",
+                            "unique_id",
+                            "pre_existing",
+                            "stack_type"
+                        ]
+                    },
+                    "allOf": [
+                        {
+                            "if": {
+                                "properties": {
+                                    "pre_existing": {
+                                        "type": "boolean",
+                                        "const": true
+                                    }
+                                },
+                                "required": [
+                                    "pre_existing"
+                                ]
+                            },
+                            "then": {
+                                "title": "Local VPN Gateway (Manged Externally)",
+                                "description": "If the `Local VPN Gateway` is manged outside of this Terraform Module",
+                                "properties": {
+                                    "stack_type": {
+                                        "$ref": "#/definitions/shared/properties/vpn_attributes/stack_type_empty"
+                                    }
+                                },
+                                "required": [
+                                    "name"
+                                ]
+                            },
+                            "else": {
+                                "title": "Local VPN Gateway (Manged /w Terraform)",
+                                "description": "If the `Local VPN Gateway` is manged within this Terraform Module",
+                                "properties": {
+                                    "stack_type": {
+                                        "$ref": "#/definitions/shared/properties/vpn_attributes/stack_type"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                "remote_router_gcp": {
+                    "type": "object",
+                    "widget": "Card",
+                    "deleteOnEmpty": true,
+                    "properties": {
+                        "name": {
+                            "$ref": "#/definitions/shared/properties/common/name"
+                        },
+                        "unique_id": {
+                            "title": "Unique ID (Remote Router)",
+                            "$ref": "#/definitions/shared/properties/common/unique_id"
+                        },
+                        "pre_existing": {
+                            "$ref": "#/definitions/shared/properties/common/pre_existing"
+                        }
+                    },
+                    "propertyNames": {
+                        "enum": [
+                            "name",
+                            "unique_id",
+                            "pre_existing",
+                            "bgp"
+                        ]
+                    },
+                    "allOf": [
+                        {
+                            "if": {
+                                "properties": {
+                                    "pre_existing": {
+                                        "type": "boolean",
+                                        "const": true
+                                    }
+                                },
+                                "required": [
+                                    "pre_existing"
+                                ]
+                            },
+                            "then": {
+                                "title": "Remote Router (Manged Externally)",
+                                "description": "If the `Remote Router` is manged outside of this Terraform Module",
+                                "properties": {
+                                    "bgp": {
+                                        "title": "BGP",
+                                        "type": "object",
+                                        "deleteOnEmpty": true,
+                                        "properties": {
+                                            "asn": {
+                                                "$ref": "#/definitions/shared/properties/router_attributes/asn_pre_existing"
+                                            },
+                                            "advanced_tunnel_configuration": {
+                                                "$ref": "#/definitions/shared/properties/vpn_attributes/advanced_tunnel_configuration"
+                                            },
+                                            "remote_subnet_advertisements": {
+                                                "title": "Remote Subnet Advertisements",
+                                                "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements"
+                                            },
+                                            "custom_remote_subnet_advertisements": {},
+                                            "override_local_subnet_advertisments": {
+                                                "$ref": "#/definitions/shared/properties/router_attributes/override_local_subnet_advertisments"
+                                            }
+                                        },
+                                        "allOf": [
+                                            {
+                                                "if": {
+                                                    "properties": {
+                                                        "override_local_subnet_advertisments": {
+                                                            "type": "boolean",
+                                                            "const": true
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "override_local_subnet_advertisments"
+                                                    ]
+                                                },
+                                                "then": {
+                                                    "properties": {
+                                                        "subnet_advertisements": {
+                                                            "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements"
+                                                        }
+                                                    },
+                                                    "if": {
+                                                        "properties": {
+                                                            "subnet_advertisements": {
+                                                                "oneOf": [
+                                                                    {
+                                                                        "type": "string",
+                                                                        "const": "DEFAULT_CUSTOM"
+                                                                    },
+                                                                    {
+                                                                        "type": "string",
+                                                                        "const": "CUSTOM"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "subnet_advertisements"
+                                                        ]
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "custom_subnet_advertisements": {
+                                                                "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
+                                                            }
+                                                        },
+                                                        "propertyNames": {
+                                                            "enum": [
+                                                                "asn",
+                                                                "advanced_tunnel_configuration",
+                                                                "subnet_advertisements",
+                                                                "remote_subnet_advertisements",
+                                                                "custom_subnet_advertisements",
+                                                                "override_local_subnet_advertisments"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "else": {
+                                                        "properties": {
+                                                            "custom_subnet_advertisements": {
+                                                                "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
+                                                            }
+                                                        },
+                                                        "propertyNames": {
+                                                            "enum": [
+                                                                "asn",
+                                                                "advanced_tunnel_configuration",
+                                                                "subnet_advertisements",
+                                                                "remote_subnet_advertisements",
+                                                                "override_local_subnet_advertisments"
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                "else": {
+                                                    "properties": {
+                                                        "subnet_advertisements": {
+                                                            "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements_empty"
+                                                        },
+                                                        "custom_subnet_advertisements": {
+                                                            "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
+                                                        }
+                                                    },
+                                                    "propertyNames": {
+                                                        "enum": [
+                                                            "asn",
+                                                            "advanced_tunnel_configuration",
+                                                            "subnet_advertisements",
+                                                            "remote_subnet_advertisements",
+                                                            "override_local_subnet_advertisments"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "if": {
+                                                    "properties": {
+                                                        "remote_subnet_advertisements": {
+                                                            "oneOf": [
+                                                                {
+                                                                    "type": "string",
+                                                                    "const": "DEFAULT_CUSTOM"
+                                                                },
+                                                                {
+                                                                    "type": "string",
+                                                                    "const": "CUSTOM"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "remote_subnet_advertisements"
+                                                    ]
+                                                },
+                                                "then": {
+                                                    "properties": {
+                                                        "custom_remote_subnet_advertisements": {
+                                                            "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
+                                                        }
+                                                    },
+                                                    "propertyNames": {
+                                                        "enum": [
+                                                            "asn",
+                                                            "advanced_tunnel_configuration",
+                                                            "subnet_advertisements",
+                                                            "remote_subnet_advertisements",
+                                                            "custom_remote_subnet_advertisements",
+                                                            "override_local_subnet_advertisments"
+                                                        ]
+                                                    }
+                                                },
+                                                "else": {
+                                                    "properties": {
+                                                        "custom_remote_subnet_advertisements": {
+                                                            "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
+                                                        }
+                                                    },
+                                                    "propertyNames": {
+                                                        "enum": [
+                                                            "asn",
+                                                            "advanced_tunnel_configuration",
+                                                            "subnet_advertisements",
+                                                            "remote_subnet_advertisements",
+                                                            "override_local_subnet_advertisments"
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "required": [
+                                            "asn"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "name"
+                                ]
+                            },
+                            "else": {
+                                "title": "Remote Router (Manged /w Terraform)",
+                                "description": "If the `Remote Router` is manged within this Terraform Module",
+                                "properties": {
+                                    "bgp": {
+                                        "title": "BGP",
+                                        "type": "object",
+                                        "deleteOnEmpty": true,
+                                        "properties": {
+                                            "asn": {
+                                                "$ref": "#/definitions/shared/properties/router_attributes/asn"
+                                            },
+                                            "advanced_tunnel_configuration": {
+                                                "$ref": "#/definitions/shared/properties/vpn_attributes/advanced_tunnel_configuration"
+                                            },
+                                            "remote_subnet_advertisements": {
+                                                "title": "Remote Subnet Advertisements",
+                                                "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements"
+                                            },
+                                            "custom_remote_subnet_advertisements": {},
+                                            "override_local_subnet_advertisments": {
+                                                "$ref": "#/definitions/shared/properties/router_attributes/override_local_subnet_advertisments"
+                                            }
+                                        },
+                                        "allOf": [
+                                            {
+                                                "if": {
+                                                    "properties": {
+                                                        "override_local_subnet_advertisments": {
+                                                            "type": "boolean",
+                                                            "const": true
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "override_local_subnet_advertisments"
+                                                    ]
+                                                },
+                                                "then": {
+                                                    "properties": {
+                                                        "subnet_advertisements": {
+                                                            "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements"
+                                                        }
+                                                    },
+                                                    "if": {
+                                                        "properties": {
+                                                            "subnet_advertisements": {
+                                                                "oneOf": [
+                                                                    {
+                                                                        "type": "string",
+                                                                        "const": "DEFAULT_CUSTOM"
+                                                                    },
+                                                                    {
+                                                                        "type": "string",
+                                                                        "const": "CUSTOM"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "subnet_advertisements"
+                                                        ]
+                                                    },
+                                                    "then": {
+                                                        "properties": {
+                                                            "custom_subnet_advertisements": {
+                                                                "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
+                                                            }
+                                                        },
+                                                        "propertyNames": {
+                                                            "enum": [
+                                                                "asn",
+                                                                "advanced_tunnel_configuration",
+                                                                "subnet_advertisements",
+                                                                "custom_subnet_advertisements",
+                                                                "remote_subnet_advertisements",
+                                                                "custom_remote_subnet_advertisements",
+                                                                "override_local_subnet_advertisments"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "else": {
+                                                        "properties": {
+                                                            "custom_subnet_advertisements": {
+                                                                "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
+                                                            }
+                                                        },
+                                                        "propertyNames": {
+                                                            "enum": [
+                                                                "asn",
+                                                                "advanced_tunnel_configuration",
+                                                                "subnet_advertisements",
+                                                                "remote_subnet_advertisements",
+                                                                "override_local_subnet_advertisments"
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                "else": {
+                                                    "properties": {
+                                                        "subnet_advertisements": {
+                                                            "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements_empty"
+                                                        },
+                                                        "custom_subnet_advertisements": {
+                                                            "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
+                                                        }
+                                                    },
+                                                    "propertyNames": {
+                                                        "enum": [
+                                                            "asn",
+                                                            "advanced_tunnel_configuration",
+                                                            "remote_subnet_advertisements",
+                                                            "override_local_subnet_advertisments",
+                                                            "custom_remote_subnet_advertisements"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "if": {
+                                                    "properties": {
+                                                        "remote_subnet_advertisements": {
+                                                            "oneOf": [
+                                                                {
+                                                                    "type": "string",
+                                                                    "const": "DEFAULT_CUSTOM"
+                                                                },
+                                                                {
+                                                                    "type": "string",
+                                                                    "const": "CUSTOM"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "remote_subnet_advertisements"
+                                                    ]
+                                                },
+                                                "then": {
+                                                    "properties": {
+                                                        "custom_remote_subnet_advertisements": {
+                                                            "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
+                                                        }
+                                                    },
+                                                    "propertyNames": {
+                                                        "enum": [
+                                                            "asn",
+                                                            "advanced_tunnel_configuration",
+                                                            "subnet_advertisements",
+                                                            "remote_subnet_advertisements",
+                                                            "custom_remote_subnet_advertisements"
+                                                        ]
+                                                    }
+                                                },
+                                                "else": {
+                                                    "properties": {
+                                                        "custom_remote_subnet_advertisements": {
+                                                            "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
+                                                        }
+                                                    },
+                                                    "propertyNames": {
+                                                        "enum": [
+                                                            "asn",
+                                                            "advanced_tunnel_configuration",
+                                                            "subnet_advertisements",
+                                                            "remote_subnet_advertisements"
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                "remote_router_external": {
+                    "type": "object",
+                    "widget": "Card",
+                    "deleteOnEmpty": true,
+                    "additionalProperties": false,
+                    "properties": {
+                        "bgp": {
+                            "title": "BGP",
+                            "type": "object",
+                            "deleteOnEmpty": true,
+                            "additionalProperties": false,
+                            "properties": {
+                                "asn": {
+                                    "view": {
+                                        "sizeXs": 12
+                                    },
+                                    "$ref": "#/definitions/shared/properties/router_attributes/asn_pre_existing"
+                                },
+                                "advanced_tunnel_configuration": {
+                                    "$ref": "#/definitions/shared/properties/vpn_attributes/advanced_tunnel_configuration"
+                                },
+                                "override_local_subnet_advertisments": {
+                                    "$ref": "#/definitions/shared/properties/router_attributes/override_local_subnet_advertisments"
+                                }
+                            },
+                            "allOf": [
+                                {
+                                    "if": {
+                                        "properties": {
+                                            "override_local_subnet_advertisments": {
+                                                "type": "boolean",
+                                                "const": true
+                                            }
+                                        },
+                                        "required": [
+                                            "override_local_subnet_advertisments"
+                                        ]
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "subnet_advertisements": {
+                                                "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements"
+                                            }
+                                        },
+                                        "if": {
+                                            "properties": {
+                                                "subnet_advertisements": {
+                                                    "oneOf": [
+                                                        {
+                                                            "type": "string",
+                                                            "const": "DEFAULT_CUSTOM"
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "const": "CUSTOM"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "subnet_advertisements"
+                                            ]
+                                        },
+                                        "then": {
+                                            "properties": {
+                                                "custom_subnet_advertisements": {
+                                                    "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
+                                                }
+                                            }
+                                        },
+                                        "else": {
+                                            "properties": {
+                                                "custom_subnet_advertisements": {
+                                                    "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "else": {
+                                        "properties": {
+                                            "subnet_advertisements": {
+                                                "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements_empty"
+                                            },
+                                            "custom_subnet_advertisements": {
+                                                "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "required": [
+                                "asn"
+                            ]
+                        }
+                    }
+                },
+                "remote_vpn_gateway_gcp": {
+                    "type": "object",
+                    "widget": "Card",
+                    "properties": {
+                        "name": {
+                            "$ref": "#/definitions/shared/properties/common/name"
+                        },
+                        "unique_id": {
+                            "$ref": "#/definitions/shared/properties/common/unique_id"
+                        },
+                        "pre_existing": {
+                            "$ref": "#/definitions/shared/properties/common/pre_existing"
+                        },
+                        "project_id": {
+                            "$ref": "#/definitions/shared/properties/common/project_id"
+                        },
+                        "network": {
+                            "$ref": "#/definitions/shared/properties/common/network"
+                        },
+                        "tunnel_count": {
+                            "$ref": "#/definitions/shared/properties/vpn_attributes/tunnel_count_gcp"
+                        },
+                        "ike_version": {
+                            "$ref": "#/definitions/shared/properties/vpn_attributes/ike_version"
+                        }
+                    },
+                    "propertyNames": {
+                        "enum": [
+                            "name",
+                            "unique_id",
+                            "pre_existing",
+                            "network",
+                            "project_id",
+                            "tunnel_count",
+                            "ike_version"
+                        ]
+                    },
+                    "allOf": [
+                        {
+                            "if": {
+                                "properties": {
+                                    "pre_existing": {
+                                        "type": "boolean",
+                                        "const": true
+                                    }
+                                },
+                                "required": [
+                                    "pre_existing"
+                                ]
+                            },
+                            "then": {
+                                "title": "Remote VPN Gateway (Manged Externally)",
+                                "description": "If the `Remote VPN Gateway` is manged outside of this Terraform Module",
+                                "required": [
+                                    "name"
+                                ]
+                            },
+                            "else": {
+                                "title": "Remote VPN Gateway (Manged /w Terraform)",
+                                "description": "If the `Remote VPN Gateway` is manged within this Terraform Module"
+                            }
+                        }
+                    ]
+                },
+                "remote_vpn_gateway_external": {
+                    "type": "object",
+                    "widget": "Card",
+                    "properties": {
+                        "name": {
+                            "$ref": "#/definitions/shared/properties/common/name"
+                        },
+                        "unique_id": {
+                            "$ref": "#/definitions/shared/properties/common/unique_id"
+                        },
+                        "pre_existing": {
+                            "$ref": "#/definitions/shared/properties/common/pre_existing"
+                        }
+                    },
+                    "propertyNames": {
+                        "enum": [
+                            "name",
+                            "unique_id",
+                            "pre_existing"
+                        ]
+                    },
+                    "allOf": [
+                        {
+                            "if": {
+                                "properties": {
+                                    "pre_existing": {
+                                        "type": "boolean",
+                                        "const": true
+                                    }
+                                },
+                                "required": [
+                                    "pre_existing"
+                                ]
+                            },
+                            "then": {
+                                "title": "Peer VPN Gateway (Managed Externally)",
+                                "properties": {
+                                    "redudancy_type": {
+                                        "$ref": "#/definitions/shared/properties/vpn_attributes/redudancy_type_empty"
+                                    },
+                                    "tunnel_count": {
+                                        "$ref": "#/definitions/shared/properties/vpn_attributes/tunnel_count_external"
+                                    },
+                                    "ike_version": {
+                                        "$ref": "#/definitions/shared/properties/vpn_attributes/ike_version"
+                                    },
+                                    "interfaces": {
+                                        "$ref": "#/definitions/shared/properties/vpn_attributes/interfaces_empty"
+                                    }
+                                },
+                                "propertyNames": {
+                                    "enum": [
+                                        "name",
+                                        "unique_id",
+                                        "pre_existing",
+                                        "tunnel_count",
+                                        "ike_version"
+                                    ]
+                                },
+                                "required": [
+                                    "name"
+                                ]
+                            },
+                            "else": {
+                                "title": "Peer VPN Gateway (Managed /w Terraform)",
+                                "properties": {
+                                    "redudancy_type": {
+                                        "$ref": "#/definitions/shared/properties/vpn_attributes/redudancy_type"
+                                    },
+                                    "tunnel_count": {
+                                        "$ref": "#/definitions/shared/properties/vpn_attributes/tunnel_count_external"
+                                    },
+                                    "ike_version": {
+                                        "$ref": "#/definitions/shared/properties/vpn_attributes/ike_version"
+                                    },
+                                    "interfaces": {
+                                        "$ref": "#/definitions/shared/properties/vpn_attributes/interfaces"
+                                    }
+                                },
+                                "allOf": [
+                                    {
+                                        "if": {
+                                            "properties": {
+                                                "redudancy_type": {
+                                                    "type": "string",
+                                                    "const": "ONE_INTERFACE"
+                                                }
+                                            },
+                                            "required": [
+                                                "redudancy_type"
+                                            ]
+                                        },
+                                        "then": {
+                                            "properties": {
+                                                "interfaces": {
+                                                    "minItems": 1,
+                                                    "maxItems": 1
+                                                },
+                                                "tunnel_count": {
+                                                    "minimum": 0,
+                                                    "maximum": 1
+                                                }
+                                            },
+                                            "required": [
+                                                "interfaces"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "if": {
+                                            "properties": {
+                                                "redudancy_type": {
+                                                    "type": "string",
+                                                    "const": "TWO_INTERFACES"
+                                                }
+                                            },
+                                            "required": [
+                                                "redudancy_type"
+                                            ]
+                                        },
+                                        "then": {
+                                            "properties": {
+                                                "interfaces": {
+                                                    "minItems": 2,
+                                                    "maxItems": 2
+                                                },
+                                                "tunnel_count": {
+                                                    "minimum": 0,
+                                                    "maximum": 2
+                                                }
+                                            },
+                                            "required": [
+                                                "interfaces"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "if": {
+                                            "properties": {
+                                                "redudancy_type": {
+                                                    "type": "string",
+                                                    "const": "FOUR_INTERFACES"
+                                                }
+                                            },
+                                            "required": [
+                                                "redudancy_type"
+                                            ]
+                                        },
+                                        "then": {
+                                            "properties": {
+                                                "interfaces": {
+                                                    "minItems": 4,
+                                                    "maxItems": 4
+                                                },
+                                                "tunnel_count": {
+                                                    "minimum": 0,
+                                                    "maximum": 4
+                                                }
+                                            },
+                                            "required": [
+                                                "interfaces"
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "propertyNames": {
+                                    "enum": [
+                                        "name",
+                                        "unique_id",
+                                        "pre_existing",
+                                        "redudancy_type",
+                                        "tunnel_count",
+                                        "ike_version",
+                                        "interfaces"
+                                    ]
+                                },
+                                "required": [
+                                    "redudancy_type",
+                                    "interfaces"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "vpn_attributes": {
+                    "stack_type_empty": {
+                        "type": "string",
+                        "deleteOnEmpty": true,
+                        "title": "Stack Type (EMPTY)",
+                        "view": {
+                            "sizeXs": 12
+                        },
+                        "widget": "Select",
+                        "description": "This field should not be set and is only included for UI generation",
+                        "oneOf": [
+                            {
+                                "const": "",
+                                "description": "Select this option to remove `stack_type` from JSON",
+                                "title": "Empty (Clear Field)"
+                            }
+                        ]
+                    },
+                    "stack_type": {
+                        "type": "string",
+                        "widget": "Select",
+                        "deleteOnEmpty": true,
+                        "title": "Stack Type",
+                        "view": {
+                            "sizeXs": 12
+                        },
+                        "description": "The stack type for this VPN gateway to identify the IP protocols that are enabled. If not specified, IPV4_ONLY will be used. ",
+                        "oneOf": [
+                            {
+                                "const": "IPV4_ONLY",
+                                "title": "IpV4 Addresses Only"
+                            },
+                            {
+                                "const": "IPV4_IPV6",
+                                "title": "Ip V4 Addresses & Ip V6 Addresses"
+                            }
+                        ]
+                    },
+                    "ike_version_empty": {
+                        "title": "IKE Version (EMPTY)",
+                        "description": "This field should not be set and is only included for UI generation",
+                        "type": "number",
+                        "deleteOnEmpty": true,
+                        "widget": "Select",
+                        "view": {
+                            "sizeXs": 4
+                        },
+                        "oneOf": [
+                            {
+                                "const": "",
+                                "description": "Select this option to remove `ike_version` from JSON",
+                                "title": "Empty (Clear Field)"
+                            }
+                        ]
+                    },
+                    "ike_version": {
+                        "type": "number",
+                        "deleteOnEmpty": true,
+                        "view": {
+                            "sizeXs": 4
+                        },
+                        "title": "IKE Version",
+                        "description": " IKE protocol version to use when establishing the VPN tunnel with peer VPN gateway",
+                        "widget": "Select",
+                        "default": 2,
+                        "oneOf": [
+                            {
+                                "const": 2
+                            },
+                            {
+                                "const": 1
+                            }
+                        ]
+                    },
+                    "redudancy_type_empty": {
+                        "title": "Redudancy Type (EMPTY)",
+                        "description": "This field should not be set and is only included for UI generation",
+                        "type": "string",
+                        "deleteOnEmpty": true,
+                        "widget": "Select",
+                        "view": {
+                            "sizeXs": 12
+                        },
+                        "oneOf": [
+                            {
+                                "const": "",
+                                "description": "Select this option to remove `redudancy_type` from JSON",
+                                "title": "Empty (Clear Field)"
+                            }
+                        ]
+                    },
+                    "redudancy_type": {
+                        "title": "Redudancy Type",
+                        "type": "string",
+                        "deleteOnEmpty": true,
+                        "widget": "Select",
+                        "view": {
+                            "sizeXs": 12
+                        },
+                        "description": "Indicates the redundancy type of this external VPN gateway",
+                        "oneOf": [
+                            {
+                                "const": "ONE_INTERFACE",
+                                "title": "Single Interface (No Redudancy)",
+                                "description": ""
+                            },
+                            {
+                                "const": "TWO_INTERFACES",
+                                "title": "Two Interfaces",
+                                "description": ""
+                            },
+                            {
+                                "const": "FOUR_INTERFACES",
+                                "title": "Four Interfaces (Required for AWS)",
+                                "description": ""
+                            }
+                        ]
+                    },
+                    "interfaces_empty": {
+                        "title": "Interface Addresses (EMPTY)",
+                        "type": "array",
+                        "widget": "GenericList",
+                        "view": {
+                            "sizeXs": 12
+                        },
+                        "notAddable": true,
+                        "uniqueItems": true,
+                        "deleteOnEmpty": true,
+                        "items": {
+                            "type": "string",
+                            "maxLength": 0,
+                            "pattern": "^(?!.*)"
+                        },
+                        "maxItems": 0
+                    },
+                    "interfaces": {
+                        "title": "Interface Addresses",
+                        "type": "array",
+                        "uniqueItems": true,
+                        "deleteOnEmpty": true,
+                        "widget": "GenericList",
+                        "view": {
+                            "sizeXs": 12,
+                            "btnSize": "medium"
+                        },
+                        "sdk_link": "https://cloud.google.com/sdk/gcloud/reference/compute/external-vpn-gateways/create#--interfaces",
+                        "description": " IP address of the interface in the external VPN gateway. Only IPv4 is supported. This IP address can be either from your on-premise gateway or another Cloud provider's VPN gateway, it cannot be an IP address from Google Compute Engine.",
+                        "items": {
+                            "type": "string",
+                            "pattern": "^(?:([0-9]|[1-9][0-9]{0,1}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5])(\\.([0-9]|[1-9][0-9]{0,1}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5])){3})$"
+                        },
+                        "examples": [
+                            [
+                                "1.2.3.4",
+                                "1.2.3.5"
+                            ],
+                            [
+                                "1.2.3.4",
+                                "1.2.3.5"
+                            ]
+                        ]
+                    },
+                    "advanced_tunnel_configuration": {
+                        "title": "Advanced Tunnel Configurations",
+                        "description": "Any values specified here will be applied to tunnels that are created. If more tunnels are created than addresses specified here they will be randomly assigned",
+                        "type": "array",
+                        "widget": "GenericList",
+                        "view": {
+                            "btnSize": "medium"
+                        },
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "advertised_route_priority": {
+                                    "type": "number",
+                                    "deleteOnEmpty": true,
+                                    "minimum": 0,
+                                    "maximum": 65535,
+                                    "view": {
+                                        "sizeXs": 4
+                                    },
+                                    "title": "Advertised Route Prioirty",
+                                    "description": "The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win."
+                                },
+                                "bgp_advertisement_disabled": {
+                                    "type": "boolean",
+                                    "view": {
+                                        "sizeXs": 8
+                                    },
+                                    "title": "Disable BGP Session",
+                                    "description": " If disabled, any active session with the peer is terminated and all associated routing information is removed."
+                                },
+                                "local_ipv4_address": {
+                                    "type": "string",
+                                    "view": {
+                                        "sizeXs": 6
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "title": "Local IPv4 BGP Peer Address",
+                                    "description": "IPv4 address of the BGP interface, if not specified this IPv4 address will automatically assigned",
+                                    "pattern": "^169.254((\\.([0-9]|[1-9][0-9]{0,1}|1[0-9]{1,2}|2[0-4][0-9]|25[0-4])){2})$"
+                                },
+                                "remote_ipv4_address": {
+                                    "type": "string",
+                                    "view": {
+                                        "sizeXs": 6
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "title": "Remote IPv4 BGP Peer Address",
+                                    "description": "IPv4 address of the BGP interface, if a local_ipv4_address is not specified this IPv4 address will automatically assigned",
+                                    "pattern": "^169.254((\\.([0-9]|[1-9][0-9]{0,1}|1[0-9]{1,2}|2[0-4][0-9]|25[0-4])){2})$"
+                                },
+                                "ipv6_enabled": {
+                                    "type": "boolean",
+                                    "deleteOnEmpty": true,
+                                    "title": "Enable IPv6 Advertisement",
+                                    "description": "If IPv6 is enabled, the peer connection can be established with IPv6 route exchange. IPv6 addresses are dynamically generated"
+                                },
+                                "pre_shared_secret_method": {
+                                    "title": "Pre-Shared Secret Method",
+                                    "type": "string",
+                                    "widget": "Select",
+                                    "default": "DYNAMIC",
+                                    "oneOf": [
+                                        {
+                                            "const": "DYNAMIC",
+                                            "title": "Dynamic Pre-Shared Secret",
+                                            "description": "When dynamic pre-shared secret is selected, the terraform module will 'randomly' generate a pre-shared key to use"
+                                        },
+                                        {
+                                            "const": "STATIC",
+                                            "title": "Static Pre-Shared Secret",
+                                            "description": "When static pre-shared secret is selected, the terraform module will use the string included in this field as the secret for phase 1 encryption\\>All arguments including the following potentially sensitive values will be stored in the raw state as plain text: shared_secret"
+                                        },
+                                        {
+                                            "readOnly": true,
+                                            "const": "SECRET_MANAGER",
+                                            "title": "GCP Secret Manager (COMING SOON)",
+                                            "description": "When static secret manager is selected, the terraform module will use the string referenced in Secret Manager for phase 1 encryption\\>This functionality is on the road-map and only included as a place holder"
+                                        }
+                                    ]
+                                }
+                            },
+                            "propertyNames": {
+                                "enum": [
+                                    "advertised_route_priority",
+                                    "bgp_advertisement_disabled",
+                                    "local_ipv4_address",
+                                    "remote_ipv4_address",
+                                    "ipv6_enabled",
+                                    "pre_shared_secret_method",
+                                    "static_pre_shared_secret"
+                                ]
+                            },
+                            "if": {
+                                "properties": {
+                                    "pre_shared_secret_method": {
+                                        "type": "string",
+                                        "const": "STATIC"
+                                    }
+                                },
+                                "required": [
+                                    "pre_shared_secret_method"
+                                ]
+                            },
+                            "then": {
+                                "properties": {
+                                    "static_pre_shared_secret": {
+                                        "title": "Static Pre-Shared Secret",
+                                        "deleteOnEmpty": true,
+                                        "type": "string",
+                                        "minLength": 1
+                                    }
+                                },
+                                "required": [
+                                    "static_pre_shared_secret"
+                                ]
+                            },
+                            "else": {
+                                "properties": {
+                                    "static_pre_shared_secret": {
+                                        "title": "Static Pre-Shared Secret (EMPTY)",
+                                        "description": "This field should be set to empty remove `static_pre_shared_secret` from JSON",
+                                        "deleteOnEmpty": true,
+                                        "type": "string",
+                                        "pattern": "^(?!.*)",
+                                        "maxLength": 0
+                                    }
+                                }
+                            }
+                        },
+                        "examples": [
+                            {
+                                "local_ipv4_address": "169.254.0.1",
+                                "remote_ipv4_address": "169.254.0.2"
+                            },
+                            {
+                                "disabled": true,
+                                "local_ipv4_address": "169.254.0.5",
+                                "remote_ipv4_address": "169.254.0.6"
+                            },
+                            {
+                                "disabled": true,
+                                "local_ipv4_address": "169.254.0.5",
+                                "remote_ipv4_address": "169.254.0.6",
+                                "ipv6_enabled": true
+                            }
+                        ]
+                    },
+                    "tunnel_count_gcp": {
+                        "title": "Tunnel Count",
+                        "type": "number",
+                        "widget": "Select",
+                        "view": {
+                            "sizeXs": 8
+                        },
+                        "description": "Number of tunnels that should be deployed",
+                        "minimum": 0,
+                        "maximum": 2,
+                        "default": 2,
+                        "oneOf": [
+                            {
+                                "title": "Zero Tunnels",
+                                "description": "Useful for troubleshooting VPN Gateways without the need for tunnel creation",
+                                "const": 0
+                            },
+                            {
+                                "title": "Single VPN tunnel",
+                                "description": "A single tunnel won't provide high availability. You can add more tunnels later when needed.",
+                                "const": 1
+                            },
+                            {
+                                "title": "Dual VPN tunnels",
+                                "description": "Recommended for high availability - 99.99% SLA",
+                                "const": 2
+                            }
+                        ]
+                    },
+                    "tunnel_count_external": {
+                        "title": "Tunnel Count",
+                        "type": "number",
+                        "widget": "Select",
+                        "view": {
+                            "sizeXs": 8
+                        },
+                        "description": "Number of tunnels that should be deployed",
+                        "default": 2,
+                        "oneOf": [
+                            {
+                                "title": "(0) Zero Tunnels",
+                                "description": "Useful for troubleshooting VPN Gateways without the need for tunnel creation",
+                                "const": 0
+                            },
+                            {
+                                "title": "(1) Single VPN tunnel",
+                                "description": "A single tunnel won't provide high availability. You can add more tunnels later when needed.",
+                                "const": 1
+                            },
+                            {
+                                "title": "(2) Two VPN tunnels",
+                                "description": "Recommended for high availability - 99.99% SLA",
+                                "const": 2
+                            },
+                            {
+                                "title": "(4) Four VPN tunnels",
+                                "description": "Recommended for high availability/throughput  - 99.99% SLA. (Required for AWS)",
+                                "const": 4
+                            }
+                        ]
+                    },
+                    "tunnel_count_external_two": {
+                        "title": "Tunnel Count",
+                        "type": "number",
+                        "widget": "Select",
+                        "view": {
+                            "sizeXs": 8
+                        },
+                        "description": "Number of tunnels that should be deployed",
+                        "default": 2,
+                        "oneOf": [
+                            {
+                                "title": "(0) Zero Tunnels",
+                                "description": "Useful for troubleshooting VPN Gateways without the need for tunnel creation",
+                                "const": 0
+                            },
+                            {
+                                "title": "(1) Single VPN tunnel",
+                                "description": "A single tunnel won't provide high availability. You can add more tunnels later when needed.",
+                                "const": 1
+                            },
+                            {
+                                "title": "(2) Two VPN tunnels",
+                                "description": "Recommended for high availability - 99.99% SLA",
+                                "const": 2
+                            }
+                        ]
+                    }
+                },
+                "router_attributes": {
+                    "asn_pre_existing": {
+                        "title": "16-bit or 32-bit Autonomous System Numbers",
+                        "type": "number",
+                        "view": {
+                            "sizeXs": 12
+                        },
+                        "minimum": 1,
+                        "maximum": 9999999999
+                    },
+                    "asn": {
+                        "title": "16-bit or 32-bit Autonomous System Numbers",
+                        "description": "Local BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same local ASN.",
+                        "type": "number",
+                        "oneOf": [
+                            {
+                                "title": "16-bit Autonomous System Numbers",
+                                "type": "number",
+                                "minimum": 64512,
+                                "maximum": 65534
+                            },
+                            {
+                                "title": "32-bit Autonomous System Numbers",
+                                "type": "number",
+                                "minimum": 4200000000,
+                                "maximum": 4294967294
+                            }
+                        ]
+                    },
+                    "subnet_advertisements_empty": {
+                        "title": "Local Subnet Advertisements (EMPTY)",
+                        "type": "string",
+                        "deleteOnEmpty": true,
+                        "widget": "Select",
+                        "view": {
+                            "sizeXs": 12
+                        },
+                        "oneOf": [
+                            {
+                                "const": "",
+                                "description": "Select this option to remove subnet_advertisements from JSON",
+                                "title": "Empty (Clear Field)"
+                            }
+                        ]
+                    },
+                    "subnet_advertisements": {
+                        "type": "string",
+                        "deleteOnEmpty": true,
+                        "title": "Local Subnet Advertisements",
+                        "widget": "Select",
+                        "view": {
+                            "sizeXs": 12
+                        },
+                        "oneOf": [
+                            {
+                                "const": "DEFAULT",
+                                "title": "Advertise all subnets visible to the Cloud Router"
+                            },
+                            {
+                                "const": "DEFAULT_CUSTOM",
+                                "title": "Advertise all subnets visible to the Cloud Router & all Custom subnets specified"
+                            },
+                            {
+                                "const": "CUSTOM",
+                                "title": "Advertise all Custom subnets specified"
+                            }
+                        ]
+                    },
+                    "override_local_subnet_advertisments": {
+                        "title": "Override Local Custom Subnet Advertisements",
+                        "type": "boolean"
+                    },
+                    "override_remote_subnet_advertisments": {
+                        "title": "Override Remote Custom Subnet Advertisements",
+                        "type": "boolean"
+                    },
+                    "custom_subnet_advertisements_empty": {
+                        "title": "Custom Subnet Advertisements (EMPTY)",
+                        "type": "array",
+                        "widget": "GenericList",
+                        "notAddable": true,
+                        "uniqueItems": true,
+                        "deleteOnEmpty": true,
+                        "items": {
+                            "type": "string",
+                            "deleteOnEmpty": true,
+                            "maxLength": 0,
+                            "pattern": "^(?!.*)"
+                        },
+                        "maxItems": 0
+                    },
+                    "custom_subnet_advertisements": {
+                        "title": "Custom Subnet Advertisements",
+                        "type": "array",
+                        "uniqueItems": true,
+                        "deleteOnEmpty": true,
+                        "widget": "GenericList",
+                        "view": {
+                            "sizeXs": 12,
+                            "btnSize": "medium"
+                        },
+                        "items": {
+                            "type": "string",
+                            "oneOf": [
+                                {
+                                    "title": "IPv4 Subnet Advertisements",
+                                    "pattern": "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\/[0-9]{1,2}$"
+                                },
+                                {
+                                    "title": "IPv6 Subnet Advertisements",
+                                    "pattern": "^([0-9a-fA-F]{0,4}:){0,7}[0-9a-fA-F]{0,4}\\/[0-9]{1,3}$"
+                                }
+                            ]
+                        },
+                        "examples": [
+                            "192.168.0.0/16",
+                            "172.16.0.0/12",
+                            "10.0.0.0/8",
+                            "2001:db8::/112"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,51 @@
+[
+    {
+        "vpn_type": "HA",
+        "project_id": "rteller-demo-hst-e265-aaaa",
+        "network": "vpc-test-cases-hub-multi-region",
+        "label": "02_gcp_to_gcp_custom_routes",
+        "region": "US-CENTRAL1",
+        "local_router": {
+            "bgp": {
+                "local_subnet_advertisements": "CUSTOM",
+                "custom_local_subnet_advertisements": [
+                    "192.168.0.0/16",
+                    "172.16.0.0/12",
+                    "10.0.0.0/8"
+                ]
+            }
+        },
+        "local_vpn_gateway": {
+            "stack_type": "IPV4_ONLY"
+        },
+        "remote_vpn_gateways": [
+            {
+                "remote_vpn_gateway_type": "GCP",
+                "remote_vpn_gateway": {
+                    "tunnel_count": 2,
+                    "ike_version": 2,
+                    "network": "vpc-test-cases-prod-multi-region"
+                },
+                "remote_router": {
+                    "bgp": {
+                        "remote_subnet_advertisements": "CUSTOM",
+                        "custom_remote_subnet_advertisements": [
+                            "192.168.0.0/24"
+                        ],
+                        "advanced_tunnel_configuration": [
+                            {
+                                "advertised_route_priority": 200,
+                                "bgp_advertisement_disabled": true
+                            },
+                            {
+                                "advertised_route_priority": 100,
+                                "local_ipv4_address": "169.254.0.1",
+                                "remote_ipv4_address": "169.254.0.2"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+]

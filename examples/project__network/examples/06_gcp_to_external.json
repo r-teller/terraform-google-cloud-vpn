@@ -1,0 +1,34 @@
+[
+  {
+    "vpn_type": "HA",
+    "project_id": "rteller-demo-hst-e265-aaaa",
+    "network": "vpc-test-cases-hub-multi-region",
+    "label": "alpha",
+    "region": "US-CENTRAL1",
+    "local_router": {
+      "bgp": {
+        "local_subnet_advertisements": "DEFAULT"
+      }
+    },
+    "local_vpn_gateway": {
+      "stack_type": "IPV4_ONLY"
+    },
+    "remote_vpn_gateways": [
+      {
+        "remote_vpn_gateway_type": "EXTERNAL",
+        "remote_vpn_gateway": {
+          "redudancy_type": "ONE_INTERFACE",
+          "interfaces": [
+            "65.65.65.65"
+          ],
+          "tunnel_count": 0
+        },
+        "remote_router": {
+          "bgp": {
+            "asn": 1234
+          }
+        }
+      }
+    ]
+  }
+]

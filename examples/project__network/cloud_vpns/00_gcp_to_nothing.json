@@ -1,0 +1,18 @@
+[
+  {
+    "vpn_type": "HA",
+    "project_id": "rteller-demo-hst-e265-aaaa",
+    "network": "vpc-test-cases-hub-multi-region",
+    "label": "00_gcp_to_nothing",
+    "environment": "foo",
+    "region": "US-CENTRAL1",
+    "local_router": {
+      "bgp": {
+        "local_subnet_advertisements": "DEFAULT"
+      }
+    },
+    "local_vpn_gateway": {
+      "stack_type": "IPV4_ONLY"
+    }
+  }
+]

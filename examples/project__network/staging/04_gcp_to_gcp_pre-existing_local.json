@@ -1,0 +1,30 @@
+[
+  {
+    "vpn_type": "HA",
+    "region": "US-CENTRAL1",
+    "local_router": {
+      "pre_existing": true,
+      "name": "my-pre-existing-cloud-router",
+      "bgp": {
+        "asn": 4242949025
+      }
+    },
+    "local_vpn_gateway": {
+      "pre_existing": true,
+      "name": "my-pre-existing-cloud-vpn-gateway"
+    },
+    "remote_vpn_gateways": [
+      {
+        "remote_vpn_gateway_type": "GCP",
+        "remote_vpn_gateway": {
+          "tunnel_count": 2,
+          "ike_version": 2,
+          "network": "vpc-test-cases-prod-multi-region"
+        }
+      }
+    ],
+    "project_id": "rteller-demo-hst-e265-aaaa",
+    "network": "vpc-test-cases-hub-multi-region",
+    "label": "04_gcp_to_gcp_pre-existing_local"
+  }
+]

@@ -7,7 +7,8 @@
     "region": "US-CENTRAL1",
     "local_router": {
       "bgp": {
-        "local_subnet_advertisements": "DEFAULT"
+        "local_subnet_advertisements": "DEFAULT",
+        "asn": 65534
       }
     },
     "local_vpn_gateway": {
@@ -17,15 +18,46 @@
       {
         "remote_vpn_gateway_type": "EXTERNAL",
         "remote_vpn_gateway": {
-          "redudancy_type": "ONE_INTERFACE",
+          "redudancy_type": "FOUR_INTERFACES",
           "interfaces": [
-            "65.65.65.65"
+            "35.167.208.72",
+            "44.237.232.76",
+            "100.22.2.50",
+            "54.202.133.170"
           ],
-          "tunnel_count": 0
+          "tunnel_count": 4
         },
         "remote_router": {
           "bgp": {
-            "asn": 1234
+            "asn": 64512,
+            "advanced_tunnel_configuration": [
+              {
+                "pre_shared_secret_method": "STATIC",
+                "static_pre_shared_secret": "FooBar123_",
+                "local_ipv4_address": "169.254.78.226",
+                "remote_ipv4_address": "169.254.78.225"
+              },
+              {
+                "pre_shared_secret_method": "STATIC",
+                "static_pre_shared_secret": "FooBar123_",
+                "local_ipv4_address": "169.254.251.246",
+                "remote_ipv4_address": "169.254.251.245"
+              },
+              {
+                "bgp_advertisement_disabled": false,
+                "pre_shared_secret_method": "STATIC",
+                "static_pre_shared_secret": "FooBar123_",
+                "local_ipv4_address": "169.254.190.242",
+                "remote_ipv4_address": "169.254.190.241"
+              },
+              {
+                "bgp_advertisement_disabled": false,
+                "pre_shared_secret_method": "STATIC",
+                "static_pre_shared_secret": "FooBar123_",
+                "local_ipv4_address": "169.254.156.134",
+                "remote_ipv4_address": "169.254.156.133"
+              }
+            ]
           }
         }
       }

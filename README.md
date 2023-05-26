@@ -1,30 +1,145 @@
-## Resource Naming
 
-### Resource Dynamic Name Generation
-> uuidv5 naming (goes here)
+# Overview
 
-```tcl
-      uuidv5 = format("cr-l-vpn-%s", uuidv5("x500", join(",", [for k, v in {
-        NAME        = try(cloud_vpn.local_router.name, null) != null ? cloud_vpn.local_router.name : null           
-        PREFIX      = try(cloud_vpn.prefix, null) != null ? cloud_vpn.prefix : null                                 
-        ENVIRONMENT = try(cloud_vpn.environment, null) != null ? cloud_vpn.environment : null                       
-        LABEL       = try(cloud_vpn.label, null) != null ? cloud_vpn.label : null                                   
-        UNIQUE_ID   = try(cloud_vpn.local_router.unique_id, null) != null ? cloud_vpn.local_router.unique_id : null 
-        PROJECT_ID  = try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id,
-        NETWORK     = try(cloud_vpn.network, null) != null ? cloud_vpn.network : var.network
-        REGION      = try(cloud_vpn.region, null) != null ? cloud_vpn.region : var.region
-        BGP_ASN     = try(cloud_vpn.local_router.bgp.asn, null) != null ? cloud_vpn.local_router.bgp.asn : null 
-        } : format("%s=%s", k, v) if v != null])
-      ))
-```
+## Diagram (GCP to GCP)
 
-#### Cloud Router (google_compute_router)
+## Diagram (GCP to External)
 
-#### HA VPN Gateway (google_compute_ha_vpn_gateway)
+# Resource Naming
+## Resource Dynamic Name Generation
+> Resource state Id's are dynamically generated based on attributes of the resource formatted using name-based uuids.
+> - https://developer.hashicorp.com/terraform/language/functions/uuidv5
 
-#### External VPN Gateway (google_compute_external_vpn_gateway)
+## Cloud Router (google_compute_router)
+### Local Side
+> Resource Naming == `format("cr-l-vpn-%s",uuidv5("x500",<...>)`
 
-#### VPN Tunnel | Router Interface | BGP Peer (google_compute_vpn_tunnel |google_compute_router_interface | google_compute_router_peer)
+| Name        | Primary Value                       | Secondary Value           | Default |
+| ----------- | ----------------------------------- | ------------------------- | :-----: |
+| NAME        | (JSON) `.[].local_router.name`      | N/A                       | `null`  |
+| PREFIX      | (JSON) `.[].prefix`                 | N/A                       | `null`  |
+| ENVIRONMENT | (JSON) `.[].environment`            | N/A                       | `null`  |
+| LABEL       | (JSON) `.[].label`                  | N/A                       | `null`  |
+| UNIQUE_ID   | (JSON) `.[].local_router.unique_id` | N/A                       | `null`  |
+| PROJECT_ID  | (JSON) `.[].project_id`             | (TF VAR) `var.project_id` |   N/A   |
+| NETWORK     | (JSON) `.[].network`                | (TF VAR) `var.network`    |   N/A   |
+| REGION      | (JSON) `.[].region`                 | (TF VAR) `var.region`     |   N/A   |
+| BGP_ASN     | (JSON) `.[].local_router.bgp.asn`   | N/A                       | `null`  |
+
+### Remote Side (If Managed by this module)
+> Resource Naming == `format("cr-r-vpn-%s",uuidv5("x500",<...>)`
+
+| Name        | Primary Value                       | Secondary Value           | Default |
+| ----------- | ----------------------------------- | ------------------------- | :-----: |
+| NAME        | (JSON) `.[].local_router.name`      | N/A                       | `null`  |
+| PREFIX      | (JSON) `.[].prefix`                 | N/A                       | `null`  |
+| ENVIRONMENT | (JSON) `.[].environment`            | N/A                       | `null`  |
+| LABEL       | (JSON) `.[].label`                  | N/A                       | `null`  |
+| UNIQUE_ID   | (JSON) `.[].local_router.unique_id` | N/A                       | `null`  |
+| PROJECT_ID  | (JSON) `.[].project_id`             | (TF VAR) `var.project_id` |   N/A   |
+| NETWORK     | (JSON) `.[].network`                | (TF VAR) `var.network`    |   N/A   |
+| REGION      | (JSON) `.[].region`                 | (TF VAR) `var.region`     |   N/A   |
+| BGP_ASN     | (JSON) `.[].local_router.bgp.asn`   | N/A                       | `null`  |
+
+## HA VPN Gateway (google_compute_ha_vpn_gateway)
+### Local Side
+> Resource Naming == `format("ha-l-vpn-%s",uuidv5("x500",<...>)`
+
+| Name        | Primary Value                             | Secondary Value           | Default |
+| ----------- | ----------------------------------------- | ------------------------- | :-----: |
+| NAME        | (JSON) `.[].local_vpn_gateway.name`       | N/A                       | `null`  |
+| PREFIX      | (JSON) `.[].prefix`                       | N/A                       | `null`  |
+| ENVIRONMENT | (JSON) `.[].environment`                  | N/A                       | `null`  |
+| LABEL       | (JSON) `.[].label`                        | N/A                       | `null`  |
+| UNIQUE_ID   | (JSON) `.[].local_vpn_gateway.unique_id`  | N/A                       | `null`  |
+| PROJECT_ID  | (JSON) `.[].project_id`                   | (TF VAR) `var.project_id` |   N/A   |
+| NETWORK     | (JSON) `.[].network`                      | (TF VAR) `var.network`    |   N/A   |
+| REGION      | (JSON) `.[].region`                       | (TF VAR) `var.region`     |   N/A   |
+| VPN_TYPE    | (JSON) `.[].vpn_type`                     | N/A                       |   N/A   |
+| STACK_TYPE  | (JSON) `.[].local_vpn_gateway.stack_type` | N/A                       |   N/A   |
+
+### Remote Side (If Managed by this module)
+> Resource Naming == `format("ha-r-vpn-%s",uuidv5("x500",<...>)`
+
+| Name        | Primary Value                                                    | Secondary Value         | Tertiary Value            | Default |
+| ----------- | ---------------------------------------------------------------- | ----------------------- | ------------------------- | :-----: |
+| NAME        | (JSON) `.[].remote_vpn_gateways[].remote_vpn_gateway.name`       | N/A                     | N/A                       | `null`  |
+| PREFIX      | (JSON) `.[].prefix`                                              | N/A                     | N/A                       | `null`  |
+| ENVIRONMENT | (JSON) `.[].environment`                                         | N/A                     | N/A                       | `null`  |
+| LABEL       | (JSON) `.[].label`                                               | N/A                     | N/A                       | `null`  |
+| UNIQUE_ID   | (JSON) `.[].remote_vpn_gateways[].remote_vpn_gateway.unique_id`  | N/A                     | N/A                       | `null`  |
+| PROJECT_ID  | (JSON) `.[].remote_vpn_gateways[].remote_vpn_gateway.project_id` | (JSON) `.[].project_id` | (TF VAR) `var.project_id` |   N/A   |
+| NETWORK     | (JSON) `.[].network`                                             | N/A                     | N/A                       |   N/A   |
+| REGION      | (JSON) `.[].remote_vpn_gateways[].remote_vpn_gateway.region`     | (JSON) `.[].region`     | (TF VAR) `var.region`     |   N/A   |
+
+## External VPN Gateway (google_compute_external_vpn_gateway)
+> Resource Naming == `format("ha-r-vpn-%s",uuidv5("x500",<...>)`
+
+| Name            | Primary Value                                                        | Secondary Value           |     Default      |
+| --------------- | -------------------------------------------------------------------- | ------------------------- | :--------------: |
+| NAME            | (JSON) `.[].remote_vpn_gateways[].remote_vpn_gateway.name`           | N/A                       |      `null`      |
+| PREFIX          | (JSON) `.[].prefix`                                                  | N/A                       |      `null`      |
+| ENVIRONMENT     | (JSON) `.[].environment`                                             | N/A                       |      `null`      |
+| LABEL           | (JSON) `.[].label`                                                   | N/A                       |      `null`      |
+| UNIQUE_ID       | (JSON) `.[].remote_vpn_gateways[].remote_vpn_gateway.unique_id`      | N/A                       |      `null`      |
+| PROJECT_ID      | (JSON) `.[].project_id`                                              | (TF VAR) `var.project_id` |       N/A        |
+| REDUNDANCY_TYPE | (JSON) `.[].remote_vpn_gateways[].remote_vpn_gateway.redudancy_type` | N/A                       | `TWO_INTERFACES` |
+
+## VPN Tunnel | Router Interface | BGP Peer (google_compute_vpn_tunnel |google_compute_router_interface | google_compute_router_peer)
+### Local Side
+> Resource Naming == `format("vpn-%s-tunnel-%s",<...TUNNEL_TYPE...>,uuidv5("x500",<...>)`
+> Tunnel Types
+> - External == `l-e`
+> - GCP == `l-r`
+
+| Name                          | Primary Value                                                    | Secondary Value           | Default |
+| ----------------------------- | ---------------------------------------------------------------- | ------------------------- | :-----: |
+| NAME                          | `null`                                                           | N/A                       | `null`  |
+| PREFIX                        | (JSON) `.[].prefix`                                              | N/A                       | `null`  |
+| ENVIRONMENT                   | (JSON) `.[].environment`                                         | N/A                       | `null`  |
+| LABEL                         | (JSON) `.[].label`                                               | N/A                       | `null`  |
+| UNIQUE_ID                     | (JSON) `.[].local_router.unique_id`                              | N/A                       | `null`  |
+| PROJECT_ID                    | (JSON) `.[].project_id`                                          | (TF VAR) `var.project_id` |   N/A   |
+| NETWORK                       | (JSON) `.[].network`                                             | (TF VAR) `var.network`    |   N/A   |
+| REGION                        | (JSON) `.[].region`                                              | (TF VAR) `var.region`     |   N/A   |
+| ROUTER_NAME                   | (JSON) `.[].local_router.name`                                   | N/A                       | `null`  |
+| LOCAL_VPN_GATEWAY_NAME        | (JSON) `.[].local_vpn_gateway.name`                              | N/A                       | `null`  |
+| LOCAL_VPN_GATEWAY_UNIQUE_ID   | (JSON) `.[].local_vpn_gateway.unique_id`                         | N/A                       | `null`  |
+| TUNNEL_INDEX                  | (TF VALUE DERIVED BASED ON Tunnel #)                             | N/A                       |   N/A   |
+| REMOTE_VPN_GATEWAY_UUIDV5     | (TF VALUE DERIVED ABOVE)                                         | N/A                       |   N/A   |
+| REMOTE_VPN_GATEWAY_TYPE       | (JSON) `.[].remote_vpn_gateways[].remote_vpn_gateway_type`       | N/A                       |   N/A   |
+| REMOTE_VPN_GATEWAY_PROJECT_ID | (JSON) `.[].remote_vpn_gateways[].remote_vpn_gateway.project_id` | `.[].project_id`          |   N/A   |
+| REMOTE_VPN_GATEWAY_NETWORK    | (JSON) `.[].remote_vpn_gateways[].remote_vpn_gateway.network`    | N/A                       |   N/A   |
+| REMOTE_VPN_GATEWAY_NAME       | (JSON) `.[].remote_vpn_gateways[].remote_vpn_gateway.name`       | N/A                       | `null`  |
+| REMOTE_VPN_GATEWAY_UNIQUE_ID  | (JSON) `.[].remote_vpn_gateways[].remote_vpn_gateway.unique_id`  | N/A                       | `null`  |
+
+### Remote Side (If Managed by this module)
+> Resource Naming == `format("vpn-r-l-tunnel-%s",uuidv5("x500",<...>)`
+
+| Name                          | Primary Value                                                   | Secondary Value           | Default |
+| ----------------------------- | --------------------------------------------------------------- | ------------------------- | :-----: |
+| NAME                          | `null`                                                          | N/A                       | `null`  |
+| PREFIX                        | (JSON) `.[].prefix`                                             | N/A                       | `null`  |
+| ENVIRONMENT                   | (JSON) `.[].environment`                                        | N/A                       | `null`  |
+| LABEL                         | (JSON) `.[].label`                                              | N/A                       | `null`  |
+| UNIQUE_ID                     | (JSON) `.[].local_router.unique_id`                             | N/A                       | `null`  |
+| PROJECT_ID                    | (JSON) `.[].project_id`                                         | (TF VAR) `var.project_id` |   N/A   |
+| NETWORK                       | (JSON) `.[].network`                                            | (TF VAR) `var.network`    |   N/A   |
+| REGION                        | (JSON) `.[].region`                                             | (TF VAR) `var.region`     |   N/A   |
+| ROUTER_NAME                   | (JSON) `.[].remote_vpn_gateways[].remote_router.name`           | N/A                       | `null`  |
+| LOCAL_VPN_GATEWAY_NAME        | (JSON) `.[].remote_vpn_gateways[].remote_vpn_gateway.name`      | N/A                       | `null`  |
+| LOCAL_VPN_GATEWAY_UNIQUE_ID   | (JSON) `.[].remote_vpn_gateways[].remote_vpn_gateway.unique_id` | N/A                       | `null`  |
+| TUNNEL_INDEX                  | (TF VALUE DERIVED BASED ON Tunnel #)                            | N/A                       |   N/A   |
+| REMOTE_VPN_GATEWAY_UUIDV5     | (TF VALUE DERIVED ABOVE)                                        | N/A                       |   N/A   |
+| REMOTE_VPN_GATEWAY_TYPE       | (JSON) `.[].remote_vpn_gateways[].remote_vpn_gateway_type`      | N/A                       |   N/A   |
+| REMOTE_VPN_GATEWAY_PROJECT_ID | (JSON) `.[].local_vpn_gateway.project_id`                       | `.[].project_id`          |   N/A   |
+| REMOTE_VPN_GATEWAY_NETWORK    | (JSON) `.[].local_vpn_gateway.network`                          | N/A                       |   N/A   |
+| REMOTE_VPN_GATEWAY_NAME       | (JSON) `.[].local_vpn_gateway.name`                             | N/A                       | `null`  |
+| REMOTE_VPN_GATEWAY_UNIQUE_ID  | (JSON) `.[].local_vpn_gateway.unique_id`                        | N/A                       | `null`  |
+
+---
+---
+---
 
 # Roadmap Module Features
 - UI
@@ -59,6 +174,7 @@ https://r-teller.github.io/terraform-google-cloud-vpn/documentation/
 ```bash
 npm install -g ajv-cli
 
+ajv validate -s "./schemas/resolved/resolved.schema.json" -d "./examples/project__network/examples/*.json" --strict=false
 ajv validate -s .\json_generator\src\Schema\resolved.schema.json  -d .\test_cases\1_network\1a_network_single_name.json --strict=false
 ajv validate -s .\json_generator\src\Schema\resolved.schema.json  -d .\test_cases\*\*.json --strict=false
 ```

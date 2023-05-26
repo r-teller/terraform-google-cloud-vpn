@@ -177,11 +177,13 @@
                                                     "$ref": "#/definitions/shared/properties/remote_router_gcp"
                                                 }
                                             },
-                                            "enum": [
-                                                "remote_vpn_gateway_type",
-                                                "remote_vpn_gateway",
-                                                "remote_router"
-                                            ]
+                                            "propertyNames": {
+                                                "enum": [
+                                                    "remote_vpn_gateway_type",
+                                                    "remote_vpn_gateway",
+                                                    "remote_router"
+                                                ]
+                                            }
                                         }
                                     },
                                     {
@@ -1040,7 +1042,10 @@
                             },
                             "else": {
                                 "title": "Remote VPN Gateway (Manged /w Terraform)",
-                                "description": "If the `Remote VPN Gateway` is manged within this Terraform Module"
+                                "description": "If the `Remote VPN Gateway` is manged within this Terraform Module",
+                                "required": [
+                                    "network"
+                                ]
                             }
                         }
                     ]
@@ -1058,13 +1063,6 @@
                         "pre_existing": {
                             "$ref": "#/definitions/shared/properties/common/pre_existing"
                         }
-                    },
-                    "propertyNames": {
-                        "enum": [
-                            "name",
-                            "unique_id",
-                            "pre_existing"
-                        ]
                     },
                     "allOf": [
                         {
@@ -1101,6 +1099,7 @@
                                         "unique_id",
                                         "pre_existing",
                                         "tunnel_count",
+                                        "redudancy_type",
                                         "ike_version"
                                     ]
                                 },

@@ -7,7 +7,8 @@
     "region": "US-CENTRAL1",
     "local_router": {
       "bgp": {
-        "local_subnet_advertisements": "DEFAULT"
+        "local_subnet_advertisements": "DEFAULT",
+        "asn": 65534
       }
     },
     "local_vpn_gateway": {
@@ -17,26 +18,28 @@
       {
         "remote_vpn_gateway_type": "EXTERNAL",
         "remote_vpn_gateway": {
-          "unique_id": "advanced",
           "redudancy_type": "TWO_INTERFACES",
           "interfaces": [
-            "65.65.65.65",
-            "65.65.65.66"
+            "11.11.22.11",
+            "11.11.22.12"
           ],
           "tunnel_count": 2
         },
         "remote_router": {
           "bgp": {
-            "asn": 1234,
+            "asn": 64512,
             "advanced_tunnel_configuration": [
               {
-                "advertised_route_priority": 200,
-                "bgp_advertisement_disabled": true
+                "pre_shared_secret_method": "STATIC",
+                "static_pre_shared_secret": "FooBar123_",
+                "local_ipv4_address": "169.254.12.226",
+                "remote_ipv4_address": "169.254.12.225"
               },
               {
-                "advertised_route_priority": 100,
-                "local_ipv4_address": "169.254.0.2",
-                "remote_ipv4_address": "169.254.0.3"
+                "pre_shared_secret_method": "STATIC",
+                "static_pre_shared_secret": "FooBar123_",
+                "local_ipv4_address": "169.254.12.246",
+                "remote_ipv4_address": "169.254.12.245"
               }
             ]
           }

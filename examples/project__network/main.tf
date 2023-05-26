@@ -9,8 +9,8 @@ locals {
 }
 
 module "cloud_vpn" {
-  source = "r-teller/cloud-vpn/google"
-  # source = "../../"
+  # source = "r-teller/cloud-vpn/google"
+  source = "../../"
 
 
   project_id = var.project_id

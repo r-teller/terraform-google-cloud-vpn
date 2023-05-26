@@ -66,7 +66,6 @@ locals {
         NETWORK     = try(cloud_vpn.network, null) != null ? cloud_vpn.network : var.network
         REGION      = try(cloud_vpn.region, null) != null ? cloud_vpn.region : var.region
         BGP_ASN     = try(cloud_vpn.local_router.bgp.asn, null) != null ? cloud_vpn.local_router.bgp.asn : null # "UNKNOWN"
-        # "${k}=${v}" if v != null])
         } : format("%s=%s", k, v) if v != null])
       ))
 
@@ -95,7 +94,6 @@ locals {
         REGION      = try(cloud_vpn.region, null) != null ? cloud_vpn.region : var.region
         VPN_TYPE    = try(cloud_vpn.vpn_type, null) != null ? cloud_vpn.vpn_type : "HA"
         STACK_TYPE  = try(cloud_vpn.local_vpn_gateway.stack_type, null) != null ? cloud_vpn.local_vpn_gateway.stack_type : local.default_ha_vpn_gateways.stack_type
-        # } : "${k}=${v}" if v != null])
         } : format("%s=%s", k, v) if v != null])
       ))
 
@@ -119,15 +117,14 @@ locals {
       region     = lower(try(v1.remote_vpn_gateway.region, null) != null ? v1.remote_vpn_gateway.region : try(cloud_vpn.region, null) != null ? cloud_vpn.region : var.region)
 
       uuidv5 = format("ha-r-vpn-%s", uuidv5("x500", join(",", [for k, v in {
-        NAME        = try(v1.remote_vpn_gateway.name, null) != null ? v1.remote_vpn_gateway.name : null           # "UNKNOWN"
-        PREFIX      = try(cloud_vpn.prefix, null) != null ? cloud_vpn.prefix : null                               # "UNKNOWN"
-        ENVIRONMENT = try(cloud_vpn.environment, null) != null ? cloud_vpn.environment : null                     # "UNKNOWN"
-        LABEL       = try(cloud_vpn.label, null) != null ? cloud_vpn.label : null                                 # "UNKNOWN"
-        UNIQUE_ID   = try(v1.remote_vpn_gateway.unique_id, null) != null ? v1.remote_vpn_gateway.unique_id : null # "UNKNOWN"
-        PROJECT_ID  = try(v1.remote_vpn_gateway.project_id, null) != null ? v1.remote_vpn_gateway.project_id : try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id
-        NETWORK     = v1.remote_vpn_gateway.network
-        REGION      = try(v1.remote_vpn_gateway.region, null) != null ? v1.remote_vpn_gateway.region : try(cloud_vpn.region, null) != null ? cloud_vpn.region : var.region
-        # } : "${k}=${v}" if v != null])        
+        NAME        = try(v1.remote_vpn_gateway.name, null) != null ? v1.remote_vpn_gateway.name : null,
+        PREFIX      = try(cloud_vpn.prefix, null) != null ? cloud_vpn.prefix : null,
+        ENVIRONMENT = try(cloud_vpn.environment, null) != null ? cloud_vpn.environment : null,
+        LABEL       = try(cloud_vpn.label, null) != null ? cloud_vpn.label : null,
+        UNIQUE_ID   = try(v1.remote_vpn_gateway.unique_id, null) != null ? v1.remote_vpn_gateway.unique_id : null,
+        PROJECT_ID  = try(v1.remote_vpn_gateway.project_id, null) != null ? v1.remote_vpn_gateway.project_id : try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id,
+        NETWORK     = v1.remote_vpn_gateway.network,
+        REGION      = try(v1.remote_vpn_gateway.region, null) != null ? v1.remote_vpn_gateway.region : try(cloud_vpn.region, null) != null ? cloud_vpn.region : var.region,
         } : format("%s=%s", k, v) if v != null])
       ))
 
@@ -144,17 +141,16 @@ locals {
         pre_existing = try(v1.remote_router.pre_existing, false),
 
         uuidv5 = format("cr-r-vpn-%s", uuidv5("x500", join(",", [for k, v in {
-          NAME        = try(v1.remote_router.name, null) != null ? v1.remote_router.name : null                              # "UNKNOWN"
-          PREFIX      = try(cloud_vpn.prefix, null) != null ? cloud_vpn.prefix : null                                        # "UNKNOWN"
-          ENVIRONMENT = try(cloud_vpn.environment, null) != null ? cloud_vpn.environment : null                              # "UNKNOWN"
-          LABEL       = try(cloud_vpn.label, null) != null ? cloud_vpn.label : null                                          # "UNKNOWN"
-          UNIQUE_ID   = try(v1.remote_router.unique_id, null) != null ? v1.remote_vpn_gateway.remote_router.unique_id : null # "UNKNOWN",
-          PROJECT_ID  = try(v1.remote_vpn_gateway.project_id, null) != null ? v1.project_id : try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id
-          PROJECT_ID  = try(v1.remote_vpn_gateway.project_id, null) != null ? v1.remote_vpn_gateway.project_id : try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id
-          NETWORK     = v1.remote_vpn_gateway.network
-          REGION      = try(v1.remote_vpn_gateway.region, null) != null ? v1.remote_vpn_gateway.region : try(cloud_vpn.region, null) != null ? cloud_vpn.region : var.region
-          BGP_ASN     = try(v1.remote_router.bgp.asn, null) != null ? v1.remote_router.bgp.asn : null # "UNKNOWN",
-          # } : "${k}=${v}" if v != null])
+          NAME        = try(v1.remote_router.name, null) != null ? v1.remote_router.name : null,
+          PREFIX      = try(cloud_vpn.prefix, null) != null ? cloud_vpn.prefix : null,
+          ENVIRONMENT = try(cloud_vpn.environment, null) != null ? cloud_vpn.environment : null,
+          LABEL       = try(cloud_vpn.label, null) != null ? cloud_vpn.label : null,
+          UNIQUE_ID   = try(v1.remote_router.unique_id, null) != null ? v1.remote_vpn_gateway.remote_router.unique_id : null,
+          PROJECT_ID  = try(v1.remote_vpn_gateway.project_id, null) != null ? v1.project_id : try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id,
+          PROJECT_ID  = try(v1.remote_vpn_gateway.project_id, null) != null ? v1.remote_vpn_gateway.project_id : try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id,
+          NETWORK     = v1.remote_vpn_gateway.network,
+          REGION      = try(v1.remote_vpn_gateway.region, null) != null ? v1.remote_vpn_gateway.region : try(cloud_vpn.region, null) != null ? cloud_vpn.region : var.region,
+          BGP_ASN     = try(v1.remote_router.bgp.asn, null) != null ? v1.remote_router.bgp.asn : null,
           } : format("%s=%s", k, v) if v != null])
         ))
 
@@ -179,14 +175,14 @@ locals {
       redundancy_type = try(lookup(local.lookups_peer_vpn_gateway_redudancy_type, v1.remote_vpn_gateway.redudancy_type), local.defaults_peer_vpn_gateways.redudancy_type)
 
       uuidv5 = format("ha-e-vpn-%s", uuidv5("x500", join(",", [for k, v in {
-        NAME            = try(v1.name, null) != null ? v1.name : null                             # "UNKNOWN",
-        PREFIX          = try(cloud_vpn.prefix, null) != null ? cloud_vpn.prefix : null           # "UNKNOWN",
-        ENVIRONMENT     = try(cloud_vpn.environment, null) != null ? cloud_vpn.environment : null # "UNKNOWN",
-        LABEL           = try(cloud_vpn.label, null) != null ? cloud_vpn.label : null             # "UNKNOWN",
-        UNIQUE_ID       = try(v1.unique_id, null) != null ? v1.unique_id : null                   # "UNKNOWN",
+        NAME            = try(v1.remote_vpn_gateway.name, null) != null ? v1.remote_vpn_gateway.name : null,
+        PREFIX          = try(cloud_vpn.prefix, null) != null ? cloud_vpn.prefix : null,
+        ENVIRONMENT     = try(cloud_vpn.environment, null) != null ? cloud_vpn.environment : null,
+        LABEL           = try(cloud_vpn.label, null) != null ? cloud_vpn.label : null,
+        UNIQUE_ID       = try(v1.remote_vpn_gateway.unique_id, null) != null ? v1.remote_vpn_gateway.unique_id : null,
         PROJECT_ID      = try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id,
-        REDUNDANCY_TYPE = try(lookup(local.lookups_peer_vpn_gateway_redudancy_type, v1.redudancy_type), local.defaults_peer_vpn_gateways.redudancy_type),
-        # } : "${k}=${v}" if v != null])
+        INTERFACES      = try(md5(jsonencode(v1.remote_vpn_gateway.interfaces)), null)
+        REDUNDANCY_TYPE = try(lookup(local.lookups_peer_vpn_gateway_redudancy_type, v1.remote_vpn_gateway.redudancy_type), local.defaults_peer_vpn_gateways.redudancy_type),
         } : format("%s=%s", k, v) if v != null])
       ))
 
@@ -269,20 +265,28 @@ locals {
       prefix      = cloud_vpn.prefix
       environment = cloud_vpn.environment
 
+      name      = null
+      unique_id = null
+      uuidv5    = null
+
       project_id = v1.project_id
-      # pre_existing = v1.router.pre_existing
+      region     = null
+      network    = null
+
+      pre_existing = null
 
       bgp = {
-        asn               = v1.remote_router.bgp.asn
-        advertise_mode    = v1.remote_router.bgp.advertise_mode
-        advertised_groups = v1.remote_router.bgp.advertised_groups
+        asn                  = v1.remote_router.bgp.asn
+        advertise_mode       = v1.remote_router.bgp.advertise_mode
+        advertised_groups    = v1.remote_router.bgp.advertised_groups
+        advertised_ip_ranges = []
       }
       }
     ]
   )]))
 
   map_local_routers  = { for local_routers in local._local_routers : local_routers.uuidv5 => local_routers }
-  map_remote_routers = { for remote_routers in local._remote_routers : remote_routers.uuidv5 => remote_routers if can(remote_routers.uuidv5) }
+  map_remote_routers = { for remote_routers in local._remote_routers : remote_routers.uuidv5 => remote_routers if remote_routers.uuidv5 != null }
 }
 
 ## Used to randomly generate 16-bit ASN as needed
@@ -661,22 +665,25 @@ locals {
   map_local_vpn_tunnels = { for vpn_tunnel in local._vpn_tunnels : format("vpn-%s-tunnel-%s",
     lookup({ "external" = "l-e", "gcp" = "l-r" }, vpn_tunnel.remote_vpn_gateway.type, "l-u")
     , uuidv5("x500", join(",", [for k, v in {
-      PREFIX                        = try(vpn_tunnel.prefix, null) != null ? vpn_tunnel.prefix : null           # "UNKNOWN",
-      ENVIRONMENT                   = try(vpn_tunnel.environment, null) != null ? vpn_tunnel.environment : null # "UNKNOWN",
-      LABEL                         = try(vpn_tunnel.label, null) != null ? vpn_tunnel.label : null             # "UNKNOWN",
-      PROJECT_ID                    = vpn_tunnel.local_vpn_gateway.project_id,
-      NETWORK                       = vpn_tunnel.local_vpn_gateway.network,
-      ROUTER_NAME                   = vpn_tunnel.local_vpn_gateway.local_router.name,
-      LOCAL_VPN_GATEWAY_NAME        = vpn_tunnel.local_vpn_gateway.name,
-      LOCAL_VPN_GATEWAY_UNIQUE_ID   = try(vpn_tunnel.local_vpn_gateway.unique_id, null) != null ? vpn_tunnel.local_vpn_gateway.unique_id : null # "UNKNOWN",
-      TUNNEL_INDEX                  = vpn_tunnel.tunnel_index,
-      REMOTE_VPN_GATEWAY_UUIDV5     = vpn_tunnel.remote_vpn_gateway.uuidv5,
-      REMOTE_VPN_GATEWAY_TYPE       = vpn_tunnel.remote_vpn_gateway.type,
-      REMOTE_VPN_GATEWAY_PROJECT_ID = try(vpn_tunnel.remote_vpn_gateway.project_id) != null ? vpn_tunnel.remote_vpn_gateway.project_id : null     # "UNKNOWN",
-      REMOTE_VPN_GATEWAY_NETWORK    = try(vpn_tunnel.remote_vpn_gateway.network, null) != null ? vpn_tunnel.remote_vpn_gateway.network : null     # "UNKNOWN",
-      REMOTE_VPN_GATEWAY_NAME       = try(vpn_tunnel.remote_vpn_gateway.name, null) != null ? vpn_tunnel.remote_vpn_gateway.name : null           # "UNKNOWN",
-      REMOTE_VPN_GATEWAY_UNIQUE_ID  = try(vpn_tunnel.remote_vpn_gateway.unique_id, null) != null ? vpn_tunnel.remote_vpn_gateway.unique_id : null # "UNKNOWN",
-      # } : "${k}=${v}" if v != null]))) => vpn_tunnel
+      NAME                   = null,
+      PREFIX                 = try(vpn_tunnel.prefix, null) != null ? vpn_tunnel.prefix : null           # "UNKNOWN",
+      ENVIRONMENT            = try(vpn_tunnel.environment, null) != null ? vpn_tunnel.environment : null # "UNKNOWN",
+      LABEL                  = try(vpn_tunnel.label, null) != null ? vpn_tunnel.label : null             # "UNKNOWN",
+      PROJECT_ID             = vpn_tunnel.local_vpn_gateway.project_id,
+      NETWORK                = vpn_tunnel.local_vpn_gateway.network,
+      REGION                 = null,
+      ROUTER_NAME            = vpn_tunnel.local_vpn_gateway.local_router.name,
+      LOCAL_VPN_GATEWAY_NAME = vpn_tunnel.local_vpn_gateway.name,
+      # LOCAL_VPN_GATEWAY_UNIQUE_ID   = try(vpn_tunnel.local_vpn_gateway.unique_id, null) != null ? vpn_tunnel.local_vpn_gateway.unique_id : null # "UNKNOWN",
+      LOCAL_VPN_GATEWAY_UNIQUE_ID = vpn_tunnel.local_vpn_gateway.unique_id,
+      TUNNEL_INDEX                = vpn_tunnel.tunnel_index,
+      REMOTE_VPN_GATEWAY_UUIDV5   = vpn_tunnel.remote_vpn_gateway.uuidv5,
+      REMOTE_VPN_GATEWAY_TYPE     = vpn_tunnel.remote_vpn_gateway.type,
+      # REMOTE_VPN_GATEWAY_PROJECT_ID = try(vpn_tunnel.remote_vpn_gateway.project_id) != null ? vpn_tunnel.remote_vpn_gateway.project_id : null     # "UNKNOWN",
+      REMOTE_VPN_GATEWAY_PROJECT_ID = try(vpn_tunnel.remote_vpn_gateway.project_id) != null ? vpn_tunnel.remote_vpn_gateway.project_id : vpn_tunnel.local_vpn_gateway.project_id, # "UNKNOWN",
+      REMOTE_VPN_GATEWAY_NETWORK    = try(vpn_tunnel.remote_vpn_gateway.network, null) != null ? vpn_tunnel.remote_vpn_gateway.network : null                                     # "UNKNOWN",
+      REMOTE_VPN_GATEWAY_NAME       = try(vpn_tunnel.remote_vpn_gateway.name, null) != null ? vpn_tunnel.remote_vpn_gateway.name : null                                           # "UNKNOWN",
+      REMOTE_VPN_GATEWAY_UNIQUE_ID  = try(vpn_tunnel.remote_vpn_gateway.unique_id, null) != null ? vpn_tunnel.remote_vpn_gateway.unique_id : null                                 # "UNKNOWN",
     } : format("%s=%s", k, v) if v != null]))) => vpn_tunnel
   }
 }
@@ -722,11 +729,13 @@ locals {
 
   remote_vpn_tunnels = { for k1, v1 in local.local_vpn_tunnels : format("vpn-r-l-tunnel-%s", uuidv5("x500", join(",",
     [for k2, v2 in {
-      PREFIX                        = try(v1.prefix, null) != null ? v1.prefix : null                                             # "UNKNOWN",
-      ENVIRONMENT                   = try(v1.environment, null) != null ? v1.environment : null                                   # "UNKNOWN",
-      LABEL                         = try(v1.label, null) != null ? v1.label : null                                               # "UNKNOWN",
-      PROJECT_ID                    = try(v1.remote_vpn_gateway.project_id) != null ? v1.remote_vpn_gateway.project_id : null     # "UNKNOWN",     ## vpn_tunnel.local_vpn_gateway.project_id,
-      NETWORK                       = try(v1.remote_vpn_gateway.network, null) != null ? v1.remote_vpn_gateway.network : null     # "UNKNOWN",     ## vpn_tunnel.local_vpn_gateway.network,
+      NAME                          = null,
+      PREFIX                        = try(v1.prefix, null) != null ? v1.prefix : null                                         # "UNKNOWN",
+      ENVIRONMENT                   = try(v1.environment, null) != null ? v1.environment : null                               # "UNKNOWN",
+      LABEL                         = try(v1.label, null) != null ? v1.label : null                                           # "UNKNOWN",
+      PROJECT_ID                    = try(v1.remote_vpn_gateway.project_id) != null ? v1.remote_vpn_gateway.project_id : null # "UNKNOWN",     ## vpn_tunnel.local_vpn_gateway.project_id,
+      NETWORK                       = try(v1.remote_vpn_gateway.network, null) != null ? v1.remote_vpn_gateway.network : null # "UNKNOWN",     ## vpn_tunnel.local_vpn_gateway.network,
+      REGION                        = null,
       ROUTER_NAME                   = try(v1.remote_vpn_gateway.remote_router.name, null),                                        ## vpn_tunnel.local_vpn_gateway.router.name,
       LOCAL_VPN_GATEWAY_NAME        = try(v1.remote_vpn_gateway.name, null) != null ? v1.remote_vpn_gateway.name : null           # "UNKNOWN",           ## try(v1.remote_vpn_gateway.name, null) != null ? v1.remote_vpn_gateway.name : "UNKNOWN", ## vpn_tunnel.local_vpn_gateway.name,
       LOCAL_VPN_GATEWAY_UNIQUE_ID   = try(v1.remote_vpn_gateway.unique_id, null) != null ? v1.remote_vpn_gateway.unique_id : null # "UNKNOWN", ## try(vpn_tunnel.local_vpn_gateway.unique_id, null) != null ? vpn_tunnel.local_vpn_gateway.unique_id : "UNKNOWN",

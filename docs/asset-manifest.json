@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/terraform-google-cloud-vpn/static/css/main.f990f888.css",
-    "main.js": "/terraform-google-cloud-vpn/static/js/main.1bedb8df.js",
+    "main.js": "/terraform-google-cloud-vpn/static/js/main.d101a210.js",
     "index.html": "/terraform-google-cloud-vpn/index.html",
     "main.f990f888.css.map": "/terraform-google-cloud-vpn/static/css/main.f990f888.css.map",
-    "main.1bedb8df.js.map": "/terraform-google-cloud-vpn/static/js/main.1bedb8df.js.map"
+    "main.d101a210.js.map": "/terraform-google-cloud-vpn/static/js/main.d101a210.js.map"
   },
   "entrypoints": [
     "static/css/main.f990f888.css",
-    "static/js/main.1bedb8df.js"
+    "static/js/main.d101a210.js"
   ]
 }

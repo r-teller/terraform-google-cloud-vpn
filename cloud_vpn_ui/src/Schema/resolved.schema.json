@@ -732,7 +732,10 @@
                               },
                               "else": {
                                 "title": "Remote VPN Gateway (Manged /w Terraform)",
-                                "description": "If the `Remote VPN Gateway` is manged within this Terraform Module"
+                                "description": "If the `Remote VPN Gateway` is manged within this Terraform Module",
+                                "required": [
+                                  "network"
+                                ]
                               }
                             }
                           ]
@@ -1745,11 +1748,13 @@
                           ]
                         }
                       },
-                      "enum": [
-                        "remote_vpn_gateway_type",
-                        "remote_vpn_gateway",
-                        "remote_router"
-                      ]
+                      "propertyNames": {
+                        "enum": [
+                          "remote_vpn_gateway_type",
+                          "remote_vpn_gateway",
+                          "remote_router"
+                        ]
+                      }
                     }
                   },
                   {
@@ -1800,13 +1805,6 @@
                               "title": "Pre-Existing",
                               "description": "If true, this resource should be considered managed external to this module and should not be created and/or updated."
                             }
-                          },
-                          "propertyNames": {
-                            "enum": [
-                              "name",
-                              "unique_id",
-                              "pre_existing"
-                            ]
                           },
                           "allOf": [
                             {
@@ -1916,6 +1914,7 @@
                                     "unique_id",
                                     "pre_existing",
                                     "tunnel_count",
+                                    "redudancy_type",
                                     "ike_version"
                                   ]
                                 },
@@ -4400,7 +4399,10 @@
               },
               "else": {
                 "title": "Remote VPN Gateway (Manged /w Terraform)",
-                "description": "If the `Remote VPN Gateway` is manged within this Terraform Module"
+                "description": "If the `Remote VPN Gateway` is manged within this Terraform Module",
+                "required": [
+                  "network"
+                ]
               }
             }
           ]
@@ -4437,13 +4439,6 @@
               "title": "Pre-Existing",
               "description": "If true, this resource should be considered managed external to this module and should not be created and/or updated."
             }
-          },
-          "propertyNames": {
-            "enum": [
-              "name",
-              "unique_id",
-              "pre_existing"
-            ]
           },
           "allOf": [
             {
@@ -4553,6 +4548,7 @@
                     "unique_id",
                     "pre_existing",
                     "tunnel_count",
+                    "redudancy_type",
                     "ike_version"
                   ]
                 },

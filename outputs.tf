@@ -10,7 +10,7 @@ output "locals" {
     },
     ha_vpn_gateways = {
       hub      = local.map_ha_hub_vpn_gateways,
-      spoke    = local.map_ha_spoke_vpn_gateways,
+      spoke    = local.map_ha_spoke_vpn_gateways_gcp,
       external = local.map_ha_spoke_vpn_gateways_external
     },
   }

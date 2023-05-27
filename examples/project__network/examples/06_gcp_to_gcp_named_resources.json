@@ -1,0 +1,40 @@
+[
+  {
+    "vpn_type": "HA",
+    "project_id": "rteller-demo-hst-e265-aaaa",
+    "network": "vpc-test-cases-hub-multi-region",
+    "label": "alpha",
+    "region": "US-CENTRAL1",
+    "hub_vpn_gateway": {
+      "unique_id": "alpha_06_gcp_to_gcp_named_resources",
+      "pre_existing": false,
+      "name": "my-named-hub-cloud-vpn-gateway"
+    },
+    "hub_router": {
+      "unique_id": "alpha_06_gcp_to_gcp_named_resources",
+      "pre_existing": false,
+      "name": "my-named-hub-cloud-router",
+      "bgp": {
+        "asn": 4242949025
+      }
+    },
+    "spoke_vpn_gateways": [
+      {
+        "spoke_vpn_gateway_type": "GCP",
+        "spoke_vpn_gateway": {
+          "pre_existing": false,
+          "name": "my-named-spoke-cloud-vpn-gateway",
+          "unique_id": "alpha_06_gcp_to_gcp_named_resources",
+          "tunnel_count": 0,
+          "ike_version": 2,
+          "network": "vpc-test-cases-prod-multi-region"
+        },
+        "spoke_router": {
+          "pre_existing": false,
+          "name": "my-named-spoke-cloud-router",
+          "unique_id": "alpha_06_gcp_to_gcp_named_resources"
+        }
+      }
+    ]
+  }
+]

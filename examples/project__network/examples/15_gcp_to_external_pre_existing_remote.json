@@ -6,26 +6,32 @@
     "label": "alpha",
     "region": "US-CENTRAL1",
     "hub_router": {
-      "unique_id": "alpha_01_gcp_to_gcp",
       "bgp": {
         "hub_subnet_advertisements": "DEFAULT"
       }
     },
     "hub_vpn_gateway": {
-      "unique_id": "alpha_01_gcp_to_gcp",
       "stack_type": "IPV4_ONLY"
     },
     "spoke_vpn_gateways": [
       {
-        "spoke_vpn_gateway_type": "GCP",
+        "spoke_vpn_gateway_type": "EXTERNAL",
         "spoke_vpn_gateway": {
-          "unique_id": "alpha_01_gcp_to_gcp",
-          "tunnel_count": 2,
-          "ike_version": 2,
-          "network": "vpc-test-cases-prod-multi-region"
+          "pre_existing": true,
+          "name": "my-peer-gateway",
+          "tunnel_count": 1
         },
         "spoke_router": {
-          "unique_id": "alpha_01_gcp_to_gcp"
+          "bgp": {
+            "asn": 1234,
+            "advanced_tunnel_configuration": [
+              {
+                "advertised_route_priority": 100,
+                "hub_ipv4_address": "169.254.15.2",
+                "spoke_ipv4_address": "169.254.15.3"
+              }
+            ]
+          }
         }
       }
     ]

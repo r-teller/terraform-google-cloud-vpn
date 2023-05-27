@@ -5,19 +5,19 @@
     "network": "vpc-test-cases-hub-multi-region",
     "label": "alpha",
     "region": "US-CENTRAL1",
-    "local_router": {
+    "hub_router": {
       "bgp": {
-        "local_subnet_advertisements": "DEFAULT",
+        "hub_subnet_advertisements": "DEFAULT",
         "asn": 65534
       }
     },
-    "local_vpn_gateway": {
+    "hub_vpn_gateway": {
       "stack_type": "IPV4_ONLY"
     },
-    "remote_vpn_gateways": [
+    "spoke_vpn_gateways": [
       {
-        "remote_vpn_gateway_type": "EXTERNAL",
-        "remote_vpn_gateway": {
+        "spoke_vpn_gateway_type": "EXTERNAL",
+        "spoke_vpn_gateway": {
           "redudancy_type": "FOUR_INTERFACES",
           "interfaces": [
             "11.11.44.11",
@@ -27,35 +27,37 @@
           ],
           "tunnel_count": 4
         },
-        "remote_router": {
+        "spoke_router": {
           "bgp": {
             "asn": 64514,
             "advanced_tunnel_configuration": [
               {
+                "bgp_advertisement_disabled": true,
                 "pre_shared_secret_method": "STATIC",
                 "static_pre_shared_secret": "FooBar123_",
-                "local_ipv4_address": "169.254.44.226",
-                "remote_ipv4_address": "169.254.44.225"
+                "hub_ipv4_address": "169.254.44.2",
+                "spoke_ipv4_address": "169.254.44.1"
               },
               {
+                "bgp_advertisement_disabled": true,
                 "pre_shared_secret_method": "STATIC",
                 "static_pre_shared_secret": "FooBar123_",
-                "local_ipv4_address": "169.254.44.246",
-                "remote_ipv4_address": "169.254.44.245"
-              },
-              {
-                "bgp_advertisement_disabled": false,
-                "pre_shared_secret_method": "STATIC",
-                "static_pre_shared_secret": "FooBar123_",
-                "local_ipv4_address": "169.254.44.242",
-                "remote_ipv4_address": "169.254.44.241"
+                "hub_ipv4_address": "169.254.44.6",
+                "spoke_ipv4_address": "169.254.44.5"
               },
               {
                 "bgp_advertisement_disabled": false,
                 "pre_shared_secret_method": "STATIC",
                 "static_pre_shared_secret": "FooBar123_",
-                "local_ipv4_address": "169.254.44.134",
-                "remote_ipv4_address": "169.254.44.133"
+                "hub_ipv4_address": "169.254.44.10",
+                "spoke_ipv4_address": "169.254.44.9"
+              },
+              {
+                "bgp_advertisement_disabled": false,
+                "pre_shared_secret_method": "STATIC",
+                "static_pre_shared_secret": "FooBar123_",
+                "hub_ipv4_address": "169.254.44.14",
+                "spoke_ipv4_address": "169.254.44.13"
               }
             ]
           }

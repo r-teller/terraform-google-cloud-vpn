@@ -2,12 +2,14 @@
   {
     "vpn_type": "HA",
     "region": "US-CENTRAL1",
-    "local_router": {
+    "hub_router": {
+      "unique_id": "alpha_00_gcp_to_nothing",
       "bgp": {
-        "local_subnet_advertisements": "DEFAULT"
+        "hub_subnet_advertisements": "DEFAULT"
       }
     },
-    "local_vpn_gateway": {
+    "hub_vpn_gateway": {
+      "unique_id": "alpha_00_gcp_to_nothing",
       "stack_type": "IPV4_ONLY"
     },
     "project_id": "rteller-demo-hst-e265-aaaa",

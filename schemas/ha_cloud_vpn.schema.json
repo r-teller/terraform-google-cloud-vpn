@@ -56,6 +56,7 @@
                         },
                         "label": {
                             "type": "string",
+                            "pattern": "^[a-z][a-z0-9-_]{0,62}$",
                             "view": {
                                 "sizeXs": 4
                             },
@@ -71,6 +72,7 @@
                         },
                         "environment": {
                             "type": "string",
+                            "pattern": "^[a-z][a-z0-9-_]{0,62}$",
                             "view": {
                                 "sizeXs": 4
                             },
@@ -86,6 +88,7 @@
                         },
                         "prefix": {
                             "type": "string",
+                            "pattern": "^[a-z][a-z0-9-_]{0,62}$",
                             "view": {
                                 "sizeXs": 4
                             },
@@ -108,22 +111,22 @@
                             "default": "US-CENTRAL1",
                             "$ref": "regions.schema.json#/definitions/region"
                         },
-                        "local_router": {
-                            "title": "Local Router",
+                        "hub_router": {
+                            "title": "Hub Router",
                             "type": "object",
                             "widget": "Card",
                             "deleteOnEmpty": true,
-                            "$ref": "#/definitions/shared/properties/local_router"
+                            "$ref": "#/definitions/shared/properties/hub_router"
                         },
-                        "local_vpn_gateway": {
-                            "title": "Local VPN Gateway",
+                        "hub_vpn_gateway": {
+                            "title": "Hub VPN Gateway",
                             "type": "object",
                             "widget": "Card",
                             "deleteOnEmpty": true,
-                            "$ref": "#/definitions/shared/properties/local_vpn_gateway"
+                            "$ref": "#/definitions/shared/properties/hub_vpn_gateway"
                         },
-                        "remote_vpn_gateways": {
-                            "title": "Remote VPN Gateways",
+                        "spoke_vpn_gateways": {
+                            "title": "Spoke VPN Gateways",
                             "type": "array",
                             "uniqueItems": true,
                             "widget": "GenericList",
@@ -131,11 +134,11 @@
                                 "btnColor": "secondary"
                             },
                             "items": {
-                                "title": "Remote VPN Gateway",
+                                "title": "Spoke VPN Gateway",
                                 "type": "object",
                                 "properties": {
-                                    "remote_vpn_gateway_type": {
-                                        "title": "Remote VPN Gateway Type",
+                                    "spoke_vpn_gateway_type": {
+                                        "title": "Spoke VPN Gateway Type",
                                         "type": "string",
                                         "widget": "Select",
                                         "oneOf": [
@@ -151,37 +154,37 @@
                                     }
                                 },
                                 "required": [
-                                    "remote_vpn_gateway_type"
+                                    "spoke_vpn_gateway_type"
                                 ],
                                 "allOf": [
                                     {
                                         "title": "Google Cloud",
                                         "if": {
                                             "properties": {
-                                                "remote_vpn_gateway_type": {
+                                                "spoke_vpn_gateway_type": {
                                                     "type": "string",
                                                     "const": "GCP"
                                                 }
                                             },
                                             "required": [
-                                                "remote_vpn_gateway_type"
+                                                "spoke_vpn_gateway_type"
                                             ]
                                         },
                                         "then": {
                                             "title": "Google Cloud",
                                             "properties": {
-                                                "remote_vpn_gateway": {
-                                                    "$ref": "#/definitions/shared/properties/remote_vpn_gateway_gcp"
+                                                "spoke_vpn_gateway": {
+                                                    "$ref": "#/definitions/shared/properties/spoke_vpn_gateway_gcp"
                                                 },
-                                                "remote_router": {
-                                                    "$ref": "#/definitions/shared/properties/remote_router_gcp"
+                                                "spoke_router": {
+                                                    "$ref": "#/definitions/shared/properties/spoke_router_gcp"
                                                 }
                                             },
                                             "propertyNames": {
                                                 "enum": [
-                                                    "remote_vpn_gateway_type",
-                                                    "remote_vpn_gateway",
-                                                    "remote_router"
+                                                    "spoke_vpn_gateway_type",
+                                                    "spoke_vpn_gateway",
+                                                    "spoke_router"
                                                 ]
                                             }
                                         }
@@ -190,30 +193,30 @@
                                         "title": "On-Prem or Non-Google Cloud",
                                         "if": {
                                             "properties": {
-                                                "remote_vpn_gateway_type": {
+                                                "spoke_vpn_gateway_type": {
                                                     "type": "string",
                                                     "const": "EXTERNAL"
                                                 }
                                             },
                                             "required": [
-                                                "remote_vpn_gateway_type"
+                                                "spoke_vpn_gateway_type"
                                             ]
                                         },
                                         "then": {
                                             "title": "On-Prem or Non-Google Cloud",
                                             "properties": {
-                                                "remote_vpn_gateway": {
-                                                    "$ref": "#/definitions/shared/properties/remote_vpn_gateway_external"
+                                                "spoke_vpn_gateway": {
+                                                    "$ref": "#/definitions/shared/properties/spoke_vpn_gateway_external"
                                                 },
-                                                "remote_router": {
-                                                    "$ref": "#/definitions/shared/properties/remote_router_external"
+                                                "spoke_router": {
+                                                    "$ref": "#/definitions/shared/properties/spoke_router_external"
                                                 }
                                             },
                                             "propertyNames": {
                                                 "enum": [
-                                                    "remote_vpn_gateway_type",
-                                                    "remote_vpn_gateway",
-                                                    "remote_router"
+                                                    "spoke_vpn_gateway_type",
+                                                    "spoke_vpn_gateway",
+                                                    "spoke_router"
                                                 ]
                                             }
                                         }
@@ -255,6 +258,7 @@
                     "unique_id": {
                         "title": "Unique ID",
                         "type": "string",
+                        "pattern": "^[a-z][a-z0-9-_]{0,62}$",
                         "view": {
                             "sizeXs": 4
                         },
@@ -289,7 +293,7 @@
                         ]
                     }
                 },
-                "local_router": {
+                "hub_router": {
                     "type": "object",
                     "widget": "Card",
                     "deleteOnEmpty": true,
@@ -298,7 +302,7 @@
                             "$ref": "#/definitions/shared/properties/common/name"
                         },
                         "unique_id": {
-                            "title": "Unique ID (Local Router)",
+                            "title": "Unique ID (Hub Router)",
                             "$ref": "#/definitions/shared/properties/common/unique_id"
                         },
                         "pre_existing": {
@@ -327,8 +331,8 @@
                                 ]
                             },
                             "then": {
-                                "title": "Local Router (Manged Externally)",
-                                "description": "If the `Local Router` is manged outside of this Terraform Module",
+                                "title": "Hub Router (Manged Externally)",
+                                "description": "If the `Hub Router` is manged outside of this Terraform Module",
                                 "properties": {
                                     "bgp": {
                                         "title": "BGP",
@@ -338,17 +342,17 @@
                                             "asn": {
                                                 "$ref": "#/definitions/shared/properties/router_attributes/asn_pre_existing"
                                             },
-                                            "local_subnet_advertisements": {
+                                            "hub_subnet_advertisements": {
                                                 "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements_empty"
                                             },
-                                            "custom_local_subnet_advertisements": {
+                                            "custom_hub_subnet_advertisements": {
                                                 "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                             }
                                         },
                                         "propertyNames": {
                                             "enum": [
-                                                "local_subnet_advertisements",
-                                                "custom_local_subnet_advertisements",
+                                                "hub_subnet_advertisements",
+                                                "custom_hub_subnet_advertisements",
                                                 "asn"
                                             ]
                                         },
@@ -362,8 +366,8 @@
                                 ]
                             },
                             "else": {
-                                "title": "Local Router (Manged /w Terraform)",
-                                "description": "If the `Local Router` is manged within this Terraform Module",
+                                "title": "Hub Router (Manged /w Terraform)",
+                                "description": "If the `Hub Router` is manged within this Terraform Module",
                                 "properties": {
                                     "bgp": {
                                         "title": "BGP",
@@ -373,14 +377,14 @@
                                             "asn": {
                                                 "$ref": "#/definitions/shared/properties/router_attributes/asn"
                                             },
-                                            "local_subnet_advertisements": {
+                                            "hub_subnet_advertisements": {
                                                 "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements"
                                             }
                                         },
                                         "propertyNames": {
                                             "enum": [
-                                                "local_subnet_advertisements",
-                                                "custom_local_subnet_advertisements",
+                                                "hub_subnet_advertisements",
+                                                "custom_hub_subnet_advertisements",
                                                 "asn"
                                             ]
                                         },
@@ -388,7 +392,7 @@
                                             {
                                                 "if": {
                                                     "properties": {
-                                                        "local_subnet_advertisements": {
+                                                        "hub_subnet_advertisements": {
                                                             "oneOf": [
                                                                 {
                                                                     "title": "Advertise all subnets visible to the Cloud Router & all Custom subnets specified",
@@ -404,14 +408,14 @@
                                                         }
                                                     },
                                                     "required": [
-                                                        "local_subnet_advertisements"
+                                                        "hub_subnet_advertisements"
                                                     ]
                                                 },
                                                 "then": {
                                                     "title": "Include Custom Subnet Advertisements",
                                                     "description": "Include a User-specified list of individual IP ranges to advertise in custom mode",
                                                     "properties": {
-                                                        "custom_local_subnet_advertisements": {
+                                                        "custom_hub_subnet_advertisements": {
                                                             "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
                                                         }
                                                     }
@@ -420,7 +424,7 @@
                                                     "title": "Do Not Include Custom Subnet Advertisements",
                                                     "description": "Do not include any User-specified IP ranges to advertise, this field is not required and only included for UI generation",
                                                     "properties": {
-                                                        "custom_local_subnet_advertisements": {
+                                                        "custom_hub_subnet_advertisements": {
                                                             "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                                         }
                                                     }
@@ -433,7 +437,7 @@
                         }
                     ]
                 },
-                "local_vpn_gateway": {
+                "hub_vpn_gateway": {
                     "type": "object",
                     "widget": "Card",
                     "deleteOnEmpty": true,
@@ -442,7 +446,7 @@
                             "$ref": "#/definitions/shared/properties/common/name"
                         },
                         "unique_id": {
-                            "title": "Unique ID (Local Router)",
+                            "title": "Unique ID (Hub VPN Gateway)",
                             "$ref": "#/definitions/shared/properties/common/unique_id"
                         },
                         "pre_existing": {
@@ -471,8 +475,8 @@
                                 ]
                             },
                             "then": {
-                                "title": "Local VPN Gateway (Manged Externally)",
-                                "description": "If the `Local VPN Gateway` is manged outside of this Terraform Module",
+                                "title": "Hub VPN Gateway (Manged Externally)",
+                                "description": "If the `Hub VPN Gateway` is manged outside of this Terraform Module",
                                 "properties": {
                                     "stack_type": {
                                         "$ref": "#/definitions/shared/properties/vpn_attributes/stack_type_empty"
@@ -483,8 +487,8 @@
                                 ]
                             },
                             "else": {
-                                "title": "Local VPN Gateway (Manged /w Terraform)",
-                                "description": "If the `Local VPN Gateway` is manged within this Terraform Module",
+                                "title": "Hub VPN Gateway (Manged /w Terraform)",
+                                "description": "If the `Hub VPN Gateway` is manged within this Terraform Module",
                                 "properties": {
                                     "stack_type": {
                                         "$ref": "#/definitions/shared/properties/vpn_attributes/stack_type"
@@ -494,7 +498,7 @@
                         }
                     ]
                 },
-                "remote_router_gcp": {
+                "spoke_router_gcp": {
                     "type": "object",
                     "widget": "Card",
                     "deleteOnEmpty": true,
@@ -503,7 +507,7 @@
                             "$ref": "#/definitions/shared/properties/common/name"
                         },
                         "unique_id": {
-                            "title": "Unique ID (Remote Router)",
+                            "title": "Unique ID (Spoke Router)",
                             "$ref": "#/definitions/shared/properties/common/unique_id"
                         },
                         "pre_existing": {
@@ -532,8 +536,8 @@
                                 ]
                             },
                             "then": {
-                                "title": "Remote Router (Manged Externally)",
-                                "description": "If the `Remote Router` is manged outside of this Terraform Module",
+                                "title": "Spoke Router (Manged Externally)",
+                                "description": "If the `Spoke Router` is manged outside of this Terraform Module",
                                 "properties": {
                                     "bgp": {
                                         "title": "BGP",
@@ -546,26 +550,26 @@
                                             "advanced_tunnel_configuration": {
                                                 "$ref": "#/definitions/shared/properties/vpn_attributes/advanced_tunnel_configuration"
                                             },
-                                            "remote_subnet_advertisements": {
-                                                "title": "Remote Subnet Advertisements",
+                                            "spoke_subnet_advertisements": {
+                                                "title": "Spoke Subnet Advertisements",
                                                 "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements"
                                             },
-                                            "custom_remote_subnet_advertisements": {},
-                                            "override_local_subnet_advertisments": {
-                                                "$ref": "#/definitions/shared/properties/router_attributes/override_local_subnet_advertisments"
+                                            "custom_spoke_subnet_advertisements": {},
+                                            "override_hub_subnet_advertisments": {
+                                                "$ref": "#/definitions/shared/properties/router_attributes/override_hub_subnet_advertisments"
                                             }
                                         },
                                         "allOf": [
                                             {
                                                 "if": {
                                                     "properties": {
-                                                        "override_local_subnet_advertisments": {
+                                                        "override_hub_subnet_advertisments": {
                                                             "type": "boolean",
                                                             "const": true
                                                         }
                                                     },
                                                     "required": [
-                                                        "override_local_subnet_advertisments"
+                                                        "override_hub_subnet_advertisments"
                                                     ]
                                                 },
                                                 "then": {
@@ -604,9 +608,9 @@
                                                                 "asn",
                                                                 "advanced_tunnel_configuration",
                                                                 "subnet_advertisements",
-                                                                "remote_subnet_advertisements",
+                                                                "spoke_subnet_advertisements",
                                                                 "custom_subnet_advertisements",
-                                                                "override_local_subnet_advertisments"
+                                                                "override_hub_subnet_advertisments"
                                                             ]
                                                         }
                                                     },
@@ -621,8 +625,8 @@
                                                                 "asn",
                                                                 "advanced_tunnel_configuration",
                                                                 "subnet_advertisements",
-                                                                "remote_subnet_advertisements",
-                                                                "override_local_subnet_advertisments"
+                                                                "spoke_subnet_advertisements",
+                                                                "override_hub_subnet_advertisments"
                                                             ]
                                                         }
                                                     }
@@ -641,8 +645,8 @@
                                                             "asn",
                                                             "advanced_tunnel_configuration",
                                                             "subnet_advertisements",
-                                                            "remote_subnet_advertisements",
-                                                            "override_local_subnet_advertisments"
+                                                            "spoke_subnet_advertisements",
+                                                            "override_hub_subnet_advertisments"
                                                         ]
                                                     }
                                                 }
@@ -650,7 +654,7 @@
                                             {
                                                 "if": {
                                                     "properties": {
-                                                        "remote_subnet_advertisements": {
+                                                        "spoke_subnet_advertisements": {
                                                             "oneOf": [
                                                                 {
                                                                     "type": "string",
@@ -664,12 +668,12 @@
                                                         }
                                                     },
                                                     "required": [
-                                                        "remote_subnet_advertisements"
+                                                        "spoke_subnet_advertisements"
                                                     ]
                                                 },
                                                 "then": {
                                                     "properties": {
-                                                        "custom_remote_subnet_advertisements": {
+                                                        "custom_spoke_subnet_advertisements": {
                                                             "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
                                                         }
                                                     },
@@ -678,15 +682,15 @@
                                                             "asn",
                                                             "advanced_tunnel_configuration",
                                                             "subnet_advertisements",
-                                                            "remote_subnet_advertisements",
-                                                            "custom_remote_subnet_advertisements",
-                                                            "override_local_subnet_advertisments"
+                                                            "spoke_subnet_advertisements",
+                                                            "custom_spoke_subnet_advertisements",
+                                                            "override_hub_subnet_advertisments"
                                                         ]
                                                     }
                                                 },
                                                 "else": {
                                                     "properties": {
-                                                        "custom_remote_subnet_advertisements": {
+                                                        "custom_spoke_subnet_advertisements": {
                                                             "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                                         }
                                                     },
@@ -695,8 +699,8 @@
                                                             "asn",
                                                             "advanced_tunnel_configuration",
                                                             "subnet_advertisements",
-                                                            "remote_subnet_advertisements",
-                                                            "override_local_subnet_advertisments"
+                                                            "spoke_subnet_advertisements",
+                                                            "override_hub_subnet_advertisments"
                                                         ]
                                                     }
                                                 }
@@ -712,8 +716,8 @@
                                 ]
                             },
                             "else": {
-                                "title": "Remote Router (Manged /w Terraform)",
-                                "description": "If the `Remote Router` is manged within this Terraform Module",
+                                "title": "Spoke Router (Manged /w Terraform)",
+                                "description": "If the `Spoke Router` is manged within this Terraform Module",
                                 "properties": {
                                     "bgp": {
                                         "title": "BGP",
@@ -726,26 +730,26 @@
                                             "advanced_tunnel_configuration": {
                                                 "$ref": "#/definitions/shared/properties/vpn_attributes/advanced_tunnel_configuration"
                                             },
-                                            "remote_subnet_advertisements": {
-                                                "title": "Remote Subnet Advertisements",
+                                            "spoke_subnet_advertisements": {
+                                                "title": "Spoke Subnet Advertisements",
                                                 "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements"
                                             },
-                                            "custom_remote_subnet_advertisements": {},
-                                            "override_local_subnet_advertisments": {
-                                                "$ref": "#/definitions/shared/properties/router_attributes/override_local_subnet_advertisments"
+                                            "custom_spoke_subnet_advertisements": {},
+                                            "override_hub_subnet_advertisments": {
+                                                "$ref": "#/definitions/shared/properties/router_attributes/override_hub_subnet_advertisments"
                                             }
                                         },
                                         "allOf": [
                                             {
                                                 "if": {
                                                     "properties": {
-                                                        "override_local_subnet_advertisments": {
+                                                        "override_hub_subnet_advertisments": {
                                                             "type": "boolean",
                                                             "const": true
                                                         }
                                                     },
                                                     "required": [
-                                                        "override_local_subnet_advertisments"
+                                                        "override_hub_subnet_advertisments"
                                                     ]
                                                 },
                                                 "then": {
@@ -785,9 +789,9 @@
                                                                 "advanced_tunnel_configuration",
                                                                 "subnet_advertisements",
                                                                 "custom_subnet_advertisements",
-                                                                "remote_subnet_advertisements",
-                                                                "custom_remote_subnet_advertisements",
-                                                                "override_local_subnet_advertisments"
+                                                                "spoke_subnet_advertisements",
+                                                                "custom_spoke_subnet_advertisements",
+                                                                "override_hub_subnet_advertisments"
                                                             ]
                                                         }
                                                     },
@@ -802,8 +806,8 @@
                                                                 "asn",
                                                                 "advanced_tunnel_configuration",
                                                                 "subnet_advertisements",
-                                                                "remote_subnet_advertisements",
-                                                                "override_local_subnet_advertisments"
+                                                                "spoke_subnet_advertisements",
+                                                                "override_hub_subnet_advertisments"
                                                             ]
                                                         }
                                                     }
@@ -821,9 +825,9 @@
                                                         "enum": [
                                                             "asn",
                                                             "advanced_tunnel_configuration",
-                                                            "remote_subnet_advertisements",
-                                                            "override_local_subnet_advertisments",
-                                                            "custom_remote_subnet_advertisements"
+                                                            "spoke_subnet_advertisements",
+                                                            "override_hub_subnet_advertisments",
+                                                            "custom_spoke_subnet_advertisements"
                                                         ]
                                                     }
                                                 }
@@ -831,7 +835,7 @@
                                             {
                                                 "if": {
                                                     "properties": {
-                                                        "remote_subnet_advertisements": {
+                                                        "spoke_subnet_advertisements": {
                                                             "oneOf": [
                                                                 {
                                                                     "type": "string",
@@ -845,12 +849,12 @@
                                                         }
                                                     },
                                                     "required": [
-                                                        "remote_subnet_advertisements"
+                                                        "spoke_subnet_advertisements"
                                                     ]
                                                 },
                                                 "then": {
                                                     "properties": {
-                                                        "custom_remote_subnet_advertisements": {
+                                                        "custom_spoke_subnet_advertisements": {
                                                             "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
                                                         }
                                                     },
@@ -859,14 +863,14 @@
                                                             "asn",
                                                             "advanced_tunnel_configuration",
                                                             "subnet_advertisements",
-                                                            "remote_subnet_advertisements",
-                                                            "custom_remote_subnet_advertisements"
+                                                            "spoke_subnet_advertisements",
+                                                            "custom_spoke_subnet_advertisements"
                                                         ]
                                                     }
                                                 },
                                                 "else": {
                                                     "properties": {
-                                                        "custom_remote_subnet_advertisements": {
+                                                        "custom_spoke_subnet_advertisements": {
                                                             "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                                         }
                                                     },
@@ -875,7 +879,7 @@
                                                             "asn",
                                                             "advanced_tunnel_configuration",
                                                             "subnet_advertisements",
-                                                            "remote_subnet_advertisements"
+                                                            "spoke_subnet_advertisements"
                                                         ]
                                                     }
                                                 }
@@ -887,7 +891,7 @@
                         }
                     ]
                 },
-                "remote_router_external": {
+                "spoke_router_external": {
                     "type": "object",
                     "widget": "Card",
                     "deleteOnEmpty": true,
@@ -908,21 +912,21 @@
                                 "advanced_tunnel_configuration": {
                                     "$ref": "#/definitions/shared/properties/vpn_attributes/advanced_tunnel_configuration"
                                 },
-                                "override_local_subnet_advertisments": {
-                                    "$ref": "#/definitions/shared/properties/router_attributes/override_local_subnet_advertisments"
+                                "override_hub_subnet_advertisments": {
+                                    "$ref": "#/definitions/shared/properties/router_attributes/override_hub_subnet_advertisments"
                                 }
                             },
                             "allOf": [
                                 {
                                     "if": {
                                         "properties": {
-                                            "override_local_subnet_advertisments": {
+                                            "override_hub_subnet_advertisments": {
                                                 "type": "boolean",
                                                 "const": true
                                             }
                                         },
                                         "required": [
-                                            "override_local_subnet_advertisments"
+                                            "override_hub_subnet_advertisments"
                                         ]
                                     },
                                     "then": {
@@ -983,7 +987,7 @@
                         }
                     }
                 },
-                "remote_vpn_gateway_gcp": {
+                "spoke_vpn_gateway_gcp": {
                     "type": "object",
                     "widget": "Card",
                     "properties": {
@@ -1034,15 +1038,15 @@
                                 ]
                             },
                             "then": {
-                                "title": "Remote VPN Gateway (Manged Externally)",
-                                "description": "If the `Remote VPN Gateway` is manged outside of this Terraform Module",
+                                "title": "Spoke VPN Gateway (Manged Externally)",
+                                "description": "If the `Spoke VPN Gateway` is manged outside of this Terraform Module",
                                 "required": [
                                     "name"
                                 ]
                             },
                             "else": {
-                                "title": "Remote VPN Gateway (Manged /w Terraform)",
-                                "description": "If the `Remote VPN Gateway` is manged within this Terraform Module",
+                                "title": "Spoke VPN Gateway (Manged /w Terraform)",
+                                "description": "If the `Spoke VPN Gateway` is manged within this Terraform Module",
                                 "required": [
                                     "network"
                                 ]
@@ -1050,7 +1054,7 @@
                         }
                     ]
                 },
-                "remote_vpn_gateway_external": {
+                "spoke_vpn_gateway_external": {
                     "type": "object",
                     "widget": "Card",
                     "properties": {
@@ -1420,24 +1424,24 @@
                                     "title": "Disable BGP Session",
                                     "description": " If disabled, any active session with the peer is terminated and all associated routing information is removed."
                                 },
-                                "local_ipv4_address": {
+                                "hub_ipv4_address": {
                                     "type": "string",
                                     "view": {
                                         "sizeXs": 6
                                     },
                                     "deleteOnEmpty": true,
-                                    "title": "Local IPv4 BGP Peer Address",
+                                    "title": "Hub IPv4 BGP Peer Address",
                                     "description": "IPv4 address of the BGP interface, if not specified this IPv4 address will automatically assigned",
                                     "pattern": "^169.254((\\.([0-9]|[1-9][0-9]{0,1}|1[0-9]{1,2}|2[0-4][0-9]|25[0-4])){2})$"
                                 },
-                                "remote_ipv4_address": {
+                                "spoke_ipv4_address": {
                                     "type": "string",
                                     "view": {
                                         "sizeXs": 6
                                     },
                                     "deleteOnEmpty": true,
-                                    "title": "Remote IPv4 BGP Peer Address",
-                                    "description": "IPv4 address of the BGP interface, if a local_ipv4_address is not specified this IPv4 address will automatically assigned",
+                                    "title": "Spoke IPv4 BGP Peer Address",
+                                    "description": "IPv4 address of the BGP interface, if the `hub_ipv4_address` is not specified this IPv4 address will automatically assigned",
                                     "pattern": "^169.254((\\.([0-9]|[1-9][0-9]{0,1}|1[0-9]{1,2}|2[0-4][0-9]|25[0-4])){2})$"
                                 },
                                 "ipv6_enabled": {
@@ -1475,8 +1479,8 @@
                                 "enum": [
                                     "advertised_route_priority",
                                     "bgp_advertisement_disabled",
-                                    "local_ipv4_address",
-                                    "remote_ipv4_address",
+                                    "hub_ipv4_address",
+                                    "spoke_ipv4_address",
                                     "ipv6_enabled",
                                     "pre_shared_secret_method",
                                     "static_pre_shared_secret"
@@ -1521,18 +1525,18 @@
                         },
                         "examples": [
                             {
-                                "local_ipv4_address": "169.254.0.1",
-                                "remote_ipv4_address": "169.254.0.2"
+                                "hub_ipv4_address": "169.254.0.1",
+                                "spoke_ipv4_address": "169.254.0.2"
                             },
                             {
                                 "disabled": true,
-                                "local_ipv4_address": "169.254.0.5",
-                                "remote_ipv4_address": "169.254.0.6"
+                                "hub_ipv4_address": "169.254.0.5",
+                                "spoke_ipv4_address": "169.254.0.6"
                             },
                             {
                                 "disabled": true,
-                                "local_ipv4_address": "169.254.0.5",
-                                "remote_ipv4_address": "169.254.0.6",
+                                "hub_ipv4_address": "169.254.0.5",
+                                "spoke_ipv4_address": "169.254.0.6",
                                 "ipv6_enabled": true
                             }
                         ]
@@ -1638,7 +1642,7 @@
                     },
                     "asn": {
                         "title": "16-bit or 32-bit Autonomous System Numbers",
-                        "description": "Local BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same local ASN.",
+                        "description": "Hub BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same hub ASN.",
                         "type": "number",
                         "oneOf": [
                             {
@@ -1656,7 +1660,7 @@
                         ]
                     },
                     "subnet_advertisements_empty": {
-                        "title": "Local Subnet Advertisements (EMPTY)",
+                        "title": "Hub Subnet Advertisements (EMPTY)",
                         "type": "string",
                         "deleteOnEmpty": true,
                         "widget": "Select",
@@ -1674,7 +1678,7 @@
                     "subnet_advertisements": {
                         "type": "string",
                         "deleteOnEmpty": true,
-                        "title": "Local Subnet Advertisements",
+                        "title": "Hub Subnet Advertisements",
                         "widget": "Select",
                         "view": {
                             "sizeXs": 12
@@ -1694,12 +1698,12 @@
                             }
                         ]
                     },
-                    "override_local_subnet_advertisments": {
-                        "title": "Override Local Custom Subnet Advertisements",
+                    "override_hub_subnet_advertisments": {
+                        "title": "Override Hub Custom Subnet Advertisements",
                         "type": "boolean"
                     },
-                    "override_remote_subnet_advertisments": {
-                        "title": "Override Remote Custom Subnet Advertisements",
+                    "override_spoke_subnet_advertisments": {
+                        "title": "Override Spoke Custom Subnet Advertisements",
                         "type": "boolean"
                     },
                     "custom_subnet_advertisements_empty": {

@@ -5,31 +5,35 @@
         "network": "vpc-test-cases-hub-multi-region",
         "label": "alpha",
         "region": "US-CENTRAL1",
-        "local_router": {
+        "hub_router": {
+            "unique_id": "alpha_02_gcp_to_gcp_custom_routes",
             "bgp": {
-                "local_subnet_advertisements": "CUSTOM",
-                "custom_local_subnet_advertisements": [
+                "hub_subnet_advertisements": "CUSTOM",
+                "custom_hub_subnet_advertisements": [
                     "192.168.0.0/16",
                     "172.16.0.0/12",
                     "10.0.0.0/8"
                 ]
             }
         },
-        "local_vpn_gateway": {
+        "hub_vpn_gateway": {
+            "unique_id": "alpha_02_gcp_to_gcp_custom_routes",
             "stack_type": "IPV4_ONLY"
         },
-        "remote_vpn_gateways": [
+        "spoke_vpn_gateways": [
             {
-                "remote_vpn_gateway_type": "GCP",
-                "remote_vpn_gateway": {
+                "spoke_vpn_gateway_type": "GCP",
+                "spoke_vpn_gateway": {
+                    "unique_id": "alpha_02_gcp_to_gcp_custom_routes",
                     "tunnel_count": 2,
                     "ike_version": 2,
                     "network": "vpc-test-cases-prod-multi-region"
                 },
-                "remote_router": {
+                "spoke_router": {
+                    "unique_id": "alpha_02_gcp_to_gcp_custom_routes",
                     "bgp": {
-                        "remote_subnet_advertisements": "CUSTOM",
-                        "custom_remote_subnet_advertisements": [
+                        "spoke_subnet_advertisements": "CUSTOM",
+                        "custom_spoke_subnet_advertisements": [
                             "192.168.0.0/24"
                         ],
                         "advanced_tunnel_configuration": [
@@ -39,8 +43,8 @@
                             },
                             {
                                 "advertised_route_priority": 100,
-                                "local_ipv4_address": "169.254.0.1",
-                                "remote_ipv4_address": "169.254.0.2"
+                                "hub_ipv4_address": "169.254.0.1",
+                                "spoke_ipv4_address": "169.254.0.2"
                             }
                         ]
                     }

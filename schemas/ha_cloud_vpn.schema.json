@@ -343,9 +343,11 @@
                                                 "$ref": "#/definitions/shared/properties/router_attributes/asn_pre_existing"
                                             },
                                             "hub_subnet_advertisements": {
+                                                "title": "Hub Subnet Advertisements (EMPTY)",
                                                 "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements_empty"
                                             },
                                             "custom_hub_subnet_advertisements": {
+                                                "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                                 "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                             }
                                         },
@@ -378,6 +380,7 @@
                                                 "$ref": "#/definitions/shared/properties/router_attributes/asn"
                                             },
                                             "hub_subnet_advertisements": {
+                                                "title": "Hub Subnet Advertisements",
                                                 "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements"
                                             }
                                         },
@@ -425,6 +428,7 @@
                                                     "description": "Do not include any User-specified IP ranges to advertise, this field is not required and only included for UI generation",
                                                     "properties": {
                                                         "custom_hub_subnet_advertisements": {
+                                                            "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                                             "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                                         }
                                                     }
@@ -600,6 +604,7 @@
                                                     "then": {
                                                         "properties": {
                                                             "custom_hub_subnet_advertisements": {
+                                                                "title": "Custom Hub Subnet Advertisements",
                                                                 "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
                                                             }
                                                         },
@@ -617,6 +622,7 @@
                                                     "else": {
                                                         "properties": {
                                                             "custom_hub_subnet_advertisements": {
+                                                                "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                                                 "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                                             }
                                                         },
@@ -634,9 +640,11 @@
                                                 "else": {
                                                     "properties": {
                                                         "hub_subnet_advertisements": {
+                                                            "title": "Hub Subnet Advertisements (EMPTY)",
                                                             "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements_empty"
                                                         },
                                                         "custom_hub_subnet_advertisements": {
+                                                            "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                                             "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                                         }
                                                     },
@@ -674,6 +682,7 @@
                                                 "then": {
                                                     "properties": {
                                                         "custom_spoke_subnet_advertisements": {
+                                                            "title": "Custom Spoke Subnet Advertisements",
                                                             "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
                                                         }
                                                     },
@@ -690,6 +699,7 @@
                                                 "else": {
                                                     "properties": {
                                                         "custom_spoke_subnet_advertisements": {
+                                                            "title": "Custom Spoke Subnet Advertisements (EMPTY)",
                                                             "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                                         }
                                                     },
@@ -779,6 +789,7 @@
                                                     "then": {
                                                         "properties": {
                                                             "custom_hub_subnet_advertisements": {
+                                                                "title": "Custom Hub Subnet Advertisements",
                                                                 "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
                                                             }
                                                         },
@@ -797,6 +808,7 @@
                                                     "else": {
                                                         "properties": {
                                                             "custom_hub_subnet_advertisements": {
+                                                                "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                                                 "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                                             }
                                                         },
@@ -815,9 +827,11 @@
                                                 "else": {
                                                     "properties": {
                                                         "hub_subnet_advertisements": {
+                                                            "title": "Hub Subnet Advertisements (EMPTY)",
                                                             "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements_empty"
                                                         },
                                                         "custom_hub_subnet_advertisements": {
+                                                            "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                                             "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                                         }
                                                     },
@@ -855,6 +869,7 @@
                                                 "then": {
                                                     "properties": {
                                                         "custom_spoke_subnet_advertisements": {
+                                                            "title": "Custom Spoke Subnet Advertisements",
                                                             "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
                                                         }
                                                     },
@@ -873,6 +888,7 @@
                                                 "else": {
                                                     "properties": {
                                                         "custom_spoke_subnet_advertisements": {
+                                                            "title": "Custom Spoke Subnet Advertisements (EMPTY)",
                                                             "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                                         }
                                                     },
@@ -934,6 +950,7 @@
                                     "then": {
                                         "properties": {
                                             "hub_subnet_advertisements": {
+                                                "title": "Hub Subnet Advertisements",
                                                 "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements"
                                             }
                                         },
@@ -959,6 +976,7 @@
                                         "then": {
                                             "properties": {
                                                 "custom_hub_subnet_advertisements": {
+                                                    "title": "Custom Hub Subnet Advertisements",
                                                     "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
                                                 }
                                             },
@@ -975,6 +993,7 @@
                                         "else": {
                                             "properties": {
                                                 "custom_hub_subnet_advertisements": {
+                                                    "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                                     "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                                 }
                                             },
@@ -991,10 +1010,12 @@
                                     },
                                     "else": {
                                         "properties": {
-                                            "subnet_advertisements": {
+                                            "hub_subnet_advertisements": {
+                                                "title": "Hub Subnet Advertisements (EMPTY)",
                                                 "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements_empty"
                                             },
-                                            "custom_subnet_advertisements": {
+                                            "custom_hub_subnet_advertisements": {
+                                                "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                                 "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                             }
                                         }
@@ -1667,7 +1688,7 @@
                     },
                     "asn": {
                         "title": "16-bit or 32-bit Autonomous System Numbers",
-                        "description": "Hub BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same hub ASN.",
+                        "description": "BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same ASN.",
                         "type": "number",
                         "oneOf": [
                             {
@@ -1685,7 +1706,6 @@
                         ]
                     },
                     "subnet_advertisements_empty": {
-                        "title": "Hub Subnet Advertisements (EMPTY)",
                         "type": "string",
                         "deleteOnEmpty": true,
                         "widget": "Select",
@@ -1703,7 +1723,6 @@
                     "subnet_advertisements": {
                         "type": "string",
                         "deleteOnEmpty": true,
-                        "title": "Hub Subnet Advertisements",
                         "widget": "Select",
                         "view": {
                             "sizeXs": 12
@@ -1732,7 +1751,6 @@
                         "type": "boolean"
                     },
                     "custom_subnet_advertisements_empty": {
-                        "title": "Custom Subnet Advertisements (EMPTY)",
                         "type": "array",
                         "widget": "GenericList",
                         "notAddable": true,
@@ -1747,7 +1765,6 @@
                         "maxItems": 0
                     },
                     "custom_subnet_advertisements": {
-                        "title": "Custom Subnet Advertisements",
                         "type": "array",
                         "uniqueItems": true,
                         "deleteOnEmpty": true,

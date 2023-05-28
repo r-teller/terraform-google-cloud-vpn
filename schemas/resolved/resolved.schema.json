@@ -258,7 +258,7 @@
                             ]
                           },
                           "custom_hub_subnet_advertisements": {
-                            "title": "Custom Subnet Advertisements (EMPTY)",
+                            "title": "Custom Hub Subnet Advertisements (EMPTY)",
                             "type": "array",
                             "widget": "GenericList",
                             "notAddable": true,
@@ -300,7 +300,7 @@
                         "properties": {
                           "asn": {
                             "title": "16-bit or 32-bit Autonomous System Numbers",
-                            "description": "Hub BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same hub ASN.",
+                            "description": "BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same ASN.",
                             "type": "number",
                             "oneOf": [
                               {
@@ -318,9 +318,9 @@
                             ]
                           },
                           "hub_subnet_advertisements": {
+                            "title": "Hub Subnet Advertisements",
                             "type": "string",
                             "deleteOnEmpty": true,
-                            "title": "Hub Subnet Advertisements",
                             "widget": "Select",
                             "view": {
                               "sizeXs": 12
@@ -376,7 +376,6 @@
                               "description": "Include a User-specified list of individual IP ranges to advertise in custom mode",
                               "properties": {
                                 "custom_hub_subnet_advertisements": {
-                                  "title": "Custom Subnet Advertisements",
                                   "type": "array",
                                   "uniqueItems": true,
                                   "deleteOnEmpty": true,
@@ -412,7 +411,7 @@
                               "description": "Do not include any User-specified IP ranges to advertise, this field is not required and only included for UI generation",
                               "properties": {
                                 "custom_hub_subnet_advertisements": {
-                                  "title": "Custom Subnet Advertisements (EMPTY)",
+                                  "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                   "type": "array",
                                   "widget": "GenericList",
                                   "notAddable": true,
@@ -1014,7 +1013,6 @@
                                             "hub_subnet_advertisements": {
                                               "type": "string",
                                               "deleteOnEmpty": true,
-                                              "title": "Hub Subnet Advertisements",
                                               "widget": "Select",
                                               "view": {
                                                 "sizeXs": 12
@@ -1057,7 +1055,7 @@
                                           "then": {
                                             "properties": {
                                               "custom_hub_subnet_advertisements": {
-                                                "title": "Custom Subnet Advertisements",
+                                                "title": "Custom Hub Subnet Advertisements",
                                                 "type": "array",
                                                 "uniqueItems": true,
                                                 "deleteOnEmpty": true,
@@ -1101,7 +1099,7 @@
                                           "else": {
                                             "properties": {
                                               "custom_hub_subnet_advertisements": {
-                                                "title": "Custom Subnet Advertisements (EMPTY)",
+                                                "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                                 "type": "array",
                                                 "widget": "GenericList",
                                                 "notAddable": true,
@@ -1146,7 +1144,7 @@
                                               ]
                                             },
                                             "custom_hub_subnet_advertisements": {
-                                              "title": "Custom Subnet Advertisements (EMPTY)",
+                                              "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                               "type": "array",
                                               "widget": "GenericList",
                                               "notAddable": true,
@@ -1195,7 +1193,7 @@
                                         "then": {
                                           "properties": {
                                             "custom_spoke_subnet_advertisements": {
-                                              "title": "Custom Subnet Advertisements",
+                                              "title": "Custom Spoke Subnet Advertisements",
                                               "type": "array",
                                               "uniqueItems": true,
                                               "deleteOnEmpty": true,
@@ -1238,7 +1236,7 @@
                                         "else": {
                                           "properties": {
                                             "custom_spoke_subnet_advertisements": {
-                                              "title": "Custom Subnet Advertisements (EMPTY)",
+                                              "title": "Custom Spoke Subnet Advertisements (EMPTY)",
                                               "type": "array",
                                               "widget": "GenericList",
                                               "notAddable": true,
@@ -1285,7 +1283,7 @@
                                     "properties": {
                                       "asn": {
                                         "title": "16-bit or 32-bit Autonomous System Numbers",
-                                        "description": "Hub BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same hub ASN.",
+                                        "description": "BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same ASN.",
                                         "type": "number",
                                         "oneOf": [
                                           {
@@ -1496,7 +1494,6 @@
                                             "hub_subnet_advertisements": {
                                               "type": "string",
                                               "deleteOnEmpty": true,
-                                              "title": "Hub Subnet Advertisements",
                                               "widget": "Select",
                                               "view": {
                                                 "sizeXs": 12
@@ -1539,7 +1536,7 @@
                                           "then": {
                                             "properties": {
                                               "custom_hub_subnet_advertisements": {
-                                                "title": "Custom Subnet Advertisements",
+                                                "title": "Custom Hub Subnet Advertisements",
                                                 "type": "array",
                                                 "uniqueItems": true,
                                                 "deleteOnEmpty": true,
@@ -1584,7 +1581,7 @@
                                           "else": {
                                             "properties": {
                                               "custom_hub_subnet_advertisements": {
-                                                "title": "Custom Subnet Advertisements (EMPTY)",
+                                                "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                                 "type": "array",
                                                 "widget": "GenericList",
                                                 "notAddable": true,
@@ -1630,7 +1627,7 @@
                                               ]
                                             },
                                             "custom_hub_subnet_advertisements": {
-                                              "title": "Custom Subnet Advertisements (EMPTY)",
+                                              "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                               "type": "array",
                                               "widget": "GenericList",
                                               "notAddable": true,
@@ -1679,7 +1676,7 @@
                                         "then": {
                                           "properties": {
                                             "custom_spoke_subnet_advertisements": {
-                                              "title": "Custom Subnet Advertisements",
+                                              "title": "Custom Spoke Subnet Advertisements",
                                               "type": "array",
                                               "uniqueItems": true,
                                               "deleteOnEmpty": true,
@@ -1724,7 +1721,7 @@
                                         "else": {
                                           "properties": {
                                             "custom_spoke_subnet_advertisements": {
-                                              "title": "Custom Subnet Advertisements (EMPTY)",
+                                              "title": "Custom Spoke Subnet Advertisements (EMPTY)",
                                               "type": "array",
                                               "widget": "GenericList",
                                               "notAddable": true,
@@ -2335,9 +2332,9 @@
                                   "then": {
                                     "properties": {
                                       "hub_subnet_advertisements": {
+                                        "title": "Hub Subnet Advertisements",
                                         "type": "string",
                                         "deleteOnEmpty": true,
-                                        "title": "Hub Subnet Advertisements",
                                         "widget": "Select",
                                         "view": {
                                           "sizeXs": 12
@@ -2380,7 +2377,7 @@
                                     "then": {
                                       "properties": {
                                         "custom_hub_subnet_advertisements": {
-                                          "title": "Custom Subnet Advertisements",
+                                          "title": "Custom Hub Subnet Advertisements",
                                           "type": "array",
                                           "uniqueItems": true,
                                           "deleteOnEmpty": true,
@@ -2423,7 +2420,7 @@
                                     "else": {
                                       "properties": {
                                         "custom_hub_subnet_advertisements": {
-                                          "title": "Custom Subnet Advertisements (EMPTY)",
+                                          "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                           "type": "array",
                                           "widget": "GenericList",
                                           "notAddable": true,
@@ -2451,7 +2448,7 @@
                                   },
                                   "else": {
                                     "properties": {
-                                      "subnet_advertisements": {
+                                      "hub_subnet_advertisements": {
                                         "title": "Hub Subnet Advertisements (EMPTY)",
                                         "type": "string",
                                         "deleteOnEmpty": true,
@@ -2467,8 +2464,8 @@
                                           }
                                         ]
                                       },
-                                      "custom_subnet_advertisements": {
-                                        "title": "Custom Subnet Advertisements (EMPTY)",
+                                      "custom_hub_subnet_advertisements": {
+                                        "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                         "type": "array",
                                         "widget": "GenericList",
                                         "notAddable": true,
@@ -2670,7 +2667,7 @@
                         ]
                       },
                       "custom_hub_subnet_advertisements": {
-                        "title": "Custom Subnet Advertisements (EMPTY)",
+                        "title": "Custom Hub Subnet Advertisements (EMPTY)",
                         "type": "array",
                         "widget": "GenericList",
                         "notAddable": true,
@@ -2712,7 +2709,7 @@
                     "properties": {
                       "asn": {
                         "title": "16-bit or 32-bit Autonomous System Numbers",
-                        "description": "Hub BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same hub ASN.",
+                        "description": "BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same ASN.",
                         "type": "number",
                         "oneOf": [
                           {
@@ -2730,9 +2727,9 @@
                         ]
                       },
                       "hub_subnet_advertisements": {
+                        "title": "Hub Subnet Advertisements",
                         "type": "string",
                         "deleteOnEmpty": true,
-                        "title": "Hub Subnet Advertisements",
                         "widget": "Select",
                         "view": {
                           "sizeXs": 12
@@ -2788,7 +2785,6 @@
                           "description": "Include a User-specified list of individual IP ranges to advertise in custom mode",
                           "properties": {
                             "custom_hub_subnet_advertisements": {
-                              "title": "Custom Subnet Advertisements",
                               "type": "array",
                               "uniqueItems": true,
                               "deleteOnEmpty": true,
@@ -2824,7 +2820,7 @@
                           "description": "Do not include any User-specified IP ranges to advertise, this field is not required and only included for UI generation",
                           "properties": {
                             "custom_hub_subnet_advertisements": {
-                              "title": "Custom Subnet Advertisements (EMPTY)",
+                              "title": "Custom Hub Subnet Advertisements (EMPTY)",
                               "type": "array",
                               "widget": "GenericList",
                               "notAddable": true,
@@ -3227,7 +3223,6 @@
                             "hub_subnet_advertisements": {
                               "type": "string",
                               "deleteOnEmpty": true,
-                              "title": "Hub Subnet Advertisements",
                               "widget": "Select",
                               "view": {
                                 "sizeXs": 12
@@ -3270,7 +3265,7 @@
                           "then": {
                             "properties": {
                               "custom_hub_subnet_advertisements": {
-                                "title": "Custom Subnet Advertisements",
+                                "title": "Custom Hub Subnet Advertisements",
                                 "type": "array",
                                 "uniqueItems": true,
                                 "deleteOnEmpty": true,
@@ -3314,7 +3309,7 @@
                           "else": {
                             "properties": {
                               "custom_hub_subnet_advertisements": {
-                                "title": "Custom Subnet Advertisements (EMPTY)",
+                                "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                 "type": "array",
                                 "widget": "GenericList",
                                 "notAddable": true,
@@ -3359,7 +3354,7 @@
                               ]
                             },
                             "custom_hub_subnet_advertisements": {
-                              "title": "Custom Subnet Advertisements (EMPTY)",
+                              "title": "Custom Hub Subnet Advertisements (EMPTY)",
                               "type": "array",
                               "widget": "GenericList",
                               "notAddable": true,
@@ -3408,7 +3403,7 @@
                         "then": {
                           "properties": {
                             "custom_spoke_subnet_advertisements": {
-                              "title": "Custom Subnet Advertisements",
+                              "title": "Custom Spoke Subnet Advertisements",
                               "type": "array",
                               "uniqueItems": true,
                               "deleteOnEmpty": true,
@@ -3451,7 +3446,7 @@
                         "else": {
                           "properties": {
                             "custom_spoke_subnet_advertisements": {
-                              "title": "Custom Subnet Advertisements (EMPTY)",
+                              "title": "Custom Spoke Subnet Advertisements (EMPTY)",
                               "type": "array",
                               "widget": "GenericList",
                               "notAddable": true,
@@ -3498,7 +3493,7 @@
                     "properties": {
                       "asn": {
                         "title": "16-bit or 32-bit Autonomous System Numbers",
-                        "description": "Hub BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same hub ASN.",
+                        "description": "BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same ASN.",
                         "type": "number",
                         "oneOf": [
                           {
@@ -3709,7 +3704,6 @@
                             "hub_subnet_advertisements": {
                               "type": "string",
                               "deleteOnEmpty": true,
-                              "title": "Hub Subnet Advertisements",
                               "widget": "Select",
                               "view": {
                                 "sizeXs": 12
@@ -3752,7 +3746,7 @@
                           "then": {
                             "properties": {
                               "custom_hub_subnet_advertisements": {
-                                "title": "Custom Subnet Advertisements",
+                                "title": "Custom Hub Subnet Advertisements",
                                 "type": "array",
                                 "uniqueItems": true,
                                 "deleteOnEmpty": true,
@@ -3797,7 +3791,7 @@
                           "else": {
                             "properties": {
                               "custom_hub_subnet_advertisements": {
-                                "title": "Custom Subnet Advertisements (EMPTY)",
+                                "title": "Custom Hub Subnet Advertisements (EMPTY)",
                                 "type": "array",
                                 "widget": "GenericList",
                                 "notAddable": true,
@@ -3843,7 +3837,7 @@
                               ]
                             },
                             "custom_hub_subnet_advertisements": {
-                              "title": "Custom Subnet Advertisements (EMPTY)",
+                              "title": "Custom Hub Subnet Advertisements (EMPTY)",
                               "type": "array",
                               "widget": "GenericList",
                               "notAddable": true,
@@ -3892,7 +3886,7 @@
                         "then": {
                           "properties": {
                             "custom_spoke_subnet_advertisements": {
-                              "title": "Custom Subnet Advertisements",
+                              "title": "Custom Spoke Subnet Advertisements",
                               "type": "array",
                               "uniqueItems": true,
                               "deleteOnEmpty": true,
@@ -3937,7 +3931,7 @@
                         "else": {
                           "properties": {
                             "custom_spoke_subnet_advertisements": {
-                              "title": "Custom Subnet Advertisements (EMPTY)",
+                              "title": "Custom Spoke Subnet Advertisements (EMPTY)",
                               "type": "array",
                               "widget": "GenericList",
                               "notAddable": true,
@@ -4158,9 +4152,9 @@
                   "then": {
                     "properties": {
                       "hub_subnet_advertisements": {
+                        "title": "Hub Subnet Advertisements",
                         "type": "string",
                         "deleteOnEmpty": true,
-                        "title": "Hub Subnet Advertisements",
                         "widget": "Select",
                         "view": {
                           "sizeXs": 12
@@ -4203,7 +4197,7 @@
                     "then": {
                       "properties": {
                         "custom_hub_subnet_advertisements": {
-                          "title": "Custom Subnet Advertisements",
+                          "title": "Custom Hub Subnet Advertisements",
                           "type": "array",
                           "uniqueItems": true,
                           "deleteOnEmpty": true,
@@ -4246,7 +4240,7 @@
                     "else": {
                       "properties": {
                         "custom_hub_subnet_advertisements": {
-                          "title": "Custom Subnet Advertisements (EMPTY)",
+                          "title": "Custom Hub Subnet Advertisements (EMPTY)",
                           "type": "array",
                           "widget": "GenericList",
                           "notAddable": true,
@@ -4274,7 +4268,7 @@
                   },
                   "else": {
                     "properties": {
-                      "subnet_advertisements": {
+                      "hub_subnet_advertisements": {
                         "title": "Hub Subnet Advertisements (EMPTY)",
                         "type": "string",
                         "deleteOnEmpty": true,
@@ -4290,8 +4284,8 @@
                           }
                         ]
                       },
-                      "custom_subnet_advertisements": {
-                        "title": "Custom Subnet Advertisements (EMPTY)",
+                      "custom_hub_subnet_advertisements": {
+                        "title": "Custom Hub Subnet Advertisements (EMPTY)",
                         "type": "array",
                         "widget": "GenericList",
                         "notAddable": true,
@@ -5244,7 +5238,7 @@
           },
           "asn": {
             "title": "16-bit or 32-bit Autonomous System Numbers",
-            "description": "Hub BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same hub ASN.",
+            "description": "BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same ASN.",
             "type": "number",
             "oneOf": [
               {
@@ -5262,7 +5256,6 @@
             ]
           },
           "subnet_advertisements_empty": {
-            "title": "Hub Subnet Advertisements (EMPTY)",
             "type": "string",
             "deleteOnEmpty": true,
             "widget": "Select",
@@ -5280,7 +5273,6 @@
           "subnet_advertisements": {
             "type": "string",
             "deleteOnEmpty": true,
-            "title": "Hub Subnet Advertisements",
             "widget": "Select",
             "view": {
               "sizeXs": 12
@@ -5309,7 +5301,6 @@
             "type": "boolean"
           },
           "custom_subnet_advertisements_empty": {
-            "title": "Custom Subnet Advertisements (EMPTY)",
             "type": "array",
             "widget": "GenericList",
             "notAddable": true,
@@ -5324,7 +5315,6 @@
             "maxItems": 0
           },
           "custom_subnet_advertisements": {
-            "title": "Custom Subnet Advertisements",
             "type": "array",
             "uniqueItems": true,
             "deleteOnEmpty": true,

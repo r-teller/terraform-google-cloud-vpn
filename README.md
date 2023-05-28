@@ -5,14 +5,17 @@ This module was created to enable deployment of Cloud VPN resources quickly and 
 
 ## Example: GCP to GCP
 <div style="display: flex; justify-content: center; align-items: flex-start;">
-    <img src="./images/gcp_to_gcp_form.png" alt="Alt Text" width="468" height="1987.5">
-    <img src="./images/gcp_to_gcp_json.png" alt="Alt Text" width="524" height="649">
+    <img src="./images/gcp_to_gcp_form.png" alt="Alt Text" width="312" height="1325">
+    <img src="./images/gcp_to_gcp_json.png" alt="Alt Text" width="349.3333333" height="432.6666667">
 </div>
 <div style="text-align: center;">
-    <img src="./images/gcp_to_gcp_diagram.png" alt="Alt Text" width="992" height="649">
+    <img src="./images/gcp_to_gcp_diagram.png" alt="Alt Text" width="998.8571429" height="356.8571429">
 </div>
 
 ## Example: GCP to AWS 
+<div style="text-align: center;">
+    <img src="./images/gcp_to_aws_diagram.png" alt="Alt Text" width="915" height="357.8571429">
+</div>
 
 # Resource Naming
 ## Resource Dynamic Name Generation

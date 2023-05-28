@@ -3,9 +3,16 @@
 This module was created to enable deployment of Cloud VPN resources quickly and at scale within GCP using a Hub and Spoke architecture.
 
 
-## Diagram (GCP to GCP)
+## Example: GCP to GCP
+<div style="display: flex; justify-content: center; align-items: flex-start;">
+    <img src="./images/gcp_to_gcp_form.png" alt="Alt Text" width="468" height="1987.5">
+    <img src="./images/gcp_to_gcp_json.png" alt="Alt Text" width="524" height="649">
+</div>
+<div style="text-align: center;">
+    <img src="./images/gcp_to_gcp_diagram.png" alt="Alt Text" width="992" height="649">
+</div>
 
-## Diagram (GCP to External)
+## Example: GCP to AWS 
 
 # Resource Naming
 ## Resource Dynamic Name Generation

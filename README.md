@@ -8,14 +8,10 @@ This module was created to enable deployment of Cloud VPN resources quickly and 
     <tbody>
         <tr >
             <td align="center" valign="top">
-                <a class="image-link" href="./images/gcp_to_gcp_form.png">
-                    <img src="./images/gcp_to_gcp_form.png" alt="GCP to GCP Form">
-                </a>
+                <img src="./images/gcp_to_gcp_form.png" alt="GCP to GCP Form">
             </td>
             <td align="center" valign="top">
-                <a class="image-link" href="./images/gcp_to_gcp_json.png">
-                    <img src="./images/gcp_to_gcp_json.png" alt="GCP to GCP JSON">
-                </a>
+                <img src="./images/gcp_to_gcp_json.png" alt="GCP to GCP JSON">            
             </td>
         </tr>
     </tbody>

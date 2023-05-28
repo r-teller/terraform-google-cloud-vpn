@@ -574,13 +574,13 @@
                                                 },
                                                 "then": {
                                                     "properties": {
-                                                        "subnet_advertisements": {
+                                                        "hub_subnet_advertisements": {
                                                             "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements"
                                                         }
                                                     },
                                                     "if": {
                                                         "properties": {
-                                                            "subnet_advertisements": {
+                                                            "hub_subnet_advertisements": {
                                                                 "oneOf": [
                                                                     {
                                                                         "type": "string",
@@ -594,12 +594,12 @@
                                                             }
                                                         },
                                                         "required": [
-                                                            "subnet_advertisements"
+                                                            "hub_subnet_advertisements"
                                                         ]
                                                     },
                                                     "then": {
                                                         "properties": {
-                                                            "custom_subnet_advertisements": {
+                                                            "custom_hub_subnet_advertisements": {
                                                                 "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
                                                             }
                                                         },
@@ -607,16 +607,16 @@
                                                             "enum": [
                                                                 "asn",
                                                                 "advanced_tunnel_configuration",
-                                                                "subnet_advertisements",
+                                                                "hub_subnet_advertisements",
                                                                 "spoke_subnet_advertisements",
-                                                                "custom_subnet_advertisements",
+                                                                "custom_hub_subnet_advertisements",
                                                                 "override_hub_subnet_advertisments"
                                                             ]
                                                         }
                                                     },
                                                     "else": {
                                                         "properties": {
-                                                            "custom_subnet_advertisements": {
+                                                            "custom_hub_subnet_advertisements": {
                                                                 "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                                             }
                                                         },
@@ -624,8 +624,8 @@
                                                             "enum": [
                                                                 "asn",
                                                                 "advanced_tunnel_configuration",
-                                                                "subnet_advertisements",
                                                                 "spoke_subnet_advertisements",
+                                                                "custom_spoke_subnet_advertisements",
                                                                 "override_hub_subnet_advertisments"
                                                             ]
                                                         }
@@ -633,10 +633,10 @@
                                                 },
                                                 "else": {
                                                     "properties": {
-                                                        "subnet_advertisements": {
+                                                        "hub_subnet_advertisements": {
                                                             "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements_empty"
                                                         },
-                                                        "custom_subnet_advertisements": {
+                                                        "custom_hub_subnet_advertisements": {
                                                             "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                                         }
                                                     },
@@ -644,7 +644,7 @@
                                                         "enum": [
                                                             "asn",
                                                             "advanced_tunnel_configuration",
-                                                            "subnet_advertisements",
+                                                            "hub_subnet_advertisements",
                                                             "spoke_subnet_advertisements",
                                                             "override_hub_subnet_advertisments"
                                                         ]
@@ -681,7 +681,6 @@
                                                         "enum": [
                                                             "asn",
                                                             "advanced_tunnel_configuration",
-                                                            "subnet_advertisements",
                                                             "spoke_subnet_advertisements",
                                                             "custom_spoke_subnet_advertisements",
                                                             "override_hub_subnet_advertisments"
@@ -754,13 +753,13 @@
                                                 },
                                                 "then": {
                                                     "properties": {
-                                                        "subnet_advertisements": {
+                                                        "hub_subnet_advertisements": {
                                                             "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements"
                                                         }
                                                     },
                                                     "if": {
                                                         "properties": {
-                                                            "subnet_advertisements": {
+                                                            "hub_subnet_advertisements": {
                                                                 "oneOf": [
                                                                     {
                                                                         "type": "string",
@@ -774,12 +773,12 @@
                                                             }
                                                         },
                                                         "required": [
-                                                            "subnet_advertisements"
+                                                            "hub_subnet_advertisements"
                                                         ]
                                                     },
                                                     "then": {
                                                         "properties": {
-                                                            "custom_subnet_advertisements": {
+                                                            "custom_hub_subnet_advertisements": {
                                                                 "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
                                                             }
                                                         },
@@ -787,8 +786,8 @@
                                                             "enum": [
                                                                 "asn",
                                                                 "advanced_tunnel_configuration",
-                                                                "subnet_advertisements",
-                                                                "custom_subnet_advertisements",
+                                                                "hub_subnet_advertisements",
+                                                                "custom_hub_subnet_advertisements",
                                                                 "spoke_subnet_advertisements",
                                                                 "custom_spoke_subnet_advertisements",
                                                                 "override_hub_subnet_advertisments"
@@ -797,7 +796,7 @@
                                                     },
                                                     "else": {
                                                         "properties": {
-                                                            "custom_subnet_advertisements": {
+                                                            "custom_hub_subnet_advertisements": {
                                                                 "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                                             }
                                                         },
@@ -805,8 +804,9 @@
                                                             "enum": [
                                                                 "asn",
                                                                 "advanced_tunnel_configuration",
-                                                                "subnet_advertisements",
+                                                                "hub_subnet_advertisements",
                                                                 "spoke_subnet_advertisements",
+                                                                "custom_spoke_subnet_advertisements",
                                                                 "override_hub_subnet_advertisments"
                                                             ]
                                                         }
@@ -814,10 +814,10 @@
                                                 },
                                                 "else": {
                                                     "properties": {
-                                                        "subnet_advertisements": {
+                                                        "hub_subnet_advertisements": {
                                                             "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements_empty"
                                                         },
-                                                        "custom_subnet_advertisements": {
+                                                        "custom_hub_subnet_advertisements": {
                                                             "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                                         }
                                                     },
@@ -862,7 +862,9 @@
                                                         "enum": [
                                                             "asn",
                                                             "advanced_tunnel_configuration",
-                                                            "subnet_advertisements",
+                                                            "override_hub_subnet_advertisments",
+                                                            "custom_hub_subnet_advertisements",
+                                                            "hub_subnet_advertisements",
                                                             "spoke_subnet_advertisements",
                                                             "custom_spoke_subnet_advertisements"
                                                         ]
@@ -878,7 +880,9 @@
                                                         "enum": [
                                                             "asn",
                                                             "advanced_tunnel_configuration",
-                                                            "subnet_advertisements",
+                                                            "override_hub_subnet_advertisments",
+                                                            "hub_subnet_advertisements",
+                                                            "custom_hub_subnet_advertisements",
                                                             "spoke_subnet_advertisements"
                                                         ]
                                                     }
@@ -895,13 +899,11 @@
                     "type": "object",
                     "widget": "Card",
                     "deleteOnEmpty": true,
-                    "additionalProperties": false,
                     "properties": {
                         "bgp": {
                             "title": "BGP",
                             "type": "object",
                             "deleteOnEmpty": true,
-                            "additionalProperties": false,
                             "properties": {
                                 "asn": {
                                     "view": {
@@ -931,13 +933,13 @@
                                     },
                                     "then": {
                                         "properties": {
-                                            "subnet_advertisements": {
+                                            "hub_subnet_advertisements": {
                                                 "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements"
                                             }
                                         },
                                         "if": {
                                             "properties": {
-                                                "subnet_advertisements": {
+                                                "hub_subnet_advertisements": {
                                                     "oneOf": [
                                                         {
                                                             "type": "string",
@@ -951,21 +953,39 @@
                                                 }
                                             },
                                             "required": [
-                                                "subnet_advertisements"
+                                                "hub_subnet_advertisements"
                                             ]
                                         },
                                         "then": {
                                             "properties": {
-                                                "custom_subnet_advertisements": {
+                                                "custom_hub_subnet_advertisements": {
                                                     "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
                                                 }
+                                            },
+                                            "propertyNames": {
+                                                "enum": [
+                                                    "asn",
+                                                    "advanced_tunnel_configuration",
+                                                    "hub_subnet_advertisements",
+                                                    "custom_hub_subnet_advertisements",
+                                                    "override_hub_subnet_advertisments"
+                                                ]
                                             }
                                         },
                                         "else": {
                                             "properties": {
-                                                "custom_subnet_advertisements": {
+                                                "custom_hub_subnet_advertisements": {
                                                     "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
                                                 }
+                                            },
+                                            "propertyNames": {
+                                                "enum": [
+                                                    "asn",
+                                                    "advanced_tunnel_configuration",
+                                                    "hub_subnet_advertisements",
+                                                    "custom_hub_subnet_advertisements",
+                                                    "override_hub_subnet_advertisments"
+                                                ]
                                             }
                                         }
                                     },
@@ -985,6 +1005,11 @@
                                 "asn"
                             ]
                         }
+                    },
+                    "propertyNames": {
+                        "enum": [
+                            "bgp"
+                        ]
                     }
                 },
                 "spoke_vpn_gateway_gcp": {

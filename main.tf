@@ -105,8 +105,8 @@ locals {
       name      = try(v1.spoke_vpn_gateway.name, null)
       unique_id = try(v1.spoke_vpn_gateway.unique_id, null)
 
-      project_id = try(v1.spoke_vpn_gateway.project_id, null) != null ? v1.project_id : try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id
-      network    = try(v1.spoke_vpn_gateway.network, null)
+      project_id = try(v1.spoke_vpn_gateway.project_id, null) != null ? v1.spoke_vpn_gateway.project_id : try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id
+      network    = v1.spoke_vpn_gateway.network
       region     = lower(try(v1.spoke_vpn_gateway.region, null) != null ? v1.spoke_vpn_gateway.region : try(cloud_vpn.region, null) != null ? cloud_vpn.region : var.region)
 
       uuidv5 = format("ha-spoke-vpn-%s", uuidv5("x500", join(",", [for k, v in {
@@ -148,12 +148,26 @@ locals {
 
         bgp = {
           asn                  = try(v1.spoke_router.bgp.asn, null)
-          advertise_mode       = lookup(local.lookups_bgp_advertise_mode, try(v1.spoke_router.bgp.spoke_subnet_advertisements, "DEFAULT"))
-          advertised_groups    = try(v1.spoke_router.bgp.spoke_subnet_advertisements, "DEFAULT") == "DEFAULT_CUSTOM" ? ["ALL_SUBNETS"] : []
-          advertised_ip_ranges = try(v1.spoke_router.bgp.custom_spoke_subnet_advertisements, [])
-        }
+          advertise_mode       = "DEFAULT"
+          advertised_groups    = null
+          advertised_ip_ranges = []
 
+          # advertise_mode       = lookup(local.lookups_bgp_advertise_mode, try(v1.spoke_router.bgp.spoke_subnet_advertisements, "DEFAULT"))
+          # advertised_groups    = try(v1.spoke_router.bgp.spoke_subnet_advertisements, "DEFAULT") == "DEFAULT_CUSTOM" ? ["ALL_SUBNETS"] : []
+          # advertised_ip_ranges = try(v1.spoke_router.bgp.custom_spoke_subnet_advertisements, [])
+        }
       }
+
+      custom_routing = {
+        hub_advertise_mode       = lookup(local.lookups_bgp_advertise_mode, try(v1.spoke_router.bgp.hub_subnet_advertisements, "DEFAULT"))
+        hub_advertised_groups    = try(v1.spoke_router.bgp.hub_subnet_advertisements, null) == "DEFAULT_CUSTOM" ? ["ALL_SUBNETS"] : []
+        hub_advertised_ip_ranges = try(v1.spoke_router.bgp.custom_hub_subnet_advertisements, [])
+
+        spoke_advertise_mode       = lookup(local.lookups_bgp_advertise_mode, try(v1.spoke_router.bgp.spoke_subnet_advertisements, "DEFAULT"))
+        spoke_advertised_groups    = try(v1.spoke_router.bgp.spoke_subnet_advertisements, "DEFAULT") == "DEFAULT_CUSTOM" ? ["ALL_SUBNETS"] : []
+        spoke_advertised_ip_ranges = try(v1.spoke_router.bgp.custom_spoke_subnet_advertisements, [])
+      }
+
     } if try(v1.spoke_vpn_gateway_type, null) == "GCP"]
 
     ### Spoke VPN Gateway -- TO --> External
@@ -189,12 +203,19 @@ locals {
         unique_id = null
 
         bgp = {
-          asn                  = v1.spoke_router.bgp.asn
-          advertise_mode       = lookup(local.lookups_bgp_advertise_mode, try(v1.spoke_router.bgp.spoke_subnet_advertisements, "DEFAULT"))
-          advertised_groups    = try(v1.spoke_router.bgp.spoke_subnet_advertisements, "DEFAULT") == "DEFAULT_CUSTOM" ? ["ALL_SUBNETS"] : []
-          advertised_ip_ranges = try(v1.spoke_router.bgp.custom_spoke_subnet_advertisements, [])
+          asn = v1.spoke_router.bgp.asn
+          # advertise_mode       = lookup(local.lookups_bgp_advertise_mode, try(v1.spoke_router.bgp.spoke_subnet_advertisements, "DEFAULT"))
+          # advertised_groups    = try(v1.spoke_router.bgp.spoke_subnet_advertisements, "DEFAULT") == "DEFAULT_CUSTOM" ? ["ALL_SUBNETS"] : []
+          # advertised_ip_ranges = try(v1.spoke_router.bgp.custom_spoke_subnet_advertisements, [])
         }
       }
+
+      custom_routing = {
+        hub_advertise_mode       = lookup(local.lookups_bgp_advertise_mode, try(v1.spoke_router.bgp.hub_subnet_advertisements, "DEFAULT"))
+        hub_advertised_groups    = try(v1.spoke_router.bgp.hub_subnet_advertisements, null) == "DEFAULT_CUSTOM" ? ["ALL_SUBNETS"] : []
+        hub_advertised_ip_ranges = try(v1.spoke_router.bgp.custom_hub_subnet_advertisements, [])
+      }
+
     } if try(v1.spoke_vpn_gateway_type, null) == "EXTERNAL"]
 
   }]
@@ -252,8 +273,7 @@ locals {
         advertised_groups    = v1.spoke_router.bgp.advertised_groups
         advertised_ip_ranges = v1.spoke_router.bgp.advertised_ip_ranges
       }
-      }
-    ],
+    }],
     ### Spoke VPN Gateway -- TO --> External
     [for k1, v1 in cloud_vpn.spoke_vpn_gateways_external : {
       label       = cloud_vpn.label
@@ -271,13 +291,12 @@ locals {
       pre_existing = null
 
       bgp = {
-        asn                  = v1.spoke_router.bgp.asn
-        advertise_mode       = v1.spoke_router.bgp.advertise_mode
-        advertised_groups    = v1.spoke_router.bgp.advertised_groups
-        advertised_ip_ranges = []
+        asn = v1.spoke_router.bgp.asn
+        # advertise_mode       = v1.spoke_router.bgp.advertise_mode
+        # advertised_groups    = v1.spoke_router.bgp.advertised_groups
+        # advertised_ip_ranges = []
       }
-      }
-    ]
+    }]
   )]))
 
   map_hub_routers   = { for hub_routers in local._hub_routers : hub_routers.uuidv5 => hub_routers }
@@ -328,6 +347,7 @@ locals {
     }
   ) }
 }
+
 ## Used for interface configuration tracking to signal when tunnel should be re-created
 resource "null_resource" "cloud_routers" {
   for_each = { for k1, v1 in merge(local.hub_routers, local.spoke_routers) : k1 => v1 if v1.pre_existing == false }
@@ -476,6 +496,7 @@ resource "null_resource" "ha_spoke_vpn_gateways_gcp" {
     uuidv5 = each.value.uuidv5
   }
 }
+
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_ha_vpn_gateway
 resource "google_compute_ha_vpn_gateway" "ha_spoke_vpn_gateways_gcp" {
   provider = google-beta
@@ -517,8 +538,6 @@ resource "google_compute_external_vpn_gateway" "ha_spoke_vpn_gateways_external" 
   }
 }
 ###### VPN GATEWAYS - END ######
-
-
 
 ###### VPN TUNNELS - START ######
 locals {
@@ -588,6 +607,8 @@ locals {
 
           ipv6_enabled = try(v2.advanced_tunnel_configuration[i].ipv6_enabled, local.default_bgp_peers.ipv6_enabled),
         }
+
+        custom_routing = v2.custom_routing
       }
       ]
     ],
@@ -671,6 +692,8 @@ locals {
 
           ipv6_enabled = try(v2.bgp_peers[i].ipv6_enabled, local.default_bgp_peers.ipv6_enabled),
         }
+
+        custom_routing = v2.custom_routing
       }
       ]
     ])
@@ -978,6 +1001,20 @@ resource "google_compute_router_peer" "hub_bgp_peers" {
 
   advertised_route_priority = each.value.bgp_peers.advertised_route_priority
 
+  advertise_mode    = each.value.custom_routing.hub_advertise_mode
+  advertised_groups = each.value.custom_routing.hub_advertised_groups
+
+  dynamic "advertised_ip_ranges" {
+    for_each = (
+      (each.value.custom_routing.hub_advertised_ip_ranges != null && each.value.custom_routing.hub_advertise_mode != "DEFAULT")
+      ? each.value.custom_routing.hub_advertised_ip_ranges
+      : []
+    )
+    content {
+      range = advertised_ip_ranges.value
+    }
+  }
+
   peer_asn = each.value.spoke_vpn_gateway.spoke_router.bgp.asn
 
   enable          = each.value.bgp_peers.enabled
@@ -1008,6 +1045,21 @@ resource "google_compute_router_peer" "spoke_bgp_peers" {
   name   = each.key
   router = each.value.spoke_vpn_gateway.spoke_router.name
 
+  advertised_route_priority = each.value.bgp_peers.advertised_route_priority
+
+  advertise_mode    = each.value.custom_routing.spoke_advertise_mode
+  advertised_groups = each.value.custom_routing.spoke_advertised_groups
+
+  dynamic "advertised_ip_ranges" {
+    for_each = (
+      (each.value.custom_routing.spoke_advertised_ip_ranges != null && each.value.custom_routing.spoke_advertise_mode != "DEFAULT")
+      ? each.value.custom_routing.spoke_advertised_ip_ranges
+      : []
+    )
+    content {
+      range = advertised_ip_ranges.value
+    }
+  }
   peer_asn = each.value.hub_vpn_gateway.hub_router.bgp.asn
 
   enable          = each.value.bgp_peers.enabled

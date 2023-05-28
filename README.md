@@ -8,7 +8,7 @@ This module was created to enable deployment of Cloud VPN resources quickly and 
 
 <!-- <p align="center"> -->
 <!-- <div style="display: flex; justify-content: center; align-items: flex-start;"> -->
-<p style="display: flex; justify-content: center; align-items: flex-start;">
+<p align="center" style="display: flex; justify-content: center; align-items: flex-start;">
     <img src="./images/gcp_to_gcp_form.png" alt="Alt Text" width="312" height="1325">
     <img src="./images/gcp_to_gcp_json.png" alt="Alt Text" width="349.3333333" height="432.6666667">
 <!-- </div> -->

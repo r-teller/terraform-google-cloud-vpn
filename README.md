@@ -128,6 +128,8 @@ This example snippet below creates one HA VPN Gateways (One Hub), one Cloud Rout
 ```
 
 ### GCP to GCP - JSON Schema Generation Example
+<details>
+  <summary>Display Example SON Schema Generation Image</summary>
 <table >
     <tbody>
         <tr >
@@ -140,6 +142,7 @@ This example snippet below creates one HA VPN Gateways (One Hub), one Cloud Rout
         </tr>
     </tbody>
 </table>
+</details>
 
 ## Example: GCP to AWS / On-Prem
 <p align="center">

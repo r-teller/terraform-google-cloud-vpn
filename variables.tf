@@ -13,17 +13,8 @@ variable "region" {
   default     = null
 }
 
-
-variable "prefix" {
-  default = null
-}
-
-variable "environment" {
-  default = null
-}
-
 variable "cloud_vpns" {
   description = "Collection of Cloud_VPN configurations described in JSON"
-  type    = any
-  default = null
+  type        = any
+  default     = null
 }

@@ -5,6 +5,14 @@ This module was created to enable deployment of Cloud VPN resources quickly and 
 - **Q:** Why create this module instead of using the one created/maintained by google? --> https://github.com/terraform-google-modules/terraform-google-vpn
   - **A:** I noticed that other engineers that were either not familiar with terraform or networking were often overwhelmed by the act of deploying a VPN within GCP. I wanted to simplify the expereince and create a module that required only the minimum number of inputs so that anyone cappable of crafting a json file could easily deploy multiple cloud vpns
 
+<br>
+
+> Throughout this document you will see JSON examples referenced in a sequence of keys (or properties) as if you were trying access a specific value within a JSON structure.
+> <br>The example below returns `alpha_00_gcp_to_nothing` 
+> ```shell
+>  jq '.[].hub_router.unique_id' ./examples/project__network/examples/00_gcp_to_nothing.json` 
+>```
+
 ## JSON Generator
 https://r-teller.github.io/terraform-google-cloud-vpn
 
@@ -96,7 +104,7 @@ This example snippet below creates three HA VPN Gateways (One Hub and Two Spoke)
 This example snippet below creates one HA VPN Gateways (One Hub), one Cloud Routers (One Hub) and two tunnels from the Hub to Spoke specified VPCs in the same project.
 - If you set the `.[].spoke_vpn_gateways[].spoke_vpn_gateway.pre_existing` value to `false` it would create a HA VPN Gateway in the Spoke VPC and two tunnels from the Spoke to Hub specified VPCs in the same project.
 - It would expect that a Cloud Router named `spoke-router` already exists in the Spoke VPC
-> You could set the `.[].spoke_vpn_gateways[].spoke_router.pre_existing` value to `false` and then it would attempt to create a cloud router in the specified VPC named `spoke-router` but since `.[].spoke_vpn_gateways[].spoke_vpn_gateway.pre_existing` is still set to `false` it would not try and create the two tunnels from the Spoke to Hub specified VPCs in the same project.
+> You could set the `.[].spoke_vpn_gateways[].spoke_router.pre_existing` value to `false` and then it would attempt to create a cloud router in the specified VPC named `spoke-router` but since `.[].spoke_vpn_gateways[].spoke_vpn_gateway.pre_existing` is still set to `true` it would not try and create the two tunnels from the Spoke to Hub specified VPCs in the same project.
 
 ```json
 [

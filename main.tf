@@ -284,17 +284,17 @@ locals {
       unique_id = null
       uuidv5    = null
 
-      # project_id = v1.project_id
-      region  = null
-      network = null
+      project_id = null
+      region     = null
+      network    = null
 
       pre_existing = null
 
       bgp = {
-        asn = v1.spoke_router.bgp.asn
-        # advertise_mode       = v1.spoke_router.bgp.advertise_mode
-        # advertised_groups    = v1.spoke_router.bgp.advertised_groups
-        # advertised_ip_ranges = []
+        asn                  = v1.spoke_router.bgp.asn
+        advertise_mode       = null
+        advertised_groups    = null
+        advertised_ip_ranges = []
       }
     }]
   )]))

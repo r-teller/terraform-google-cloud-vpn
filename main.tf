@@ -529,6 +529,12 @@ resource "google_compute_external_vpn_gateway" "ha_spoke_vpn_gateways_external" 
 
   redundancy_type = each.value.redundancy_type
 
+  labels = {
+    prefix      = each.value.prefix,
+    environment = each.value.environment,
+    label       = each.value.label,
+  }
+
   dynamic "interface" {
     for_each = each.value.interfaces
     content {
@@ -552,9 +558,27 @@ locals {
 
         tunnel_index = i
 
-        ike_version              = v2.ike_version
-        pre_shared_secret        = try(v2.advanced_tunnel_configuration[i].static_pre_shared_secret, null)
-        pre_shared_secret_method = try(v2.advanced_tunnel_configuration[i].pre_shared_secret_method, "DYNAMIC")
+        ike_version = v2.ike_version
+        # pre_shared_secret        = try(v2.advanced_tunnel_configuration[i].static_pre_shared_secret, null)
+        # pre_shared_secret        = var.pre_shared_secret[v2.advanced_tunnel_configuration[i].variable_pre_shared_secret]
+        # pre_shared_secret        = var.pre_shared_secret.bar
+
+        # peer_external_gateway_interface = (
+        #   v2.redundancy_type == "SINGLE_IP_INTERNALLY_REDUNDANT" ? ceil(i % 1) :
+        #   v2.redundancy_type == "TWO_IPS_REDUNDANCY" ? ceil(i % 2) :
+        #   v2.redundancy_type == "FOUR_IPS_REDUNDANCY" ? ceil(i % 4) :
+        #   0
+        # )
+
+        pre_shared_secret_method  = try(v2.advanced_tunnel_configuration[i].pre_shared_secret_method, "DYNAMIC")
+        pre_shared_secret_manager = try(v2.advanced_tunnel_configuration[i].secret_manager_pre_shared_secret, null)
+
+        pre_shared_secret = (
+          v2.advanced_tunnel_configuration[i].pre_shared_secret_method == "STATIC" ? v2.advanced_tunnel_configuration[i].static_pre_shared_secret :
+          v2.advanced_tunnel_configuration[i].pre_shared_secret_method == "TERRAFORM_VARIABLE" ? var.variable_pre_shared_secret[v2.advanced_tunnel_configuration[i].terraform_variable_pre_shared_secret] :
+          null
+        )
+
 
         hub_vpn_gateway = {
           name       = v1.hub_vpn_gateway.name != null ? v1.hub_vpn_gateway.name : v1.hub_vpn_gateway.uuidv5
@@ -736,6 +760,7 @@ locals {
 }
 
 ## Generate random binary string to be converted to subnet range within 169.254.0.0/16
+# https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string
 resource "random_string" "subnet_binary" {
   for_each         = { for k1, v1 in local.map_hub_vpn_tunnels : k1 => "" if v1.bgp_peers.hub_ipv4_address == null }
   lower            = false
@@ -747,6 +772,8 @@ resource "random_string" "subnet_binary" {
   length = 14
 }
 
+## Generate random string that can be used as the shared-secret for vpn tunnel creation
+# https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string
 resource "random_string" "pre_shared_secret" {
   for_each = toset([for k1, v1 in local.map_hub_vpn_tunnels : k1 if v1.pre_shared_secret_method == "DYNAMIC"])
   length   = 32
@@ -754,6 +781,24 @@ resource "random_string" "pre_shared_secret" {
   lower    = true
   numeric  = true
   special  = false
+
+  lifecycle {
+    ignore_changes = [
+      length,
+      lower,
+      special,
+      numeric,
+      upper,
+    ]
+  }
+}
+
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/secret_manager_secret_version
+data "google_secret_manager_secret_version" "secret_manager_secret" {
+  for_each = { for k1, v1 in local.map_hub_vpn_tunnels : k1 => v1 if v1.pre_shared_secret_method == "SECRET_MANAGER" }
+
+  project = each.value.hub_vpn_gateway.project_id
+  secret  = each.value.pre_shared_secret_manager
 }
 
 locals {
@@ -770,7 +815,10 @@ locals {
           v1.bgp_peers.spoke_ipv4_address != null ? v1.bgp_peers.spoke_ipv4_address : cidrhost(cidrsubnet("169.254.0.0/16", 14, parseint(random_string.subnet_binary[k1].result, 2)), 1)
         ),
       }),
-      pre_shared_secret = v1.pre_shared_secret_method == "STATIC" ? v1.pre_shared_secret : random_string.pre_shared_secret[k1].result
+      pre_shared_secret = contains(["STATIC", "TERRAFORM_VARIABLE"], v1.pre_shared_secret_method) ? v1.pre_shared_secret : (
+        v1.pre_shared_secret_method == "DYNAMIC" ? random_string.pre_shared_secret[k1].result :
+        v1.pre_shared_secret_method == "SECRET_MANAGER" ? nonsensitive(data.google_secret_manager_secret_version.secret_manager_secret[k1].secret_data) : null
+      )
     }
   ) }
 
@@ -806,6 +854,8 @@ locals {
   }
 }
 
+
+
 ## Used for interface configuration tracking to signal when tunnel should be re-created
 resource "null_resource" "hub_vpn_tunnels" {
   for_each = local.hub_vpn_tunnels
@@ -813,6 +863,7 @@ resource "null_resource" "hub_vpn_tunnels" {
     interfaces               = md5(jsonencode(each.value.spoke_vpn_gateway.interfaces))
     hub_router_uuidv5        = each.value.hub_vpn_gateway.hub_router.uuidv5
     spoke_vpn_gateway_uuidv5 = each.value.spoke_vpn_gateway.uuidv5
+
   }
 }
 
@@ -884,7 +935,6 @@ resource "google_compute_vpn_tunnel" "hub_vpn_tunnels" {
     ]
   }
 }
-
 
 resource "null_resource" "spoke_vpn_tunnels" {
   for_each = { for k1, v1 in local.spoke_vpn_tunnels : k1 => v1 if v1.spoke_vpn_gateway.pre_existing == false }

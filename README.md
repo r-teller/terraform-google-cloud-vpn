@@ -13,6 +13,14 @@ This module was created to enable deployment of Cloud VPN resources quickly and 
 >  jq '.[].hub_router.unique_id' ./examples/project__network/examples/00_gcp_to_nothing.json` 
 >```
 
+> Support for Cloud VPN secrets stored in terraform variables or secret manager was introduced in v0.6.5
+> - Terraform Variables
+>   - Support for passing terraform variables _tfvars for example_ can be passed to this module keys within the `var.variable_pre_shared_secret` variable
+>   - Using this example snippet `"terraform_variable_pre_shared_secret": "alpha"` this module would expect the pre-shared secret for the vpn tunnel to be set within `var.variable_pre_shared_secret.alpha`
+> - Secret Manger
+>   - Support for passing secret manager ids was introduced with this release. 
+>   - Using this example snippet `"secret_manager_pre_shared_secret": "bravo"` this module would expect the pre-shared secret for the vpn tunnel to be set within the Hub project_id using a secret name of `bravo`
+
 ## JSON Generator
 https://r-teller.github.io/terraform-google-cloud-vpn
 
@@ -552,26 +560,37 @@ You may see the following error snippet when attempting to peer with the a spoke
     }
 ]
 ```
+## Dupliacte BGP Session Range
+You may see the following error snippet when creating a bgp peer session range that overlaps with an existing range already deployed. If you see this error you may work around the duplicate session range by statically assigning a value in the `169.254.0.0/16 range`
+
+### Error Message
+```shell
+│ Error: Error patching router us-central1/cr-hub-vpn-7bd59d5e-bb8f-59d7-b612-4687a41cd47a: googleapi: Error 400: Invalid value for field 'resource.interfaces[0].ipRange': '169.254.11.2/30'. IP Range 169.254.11.0/30 of router cr-hub-vpn-7bd59d5e-bb8f-59d7-b612-4687a41cd47a interface vpn-hub-peer-tunnel-c7493d2f-1f93-58b0-962c-46f0037e1657 conflicts with router cr-hub-vpn-e3a1ef19-bd3f-534f-8797-804179b5c86e interface vpn-hub-peer-tunnel-145c00e5-c831-555c-beb1-f45666eaf782., invalid
+│
+│   with module.cloud_vpn.google_compute_router_interface.hub_router_interfaces["vpn-hub-peer-tunnel-c7493d2f-1f93-58b0-962c-46f0037e1657"],
+│   on ..\..\main.tf line 955, in resource "google_compute_router_interface" "hub_router_interfaces":
+│  955: resource "google_compute_router_interface" "hub_router_interfaces" {
+```
 
 # Roadmap Module Features
 - UI
--- JSON Generation
---- Improve the UI for JSON generation
---- Introduce support for `Advanced Options` toggle that hides fields not required from a minimum viable configuration perspective
---- Update Spoke Router and VPN Gateway UI to better explain how the combination of `pre_existing` flags is used to determine wheather or not to create tunnels
--- JSON Import
---- Introduce support for importing pre-created JSON so that it can be manipulated within the UI
+  - JSON Generation
+    - Improve the UI for JSON generation
+    - Introduce support for `Advanced Options` toggle that hides fields not required from a minimum viable configuration perspective
+    - Update Spoke Router and VPN Gateway UI to better explain how the combination of `pre_existing` flags is used to determine wheather or not to create tunnels
+  - JSON Import
+    - Introduce support for importing pre-created JSON so that it can be manipulated within the UI
 - Output Template
--- Introduce output configuration templates so that when Cloud VPN is integrated with 3rd party VPNs configuration is simplier
+    - Introduce output configuration templates so that when Cloud VPN is integrated with 3rd party VPNs configuration is simplier
 - Shared Secrets
--- Introduce support this module to retrieve a pre_shared_secret from Secrets Manager instead of storing it in JSON
+  - ~~Introduce support this module to retrieve a pre_shared_secret from Secrets Manager instead of storing it in JSON~~ Introduced in v0.6.5
 - HA Cloud VPN
--- Expand automatic creation of BGP ASN to support both 16-bit and 32-bit ranges, currently only 32-bit BGP ASN are supported for automatic creation
--- Determine if local/remote tunnels need to support explicit naming
--- Determine if unique naming is needed for google_compute_router_interface & google_compute_router_peer resources, currently they use the same name as google_compute_vpn_tunnel
+  - Expand automatic creation of BGP ASN to support both 16-bit and 32-bit ranges, currently only 32-bit BGP ASN are supported for automatic creation
+  - Determine if hub/spoke tunnels need to support explicit naming
+  - Determine if unique naming is needed for `google_compute_router_interface` & `google_compute_router_peer` resources, currently they use the same name as `google_compute_vpn_tunnel`
 - Classic Cloud VPN
--- Support for this needs to be introduced in the near future
---- This may end up being a different module, will know more after i go down the rabbit hole
+  - Support for this will be introduced in the near future
+    - This may end up being a different module, will know more after i go down the rabbit hole
 
 # Useful Tools
 ## JSON Schema Validator

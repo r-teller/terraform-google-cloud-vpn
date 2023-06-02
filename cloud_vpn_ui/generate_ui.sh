@@ -14,3 +14,6 @@ generate-schema-doc --config expand_buttons=true ./src/Schema/resolved.schema.js
 rm -rf ../docs/*
 mv ./build/* ../docs
 rm -r ./build
+
+## ajv validate -s "../schemas/resolved/resolved.schema.json" -d "../examples/project__network/examples/*.json" --strict=false
+## ajv validate -s "../schemas/resolved/resolved.schema.json" -d "../examples/project__network/cloud_Vpns/*.json" --strict=false

@@ -18,3 +18,8 @@ variable "cloud_vpns" {
   type        = any
   default     = null
 }
+
+variable "variable_pre_shared_secret" {
+  type    = map(any)
+  default = null
+}

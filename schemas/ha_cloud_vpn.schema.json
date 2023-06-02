@@ -1513,10 +1513,14 @@
                                             "description": "When static pre-shared secret is selected, the terraform module will use the string included in this field as the secret for phase 1 encryption\\>All arguments including the following potentially sensitive values will be stored in the raw state as plain text: shared_secret"
                                         },
                                         {
-                                            "readOnly": true,
+                                            "const": "TERRAFORM_VARIABLE",
+                                            "title": "Terraform Variable",
+                                            "description": "When terraform variable pre-shared secret is selected, the terraform module will use the terraform variable name included in this field as the path to the secret for phase 1 encryption"
+                                        },
+                                        {
                                             "const": "SECRET_MANAGER",
-                                            "title": "GCP Secret Manager (COMING SOON)",
-                                            "description": "When static secret manager is selected, the terraform module will use the string referenced in Secret Manager for phase 1 encryption\\>This functionality is on the road-map and only included as a place holder"
+                                            "title": "GCP Secret Manager",
+                                            "description": "When secret manager is selected, the terraform module will use the string referenced in Secret Manager for phase 1 encryption"
                                         }
                                     ]
                                 }
@@ -1529,45 +1533,255 @@
                                     "spoke_ipv4_address",
                                     "ipv6_enabled",
                                     "pre_shared_secret_method",
-                                    "static_pre_shared_secret"
+                                    "static_pre_shared_secret",
+                                    "terraform_variable_pre_shared_secret",
+                                    "secret_manager_pre_shared_secret"
                                 ]
                             },
-                            "if": {
-                                "properties": {
-                                    "pre_shared_secret_method": {
-                                        "type": "string",
-                                        "const": "STATIC"
+                            "allOf": [
+                                {
+                                    "description": "When `dynamic` pre-shared secret is selected and [`static`,`terraform_variable`,`secret_manager`] pre-shared should be empty",
+                                    "if": {
+                                        "properties": {
+                                            "pre_shared_secret_method": {
+                                                "type": "string",
+                                                "const": "DYNAMIC"
+                                            }
+                                        },
+                                        "oneOf": [
+                                            {
+                                                "properties": {
+                                                    "static_pre_shared_secret": {
+                                                        "type": "string",
+                                                        "pattern": "^(.*)$"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "static_pre_shared_secret"
+                                                ]
+                                            },
+                                            {
+                                                "properties": {
+                                                    "terraform_variable_pre_shared_secret": {
+                                                        "type": "string",
+                                                        "pattern": "^(.*)$"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "terraform_variable_pre_shared_secret"
+                                                ]
+                                            },
+                                            {
+                                                "properties": {
+                                                    "secret_manager_pre_shared_secret": {
+                                                        "type": "string",
+                                                        "pattern": "^(.*)$"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "secret_manager_pre_shared_secret"
+                                                ]
+                                            }
+                                        ],
+                                        "required": [
+                                            "pre_shared_secret_method"
+                                        ]
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "static_pre_shared_secret": {
+                                                "$ref": "#/definitions/shared/properties/vpn_attributes/static_pre_shared_secret_empty"
+                                            },
+                                            "terraform_variable_pre_shared_secret": {
+                                                "$ref": "#/definitions/shared/properties/vpn_attributes/terraform_variable_pre_shared_secret_empty"
+                                            },
+                                            "secret_manager_pre_shared_secret": {
+                                                "$ref": "#/definitions/shared/properties/vpn_attributes/secret_manager_pre_shared_secret_empty"
+                                            }
+                                        }
                                     }
                                 },
-                                "required": [
-                                    "pre_shared_secret_method"
-                                ]
-                            },
-                            "then": {
-                                "properties": {
-                                    "static_pre_shared_secret": {
-                                        "title": "Static Pre-Shared Secret",
-                                        "deleteOnEmpty": true,
-                                        "type": "string",
-                                        "minLength": 1
+                                {
+                                    "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are empty",
+                                    "if": {
+                                        "properties": {
+                                            "pre_shared_secret_method": {
+                                                "type": "string",
+                                                "const": "STATIC"
+                                            }
+                                        },
+                                        "required": [
+                                            "pre_shared_secret_method"
+                                        ]
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "static_pre_shared_secret": {
+                                                "$ref": "#/definitions/shared/properties/vpn_attributes/static_pre_shared_secret"
+                                            }
+                                        },
+                                        "required": [
+                                            "static_pre_shared_secret"
+                                        ]
                                     }
                                 },
-                                "required": [
-                                    "static_pre_shared_secret"
-                                ]
-                            },
-                            "else": {
-                                "properties": {
-                                    "static_pre_shared_secret": {
-                                        "title": "Static Pre-Shared Secret (EMPTY)",
-                                        "description": "This field should be set to empty remove `static_pre_shared_secret` from JSON",
-                                        "deleteOnEmpty": true,
-                                        "type": "string",
-                                        "pattern": "^(?!.*)",
-                                        "maxLength": 0
+                                {
+                                    "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are not empty",
+                                    "if": {
+                                        "properties": {
+                                            "pre_shared_secret_method": {
+                                                "type": "string",
+                                                "const": "STATIC"
+                                            }
+                                        },
+                                        "oneOf": [
+                                            {
+                                                "properties": {
+                                                    "terraform_variable_pre_shared_secret": {
+                                                        "type": "string",
+                                                        "pattern": "^(.*)$"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "terraform_variable_pre_shared_secret"
+                                                ]
+                                            },
+                                            {
+                                                "properties": {
+                                                    "secret_manager_pre_shared_secret": {
+                                                        "type": "string",
+                                                        "pattern": "^(.*)$"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "secret_manager_pre_shared_secret"
+                                                ]
+                                            }
+                                        ],
+                                        "required": [
+                                            "pre_shared_secret_method"
+                                        ]
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "static_pre_shared_secret": {
+                                                "$ref": "#/definitions/shared/properties/vpn_attributes/static_pre_shared_secret"
+                                            },
+                                            "terraform_variable_pre_shared_secret": {
+                                                "$ref": "#/definitions/shared/properties/vpn_attributes/terraform_variable_pre_shared_secret_empty"
+                                            },
+                                            "secret_manager_pre_shared_secret": {
+                                                "$ref": "#/definitions/shared/properties/vpn_attributes/secret_manager_pre_shared_secret_empty"
+                                            }
+                                        },
+                                        "required": [
+                                            "static_pre_shared_secret"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are empty",
+                                    "if": {
+                                        "properties": {
+                                            "pre_shared_secret_method": {
+                                                "type": "string",
+                                                "const": "TERRAFORM_VARIABLE"
+                                            }
+                                        },
+                                        "required": [
+                                            "pre_shared_secret_method"
+                                        ]
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "terraform_variable_pre_shared_secret": {
+                                                "$ref": "#/definitions/shared/properties/vpn_attributes/terraform_variable_pre_shared_secret"
+                                            }
+                                        },
+                                        "required": [
+                                            "terraform_variable_pre_shared_secret"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are not empty",
+                                    "if": {
+                                        "properties": {
+                                            "pre_shared_secret_method": {
+                                                "type": "string",
+                                                "const": "TERRAFORM_VARIABLE"
+                                            }
+                                        },
+                                        "oneOf": [
+                                            {
+                                                "properties": {
+                                                    "static_pre_shared_secret": {
+                                                        "type": "string",
+                                                        "pattern": "^(.*)$"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "static_pre_shared_secret"
+                                                ]
+                                            },
+                                            {
+                                                "properties": {
+                                                    "secret_manager_pre_shared_secret": {
+                                                        "type": "string",
+                                                        "pattern": "^(.*)$"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "secret_manager_pre_shared_secret"
+                                                ]
+                                            }
+                                        ],
+                                        "required": [
+                                            "pre_shared_secret_method"
+                                        ]
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "terraform_variable_pre_shared_secret": {
+                                                "$ref": "#/definitions/shared/properties/vpn_attributes/terraform_variable_pre_shared_secret"
+                                            },
+                                            "static_pre_shared_secret": {
+                                                "$ref": "#/definitions/shared/properties/vpn_attributes/static_pre_shared_secret_empty"
+                                            },
+                                            "secret_manager_pre_shared_secret": {
+                                                "$ref": "#/definitions/shared/properties/vpn_attributes/secret_manager_pre_shared_secret_empty"
+                                            }
+                                        },
+                                        "required": [
+                                            "terraform_variable_pre_shared_secret"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are empty",
+                                    "if": {
+                                        "properties": {
+                                            "pre_shared_secret_method": {
+                                                "type": "string",
+                                                "const": "SECRET_MANAGER"
+                                            }
+                                        },
+                                        "required": [
+                                            "pre_shared_secret_method"
+                                        ]
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "secret_manager_pre_shared_secret": {
+                                                "$ref": "#/definitions/shared/properties/vpn_attributes/secret_manager_pre_shared_secret"
+                                            }
+                                        },
+                                        "required": [
+                                            "secret_manager_pre_shared_secret"
+                                        ]
                                     }
                                 }
-                            }
+                            ]
                         },
                         "examples": [
                             {
@@ -1674,6 +1888,48 @@
                                 "const": 2
                             }
                         ]
+                    },
+                    "static_pre_shared_secret": {
+                        "title": "Static Pre-Shared Secret",
+                        "deleteOnEmpty": true,
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "static_pre_shared_secret_empty": {
+                        "title": "Static Pre-Shared Secret (EMPTY)",
+                        "description": "This field should be set to empty remove `static_pre_shared_secret` from JSON",
+                        "deleteOnEmpty": true,
+                        "type": "string",
+                        "pattern": "^(?!.*)",
+                        "maxLength": 0
+                    },
+                    "terraform_variable_pre_shared_secret": {
+                        "title": "Terraform Variable Pre-Shared Secret",
+                        "deleteOnEmpty": true,
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "terraform_variable_pre_shared_secret_empty": {
+                        "title": "Terraform Variable Pre-Shared Secret (EMPTY)",
+                        "description": "This field should be set to empty remove `terraform_variable_pre_shared_secret` from JSON",
+                        "deleteOnEmpty": true,
+                        "type": "string",
+                        "pattern": "^(?!.*)",
+                        "maxLength": 0
+                    },
+                    "secret_manager_pre_shared_secret": {
+                        "title": "Secret Manager Pre-Shared Secret",
+                        "deleteOnEmpty": true,
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "secret_manager_pre_shared_secret_empty": {
+                        "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                        "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
+                        "deleteOnEmpty": true,
+                        "type": "string",
+                        "pattern": "^(?!.*)",
+                        "maxLength": 0
                     }
                 },
                 "router_attributes": {

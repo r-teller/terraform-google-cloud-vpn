@@ -9,17 +9,19 @@ locals {
 }
 
 module "cloud_vpn" {
-  source = "r-teller/cloud-vpn/google"
-  # source = "../../"
+  # source = "r-teller/cloud-vpn/google"
+  source = "../../"
 
-
-  project_id = var.project_id
-  network    = var.network
-  region     = var.region
-
+  ## These fields are optional and only required if you want to specify a default value hub value for project_id,network and region if not specified in the JSON file
+  ## values specified in JSON override these settings
+  # project_id = var.project_id 
+  # network    = var.network
+  # region     = var.region
   cloud_vpns = local.cloud_vpns
-}
 
+  ### This flag is only needed if you want to pass in tunnel pre-shared secrets using variables instead of through JSON
+  variable_pre_shared_secret = var.variable_pre_shared_secret
+}
 
 # output "locals" {
 #   value = module.cloud_vpn.locals

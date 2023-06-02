@@ -73,7 +73,9 @@ const combineSchema = {
     }
 };
 
-const values = { cloud_vpns: [] };
+const values = {
+    cloud_vpns: [{}]
+};
 
 const Generator = () => {
     // eslint-disable-next-line 

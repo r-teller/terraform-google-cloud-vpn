@@ -557,25 +557,14 @@ locals {
         environment = v1.environment
 
         tunnel_index = i
-
-        ike_version = v2.ike_version
-        # pre_shared_secret        = try(v2.advanced_tunnel_configuration[i].static_pre_shared_secret, null)
-        # pre_shared_secret        = var.pre_shared_secret[v2.advanced_tunnel_configuration[i].variable_pre_shared_secret]
-        # pre_shared_secret        = var.pre_shared_secret.bar
-
-        # peer_external_gateway_interface = (
-        #   v2.redundancy_type == "SINGLE_IP_INTERNALLY_REDUNDANT" ? ceil(i % 1) :
-        #   v2.redundancy_type == "TWO_IPS_REDUNDANCY" ? ceil(i % 2) :
-        #   v2.redundancy_type == "FOUR_IPS_REDUNDANCY" ? ceil(i % 4) :
-        #   0
-        # )
+        ike_version  = v2.ike_version
 
         pre_shared_secret_method  = try(v2.advanced_tunnel_configuration[i].pre_shared_secret_method, "DYNAMIC")
         pre_shared_secret_manager = try(v2.advanced_tunnel_configuration[i].secret_manager_pre_shared_secret, null)
 
         pre_shared_secret = (
-          v2.advanced_tunnel_configuration[i].pre_shared_secret_method == "STATIC" ? v2.advanced_tunnel_configuration[i].static_pre_shared_secret :
-          v2.advanced_tunnel_configuration[i].pre_shared_secret_method == "TERRAFORM_VARIABLE" ? var.variable_pre_shared_secret[v2.advanced_tunnel_configuration[i].terraform_variable_pre_shared_secret] :
+          try(v2.advanced_tunnel_configuration[i].pre_shared_secret_method, null) == "STATIC" ? v2.advanced_tunnel_configuration[i].static_pre_shared_secret :
+          try(v2.advanced_tunnel_configuration[i].pre_shared_secret_method, null) == "TERRAFORM_VARIABLE" ? var.variable_pre_shared_secret[v2.advanced_tunnel_configuration[i].terraform_variable_pre_shared_secret] :
           null
         )
 
@@ -644,10 +633,17 @@ locals {
         prefix      = v1.prefix
         environment = v1.environment
 
-        tunnel_index             = i
-        ike_version              = v2.ike_version
-        pre_shared_secret        = try(v2.advanced_tunnel_configuration[i].static_pre_shared_secret, null)
-        pre_shared_secret_method = try(v2.advanced_tunnel_configuration[i].pre_shared_secret_method, "DYNAMIC")
+        tunnel_index = i
+        ike_version  = v2.ike_version
+
+        pre_shared_secret_method  = try(v2.advanced_tunnel_configuration[i].pre_shared_secret_method, "DYNAMIC")
+        pre_shared_secret_manager = try(v2.advanced_tunnel_configuration[i].secret_manager_pre_shared_secret, null)
+
+        pre_shared_secret = (
+          v2.advanced_tunnel_configuration[i].pre_shared_secret_method == "STATIC" ? v2.advanced_tunnel_configuration[i].static_pre_shared_secret :
+          v2.advanced_tunnel_configuration[i].pre_shared_secret_method == "TERRAFORM_VARIABLE" ? var.variable_pre_shared_secret[v2.advanced_tunnel_configuration[i].terraform_variable_pre_shared_secret] :
+          null
+        )
 
         ## Assigns hub & spoke interface numbers counting from 0 to N where N equal the number of interfaces assigned
         ### First Example 2 hub & 2 spoke interfaces
@@ -722,16 +718,6 @@ locals {
       ]
     ])
   ])
-
-  # PREFIX               = try(vpn_tunnel.prefix, null) != null ? vpn_tunnel.prefix : null
-  # ENVIRONMENT          = try(vpn_tunnel.environment, null) != null ? vpn_tunnel.environment : null
-  # LABEL                = try(vpn_tunnel.label, null) != null ? vpn_tunnel.label : null
-  # LOCAL_VPN_GATEWAY_UNIQUE_ID   = try(vpn_tunnel.local_vpn_gateway.unique_id, null) != null ? vpn_tunnel.local_vpn_gateway.unique_id : null # "UNKNOWN",
-  # REMOTE_VPN_GATEWAY_PROJECT_ID = try(vpn_tunnel.remote_vpn_gateway.project_id) != null ? vpn_tunnel.remote_vpn_gateway.project_id : null     # "UNKNOWN",
-  # SPOKE_VPN_GATEWAY_PROJECT_ID = try(v1.spoke_vpn_gateway.project_id) != null ? v1.spoke_vpn_gateway.project_id : v1.hub_vpn_gateway.project_id,
-  # SPOKE_VPN_GATEWAY_NETWORK    = try(v1.spoke_vpn_gateway.network, null) != null ? v1.spoke_vpn_gateway.network : null,
-  # SPOKE_VPN_GATEWAY_NAME       = try(v1.spoke_vpn_gateway.name, null) != null ? v1.spoke_vpn_gateway.name : null,
-  # SPOKE_VPN_GATEWAY_UNIQUE_ID  = try(v1.spoke_vpn_gateway.unique_id, null) != null ? v1.spoke_vpn_gateway.unique_id : null,
 
   map_hub_vpn_tunnels = { for v1 in local._vpn_tunnels : format("vpn-%s-tunnel-%s",
     lookup({ "external" = "hub-peer", "gcp" = "hub-spoke" }, v1.spoke_vpn_gateway.type, "hub-unk"),
@@ -819,18 +805,11 @@ locals {
         v1.pre_shared_secret_method == "DYNAMIC" ? random_string.pre_shared_secret[k1].result :
         v1.pre_shared_secret_method == "SECRET_MANAGER" ? nonsensitive(data.google_secret_manager_secret_version.secret_manager_secret[k1].secret_data) : null
       )
-    }
-  ) }
+    })
+  }
 
   spoke_vpn_tunnels = { for k1, v1 in local.hub_vpn_tunnels : format("vpn-spoke-hub-tunnel-%s", uuidv5("x500", join(",",
     [for k2, v2 in {
-      # PREFIX                        = try(v1.prefix, null) != null ? v1.prefix : null
-      # ENVIRONMENT                   = try(v1.environment, null) != null ? v1.environment : null
-      # LABEL                         = try(v1.label, null) != null ? v1.label : null
-      # HUB_VPN_GATEWAY_NAME         = try(v1.spoke_vpn_gateway.name, null) != null ? v1.spoke_vpn_gateway.name : null
-      # HUB_VPN_GATEWAY_UNIQUE_ID    = try(v1.spoke_vpn_gateway.unique_id, null) != null ? v1.spoke_vpn_gateway.unique_id : null
-      # HUB_ROUTER_NAME              = try(v1.spoke_vpn_gateway.spoke_router.name, null),
-      # SPOKE_VPN_GATEWAY_UNIQUE_ID  = try(v1.hub_vpn_gateway.unique_id, null) != null ? v1.hub_vpn_gateway.unique_id : null
       NAME                         = null,
       PREFIX                       = v1.prefix,
       ENVIRONMENT                  = v1.environment,

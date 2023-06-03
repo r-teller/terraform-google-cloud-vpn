@@ -9,8 +9,8 @@ locals {
 }
 
 module "cloud_vpn" {
-  # source = "r-teller/cloud-vpn/google"
-  source = "../../"
+  source = "r-teller/cloud-vpn/google"
+  # source = "../../"
 
   ## These fields are optional and only required if you want to specify a default value hub value for project_id,network and region if not specified in the JSON file
   ## values specified in JSON override these settings

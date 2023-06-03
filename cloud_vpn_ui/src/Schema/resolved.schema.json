@@ -919,6 +919,7 @@
                                           },
                                           "allOf": [
                                             {
+                                              "title": "Dynamic Pre-Shared Secret",
                                               "description": "When `dynamic` pre-shared secret is selected and [`static`,`terraform_variable`,`secret_manager`] pre-shared should be empty",
                                               "if": {
                                                 "properties": {
@@ -996,6 +997,7 @@
                                               }
                                             },
                                             {
+                                              "title": "Static Pre-Shared Secret",
                                               "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are empty",
                                               "if": {
                                                 "properties": {
@@ -1023,6 +1025,7 @@
                                               }
                                             },
                                             {
+                                              "title": "Static Pre-Shared Secret (NON-EMPTY Others)",
                                               "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are not empty",
                                               "if": {
                                                 "properties": {
@@ -1090,6 +1093,7 @@
                                               }
                                             },
                                             {
+                                              "title": "Terraform Variable Pre-Shared Secret",
                                               "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are empty",
                                               "if": {
                                                 "properties": {
@@ -1117,6 +1121,7 @@
                                               }
                                             },
                                             {
+                                              "title": "Terraform Variable Pre-Shared Secret (NON-EMPTY Others)",
                                               "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are not empty",
                                               "if": {
                                                 "properties": {
@@ -1184,6 +1189,7 @@
                                               }
                                             },
                                             {
+                                              "title": "Secret Manager Pre-Shared Secret",
                                               "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are empty",
                                               "if": {
                                                 "properties": {
@@ -1203,6 +1209,74 @@
                                                     "deleteOnEmpty": true,
                                                     "type": "string",
                                                     "minLength": 1
+                                                  }
+                                                },
+                                                "required": [
+                                                  "secret_manager_pre_shared_secret"
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "title": "Secret Manager Pre-Shared Secret (NON-EMPTY Others)",
+                                              "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are not empty",
+                                              "if": {
+                                                "properties": {
+                                                  "pre_shared_secret_method": {
+                                                    "type": "string",
+                                                    "const": "SECRET_MANAGER"
+                                                  }
+                                                },
+                                                "oneOf": [
+                                                  {
+                                                    "properties": {
+                                                      "static_pre_shared_secret": {
+                                                        "type": "string",
+                                                        "pattern": "^(.*)$"
+                                                      }
+                                                    },
+                                                    "required": [
+                                                      "static_pre_shared_secret"
+                                                    ]
+                                                  },
+                                                  {
+                                                    "properties": {
+                                                      "terraform_variable_pre_shared_secret": {
+                                                        "type": "string",
+                                                        "pattern": "^(.*)$"
+                                                      }
+                                                    },
+                                                    "required": [
+                                                      "terraform_variable_pre_shared_secret"
+                                                    ]
+                                                  }
+                                                ],
+                                                "required": [
+                                                  "pre_shared_secret_method"
+                                                ]
+                                              },
+                                              "then": {
+                                                "properties": {
+                                                  "secret_manager_pre_shared_secret": {
+                                                    "title": "Secret Manager Pre-Shared Secret",
+                                                    "deleteOnEmpty": true,
+                                                    "type": "string",
+                                                    "minLength": 1
+                                                  },
+                                                  "static_pre_shared_secret": {
+                                                    "title": "Static Pre-Shared Secret (EMPTY)",
+                                                    "description": "This field should be set to empty remove `static_pre_shared_secret` from JSON",
+                                                    "deleteOnEmpty": true,
+                                                    "type": "string",
+                                                    "pattern": "^(?!.*)",
+                                                    "maxLength": 0
+                                                  },
+                                                  "terraform_variable_pre_shared_secret": {
+                                                    "title": "Terraform Variable Pre-Shared Secret (EMPTY)",
+                                                    "description": "This field should be set to empty remove `terraform_variable_pre_shared_secret` from JSON",
+                                                    "deleteOnEmpty": true,
+                                                    "type": "string",
+                                                    "pattern": "^(?!.*)",
+                                                    "maxLength": 0
                                                   }
                                                 },
                                                 "required": [
@@ -1664,6 +1738,7 @@
                                           },
                                           "allOf": [
                                             {
+                                              "title": "Dynamic Pre-Shared Secret",
                                               "description": "When `dynamic` pre-shared secret is selected and [`static`,`terraform_variable`,`secret_manager`] pre-shared should be empty",
                                               "if": {
                                                 "properties": {
@@ -1741,6 +1816,7 @@
                                               }
                                             },
                                             {
+                                              "title": "Static Pre-Shared Secret",
                                               "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are empty",
                                               "if": {
                                                 "properties": {
@@ -1768,6 +1844,7 @@
                                               }
                                             },
                                             {
+                                              "title": "Static Pre-Shared Secret (NON-EMPTY Others)",
                                               "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are not empty",
                                               "if": {
                                                 "properties": {
@@ -1835,6 +1912,7 @@
                                               }
                                             },
                                             {
+                                              "title": "Terraform Variable Pre-Shared Secret",
                                               "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are empty",
                                               "if": {
                                                 "properties": {
@@ -1862,6 +1940,7 @@
                                               }
                                             },
                                             {
+                                              "title": "Terraform Variable Pre-Shared Secret (NON-EMPTY Others)",
                                               "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are not empty",
                                               "if": {
                                                 "properties": {
@@ -1929,6 +2008,7 @@
                                               }
                                             },
                                             {
+                                              "title": "Secret Manager Pre-Shared Secret",
                                               "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are empty",
                                               "if": {
                                                 "properties": {
@@ -1948,6 +2028,74 @@
                                                     "deleteOnEmpty": true,
                                                     "type": "string",
                                                     "minLength": 1
+                                                  }
+                                                },
+                                                "required": [
+                                                  "secret_manager_pre_shared_secret"
+                                                ]
+                                              }
+                                            },
+                                            {
+                                              "title": "Secret Manager Pre-Shared Secret (NON-EMPTY Others)",
+                                              "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are not empty",
+                                              "if": {
+                                                "properties": {
+                                                  "pre_shared_secret_method": {
+                                                    "type": "string",
+                                                    "const": "SECRET_MANAGER"
+                                                  }
+                                                },
+                                                "oneOf": [
+                                                  {
+                                                    "properties": {
+                                                      "static_pre_shared_secret": {
+                                                        "type": "string",
+                                                        "pattern": "^(.*)$"
+                                                      }
+                                                    },
+                                                    "required": [
+                                                      "static_pre_shared_secret"
+                                                    ]
+                                                  },
+                                                  {
+                                                    "properties": {
+                                                      "terraform_variable_pre_shared_secret": {
+                                                        "type": "string",
+                                                        "pattern": "^(.*)$"
+                                                      }
+                                                    },
+                                                    "required": [
+                                                      "terraform_variable_pre_shared_secret"
+                                                    ]
+                                                  }
+                                                ],
+                                                "required": [
+                                                  "pre_shared_secret_method"
+                                                ]
+                                              },
+                                              "then": {
+                                                "properties": {
+                                                  "secret_manager_pre_shared_secret": {
+                                                    "title": "Secret Manager Pre-Shared Secret",
+                                                    "deleteOnEmpty": true,
+                                                    "type": "string",
+                                                    "minLength": 1
+                                                  },
+                                                  "static_pre_shared_secret": {
+                                                    "title": "Static Pre-Shared Secret (EMPTY)",
+                                                    "description": "This field should be set to empty remove `static_pre_shared_secret` from JSON",
+                                                    "deleteOnEmpty": true,
+                                                    "type": "string",
+                                                    "pattern": "^(?!.*)",
+                                                    "maxLength": 0
+                                                  },
+                                                  "terraform_variable_pre_shared_secret": {
+                                                    "title": "Terraform Variable Pre-Shared Secret (EMPTY)",
+                                                    "description": "This field should be set to empty remove `terraform_variable_pre_shared_secret` from JSON",
+                                                    "deleteOnEmpty": true,
+                                                    "type": "string",
+                                                    "pattern": "^(?!.*)",
+                                                    "maxLength": 0
                                                   }
                                                 },
                                                 "required": [
@@ -2792,6 +2940,7 @@
                                     },
                                     "allOf": [
                                       {
+                                        "title": "Dynamic Pre-Shared Secret",
                                         "description": "When `dynamic` pre-shared secret is selected and [`static`,`terraform_variable`,`secret_manager`] pre-shared should be empty",
                                         "if": {
                                           "properties": {
@@ -2869,6 +3018,7 @@
                                         }
                                       },
                                       {
+                                        "title": "Static Pre-Shared Secret",
                                         "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are empty",
                                         "if": {
                                           "properties": {
@@ -2896,6 +3046,7 @@
                                         }
                                       },
                                       {
+                                        "title": "Static Pre-Shared Secret (NON-EMPTY Others)",
                                         "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are not empty",
                                         "if": {
                                           "properties": {
@@ -2963,6 +3114,7 @@
                                         }
                                       },
                                       {
+                                        "title": "Terraform Variable Pre-Shared Secret",
                                         "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are empty",
                                         "if": {
                                           "properties": {
@@ -2990,6 +3142,7 @@
                                         }
                                       },
                                       {
+                                        "title": "Terraform Variable Pre-Shared Secret (NON-EMPTY Others)",
                                         "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are not empty",
                                         "if": {
                                           "properties": {
@@ -3057,6 +3210,7 @@
                                         }
                                       },
                                       {
+                                        "title": "Secret Manager Pre-Shared Secret",
                                         "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are empty",
                                         "if": {
                                           "properties": {
@@ -3076,6 +3230,74 @@
                                               "deleteOnEmpty": true,
                                               "type": "string",
                                               "minLength": 1
+                                            }
+                                          },
+                                          "required": [
+                                            "secret_manager_pre_shared_secret"
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        "title": "Secret Manager Pre-Shared Secret (NON-EMPTY Others)",
+                                        "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are not empty",
+                                        "if": {
+                                          "properties": {
+                                            "pre_shared_secret_method": {
+                                              "type": "string",
+                                              "const": "SECRET_MANAGER"
+                                            }
+                                          },
+                                          "oneOf": [
+                                            {
+                                              "properties": {
+                                                "static_pre_shared_secret": {
+                                                  "type": "string",
+                                                  "pattern": "^(.*)$"
+                                                }
+                                              },
+                                              "required": [
+                                                "static_pre_shared_secret"
+                                              ]
+                                            },
+                                            {
+                                              "properties": {
+                                                "terraform_variable_pre_shared_secret": {
+                                                  "type": "string",
+                                                  "pattern": "^(.*)$"
+                                                }
+                                              },
+                                              "required": [
+                                                "terraform_variable_pre_shared_secret"
+                                              ]
+                                            }
+                                          ],
+                                          "required": [
+                                            "pre_shared_secret_method"
+                                          ]
+                                        },
+                                        "then": {
+                                          "properties": {
+                                            "secret_manager_pre_shared_secret": {
+                                              "title": "Secret Manager Pre-Shared Secret",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "minLength": 1
+                                            },
+                                            "static_pre_shared_secret": {
+                                              "title": "Static Pre-Shared Secret (EMPTY)",
+                                              "description": "This field should be set to empty remove `static_pre_shared_secret` from JSON",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "pattern": "^(?!.*)",
+                                              "maxLength": 0
+                                            },
+                                            "terraform_variable_pre_shared_secret": {
+                                              "title": "Terraform Variable Pre-Shared Secret (EMPTY)",
+                                              "description": "This field should be set to empty remove `terraform_variable_pre_shared_secret` from JSON",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "pattern": "^(?!.*)",
+                                              "maxLength": 0
                                             }
                                           },
                                           "required": [
@@ -3921,6 +4143,7 @@
                           },
                           "allOf": [
                             {
+                              "title": "Dynamic Pre-Shared Secret",
                               "description": "When `dynamic` pre-shared secret is selected and [`static`,`terraform_variable`,`secret_manager`] pre-shared should be empty",
                               "if": {
                                 "properties": {
@@ -3998,6 +4221,7 @@
                               }
                             },
                             {
+                              "title": "Static Pre-Shared Secret",
                               "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are empty",
                               "if": {
                                 "properties": {
@@ -4025,6 +4249,7 @@
                               }
                             },
                             {
+                              "title": "Static Pre-Shared Secret (NON-EMPTY Others)",
                               "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are not empty",
                               "if": {
                                 "properties": {
@@ -4092,6 +4317,7 @@
                               }
                             },
                             {
+                              "title": "Terraform Variable Pre-Shared Secret",
                               "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are empty",
                               "if": {
                                 "properties": {
@@ -4119,6 +4345,7 @@
                               }
                             },
                             {
+                              "title": "Terraform Variable Pre-Shared Secret (NON-EMPTY Others)",
                               "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are not empty",
                               "if": {
                                 "properties": {
@@ -4186,6 +4413,7 @@
                               }
                             },
                             {
+                              "title": "Secret Manager Pre-Shared Secret",
                               "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are empty",
                               "if": {
                                 "properties": {
@@ -4205,6 +4433,74 @@
                                     "deleteOnEmpty": true,
                                     "type": "string",
                                     "minLength": 1
+                                  }
+                                },
+                                "required": [
+                                  "secret_manager_pre_shared_secret"
+                                ]
+                              }
+                            },
+                            {
+                              "title": "Secret Manager Pre-Shared Secret (NON-EMPTY Others)",
+                              "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are not empty",
+                              "if": {
+                                "properties": {
+                                  "pre_shared_secret_method": {
+                                    "type": "string",
+                                    "const": "SECRET_MANAGER"
+                                  }
+                                },
+                                "oneOf": [
+                                  {
+                                    "properties": {
+                                      "static_pre_shared_secret": {
+                                        "type": "string",
+                                        "pattern": "^(.*)$"
+                                      }
+                                    },
+                                    "required": [
+                                      "static_pre_shared_secret"
+                                    ]
+                                  },
+                                  {
+                                    "properties": {
+                                      "terraform_variable_pre_shared_secret": {
+                                        "type": "string",
+                                        "pattern": "^(.*)$"
+                                      }
+                                    },
+                                    "required": [
+                                      "terraform_variable_pre_shared_secret"
+                                    ]
+                                  }
+                                ],
+                                "required": [
+                                  "pre_shared_secret_method"
+                                ]
+                              },
+                              "then": {
+                                "properties": {
+                                  "secret_manager_pre_shared_secret": {
+                                    "title": "Secret Manager Pre-Shared Secret",
+                                    "deleteOnEmpty": true,
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "static_pre_shared_secret": {
+                                    "title": "Static Pre-Shared Secret (EMPTY)",
+                                    "description": "This field should be set to empty remove `static_pre_shared_secret` from JSON",
+                                    "deleteOnEmpty": true,
+                                    "type": "string",
+                                    "pattern": "^(?!.*)",
+                                    "maxLength": 0
+                                  },
+                                  "terraform_variable_pre_shared_secret": {
+                                    "title": "Terraform Variable Pre-Shared Secret (EMPTY)",
+                                    "description": "This field should be set to empty remove `terraform_variable_pre_shared_secret` from JSON",
+                                    "deleteOnEmpty": true,
+                                    "type": "string",
+                                    "pattern": "^(?!.*)",
+                                    "maxLength": 0
                                   }
                                 },
                                 "required": [
@@ -4666,6 +4962,7 @@
                           },
                           "allOf": [
                             {
+                              "title": "Dynamic Pre-Shared Secret",
                               "description": "When `dynamic` pre-shared secret is selected and [`static`,`terraform_variable`,`secret_manager`] pre-shared should be empty",
                               "if": {
                                 "properties": {
@@ -4743,6 +5040,7 @@
                               }
                             },
                             {
+                              "title": "Static Pre-Shared Secret",
                               "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are empty",
                               "if": {
                                 "properties": {
@@ -4770,6 +5068,7 @@
                               }
                             },
                             {
+                              "title": "Static Pre-Shared Secret (NON-EMPTY Others)",
                               "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are not empty",
                               "if": {
                                 "properties": {
@@ -4837,6 +5136,7 @@
                               }
                             },
                             {
+                              "title": "Terraform Variable Pre-Shared Secret",
                               "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are empty",
                               "if": {
                                 "properties": {
@@ -4864,6 +5164,7 @@
                               }
                             },
                             {
+                              "title": "Terraform Variable Pre-Shared Secret (NON-EMPTY Others)",
                               "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are not empty",
                               "if": {
                                 "properties": {
@@ -4931,6 +5232,7 @@
                               }
                             },
                             {
+                              "title": "Secret Manager Pre-Shared Secret",
                               "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are empty",
                               "if": {
                                 "properties": {
@@ -4950,6 +5252,74 @@
                                     "deleteOnEmpty": true,
                                     "type": "string",
                                     "minLength": 1
+                                  }
+                                },
+                                "required": [
+                                  "secret_manager_pre_shared_secret"
+                                ]
+                              }
+                            },
+                            {
+                              "title": "Secret Manager Pre-Shared Secret (NON-EMPTY Others)",
+                              "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are not empty",
+                              "if": {
+                                "properties": {
+                                  "pre_shared_secret_method": {
+                                    "type": "string",
+                                    "const": "SECRET_MANAGER"
+                                  }
+                                },
+                                "oneOf": [
+                                  {
+                                    "properties": {
+                                      "static_pre_shared_secret": {
+                                        "type": "string",
+                                        "pattern": "^(.*)$"
+                                      }
+                                    },
+                                    "required": [
+                                      "static_pre_shared_secret"
+                                    ]
+                                  },
+                                  {
+                                    "properties": {
+                                      "terraform_variable_pre_shared_secret": {
+                                        "type": "string",
+                                        "pattern": "^(.*)$"
+                                      }
+                                    },
+                                    "required": [
+                                      "terraform_variable_pre_shared_secret"
+                                    ]
+                                  }
+                                ],
+                                "required": [
+                                  "pre_shared_secret_method"
+                                ]
+                              },
+                              "then": {
+                                "properties": {
+                                  "secret_manager_pre_shared_secret": {
+                                    "title": "Secret Manager Pre-Shared Secret",
+                                    "deleteOnEmpty": true,
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "static_pre_shared_secret": {
+                                    "title": "Static Pre-Shared Secret (EMPTY)",
+                                    "description": "This field should be set to empty remove `static_pre_shared_secret` from JSON",
+                                    "deleteOnEmpty": true,
+                                    "type": "string",
+                                    "pattern": "^(?!.*)",
+                                    "maxLength": 0
+                                  },
+                                  "terraform_variable_pre_shared_secret": {
+                                    "title": "Terraform Variable Pre-Shared Secret (EMPTY)",
+                                    "description": "This field should be set to empty remove `terraform_variable_pre_shared_secret` from JSON",
+                                    "deleteOnEmpty": true,
+                                    "type": "string",
+                                    "pattern": "^(?!.*)",
+                                    "maxLength": 0
                                   }
                                 },
                                 "required": [
@@ -5404,6 +5774,7 @@
                     },
                     "allOf": [
                       {
+                        "title": "Dynamic Pre-Shared Secret",
                         "description": "When `dynamic` pre-shared secret is selected and [`static`,`terraform_variable`,`secret_manager`] pre-shared should be empty",
                         "if": {
                           "properties": {
@@ -5481,6 +5852,7 @@
                         }
                       },
                       {
+                        "title": "Static Pre-Shared Secret",
                         "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are empty",
                         "if": {
                           "properties": {
@@ -5508,6 +5880,7 @@
                         }
                       },
                       {
+                        "title": "Static Pre-Shared Secret (NON-EMPTY Others)",
                         "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are not empty",
                         "if": {
                           "properties": {
@@ -5575,6 +5948,7 @@
                         }
                       },
                       {
+                        "title": "Terraform Variable Pre-Shared Secret",
                         "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are empty",
                         "if": {
                           "properties": {
@@ -5602,6 +5976,7 @@
                         }
                       },
                       {
+                        "title": "Terraform Variable Pre-Shared Secret (NON-EMPTY Others)",
                         "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are not empty",
                         "if": {
                           "properties": {
@@ -5669,6 +6044,7 @@
                         }
                       },
                       {
+                        "title": "Secret Manager Pre-Shared Secret",
                         "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are empty",
                         "if": {
                           "properties": {
@@ -5688,6 +6064,74 @@
                               "deleteOnEmpty": true,
                               "type": "string",
                               "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "secret_manager_pre_shared_secret"
+                          ]
+                        }
+                      },
+                      {
+                        "title": "Secret Manager Pre-Shared Secret (NON-EMPTY Others)",
+                        "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are not empty",
+                        "if": {
+                          "properties": {
+                            "pre_shared_secret_method": {
+                              "type": "string",
+                              "const": "SECRET_MANAGER"
+                            }
+                          },
+                          "oneOf": [
+                            {
+                              "properties": {
+                                "static_pre_shared_secret": {
+                                  "type": "string",
+                                  "pattern": "^(.*)$"
+                                }
+                              },
+                              "required": [
+                                "static_pre_shared_secret"
+                              ]
+                            },
+                            {
+                              "properties": {
+                                "terraform_variable_pre_shared_secret": {
+                                  "type": "string",
+                                  "pattern": "^(.*)$"
+                                }
+                              },
+                              "required": [
+                                "terraform_variable_pre_shared_secret"
+                              ]
+                            }
+                          ],
+                          "required": [
+                            "pre_shared_secret_method"
+                          ]
+                        },
+                        "then": {
+                          "properties": {
+                            "secret_manager_pre_shared_secret": {
+                              "title": "Secret Manager Pre-Shared Secret",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "static_pre_shared_secret": {
+                              "title": "Static Pre-Shared Secret (EMPTY)",
+                              "description": "This field should be set to empty remove `static_pre_shared_secret` from JSON",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "pattern": "^(?!.*)",
+                              "maxLength": 0
+                            },
+                            "terraform_variable_pre_shared_secret": {
+                              "title": "Terraform Variable Pre-Shared Secret (EMPTY)",
+                              "description": "This field should be set to empty remove `terraform_variable_pre_shared_secret` from JSON",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "pattern": "^(?!.*)",
+                              "maxLength": 0
                             }
                           },
                           "required": [
@@ -6674,6 +7118,7 @@
               },
               "allOf": [
                 {
+                  "title": "Dynamic Pre-Shared Secret",
                   "description": "When `dynamic` pre-shared secret is selected and [`static`,`terraform_variable`,`secret_manager`] pre-shared should be empty",
                   "if": {
                     "properties": {
@@ -6751,6 +7196,7 @@
                   }
                 },
                 {
+                  "title": "Static Pre-Shared Secret",
                   "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are empty",
                   "if": {
                     "properties": {
@@ -6778,6 +7224,7 @@
                   }
                 },
                 {
+                  "title": "Static Pre-Shared Secret (NON-EMPTY Others)",
                   "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are not empty",
                   "if": {
                     "properties": {
@@ -6845,6 +7292,7 @@
                   }
                 },
                 {
+                  "title": "Terraform Variable Pre-Shared Secret",
                   "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are empty",
                   "if": {
                     "properties": {
@@ -6872,6 +7320,7 @@
                   }
                 },
                 {
+                  "title": "Terraform Variable Pre-Shared Secret (NON-EMPTY Others)",
                   "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are not empty",
                   "if": {
                     "properties": {
@@ -6939,6 +7388,7 @@
                   }
                 },
                 {
+                  "title": "Secret Manager Pre-Shared Secret",
                   "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are empty",
                   "if": {
                     "properties": {
@@ -6958,6 +7408,74 @@
                         "deleteOnEmpty": true,
                         "type": "string",
                         "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "secret_manager_pre_shared_secret"
+                    ]
+                  }
+                },
+                {
+                  "title": "Secret Manager Pre-Shared Secret (NON-EMPTY Others)",
+                  "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are not empty",
+                  "if": {
+                    "properties": {
+                      "pre_shared_secret_method": {
+                        "type": "string",
+                        "const": "SECRET_MANAGER"
+                      }
+                    },
+                    "oneOf": [
+                      {
+                        "properties": {
+                          "static_pre_shared_secret": {
+                            "type": "string",
+                            "pattern": "^(.*)$"
+                          }
+                        },
+                        "required": [
+                          "static_pre_shared_secret"
+                        ]
+                      },
+                      {
+                        "properties": {
+                          "terraform_variable_pre_shared_secret": {
+                            "type": "string",
+                            "pattern": "^(.*)$"
+                          }
+                        },
+                        "required": [
+                          "terraform_variable_pre_shared_secret"
+                        ]
+                      }
+                    ],
+                    "required": [
+                      "pre_shared_secret_method"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "secret_manager_pre_shared_secret": {
+                        "title": "Secret Manager Pre-Shared Secret",
+                        "deleteOnEmpty": true,
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "static_pre_shared_secret": {
+                        "title": "Static Pre-Shared Secret (EMPTY)",
+                        "description": "This field should be set to empty remove `static_pre_shared_secret` from JSON",
+                        "deleteOnEmpty": true,
+                        "type": "string",
+                        "pattern": "^(?!.*)",
+                        "maxLength": 0
+                      },
+                      "terraform_variable_pre_shared_secret": {
+                        "title": "Terraform Variable Pre-Shared Secret (EMPTY)",
+                        "description": "This field should be set to empty remove `terraform_variable_pre_shared_secret` from JSON",
+                        "deleteOnEmpty": true,
+                        "type": "string",
+                        "pattern": "^(?!.*)",
+                        "maxLength": 0
                       }
                     },
                     "required": [

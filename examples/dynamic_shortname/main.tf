@@ -23,7 +23,7 @@ module "cloud_vpn" {
   variable_pre_shared_secret = var.variable_pre_shared_secret
 
   ### This flag is only needed if you want the randomly generated names to be shorter, this may result in name colisions if a large number of resources are created
-  generate_random_shortnames = false
+  generate_random_shortnames = true
 }
 
 # output "locals" {

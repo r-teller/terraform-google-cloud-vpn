@@ -168,9 +168,11 @@ This example snippet below creates one HA VPN Gateways (One Hub), one Cloud Rout
 
 # Resource Naming
 ## Terraform Resource Dynamic Name Generation
-> Terraform Resource state Id's and names are dynamically generated based on attributes of the resource formatted using x500 name-based uuids.
-> - https://developer.hashicorp.com/terraform/language/functions/uuidv5
-> - Including the `name` attribute in a resource will explitly name the resource based on that attribute but will still randomly generate a unique terraform state id
+Terraform Resource state Id's and names are dynamically generated based on attributes of the resource formatted using x500 name-based uuids.
+ - https://developer.hashicorp.com/terraform/language/functions/uuidv5
+ - Including the `name` attribute in a resource will explitly name the resource based on that attribute but will still randomly generate a unique terraform state id
+> If the dynamically generated uuid based name are to long for your environment you can set the `var.generate_random_shortnames` to `true` and uuid will be trimmed by 28 characters to reduce resource name lenght considerably. Depending on the number of resources deployed this may result in duplicately named resources.
+
 
 <details>
   <summary>Display Resource Name Generation Feilds</summary>

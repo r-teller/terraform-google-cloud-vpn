@@ -215,7 +215,7 @@
                           "sizeXs": 4
                         },
                         "deleteOnEmpty": true,
-                        "description": "This field is used to specify an explict name to be used"
+                        "description": "This field is used to specify an explicit name to be used"
                       },
                       "unique_id": {
                         "title": "Unique ID (Hub Router)",
@@ -225,7 +225,7 @@
                           "sizeXs": 4
                         },
                         "deleteOnEmpty": true,
-                        "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                        "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                       },
                       "bgp": {
                         "title": "BGP",
@@ -301,7 +301,7 @@
                           "sizeXs": 4
                         },
                         "deleteOnEmpty": true,
-                        "description": "This field is used to specify an explict name to be used"
+                        "description": "This field is used to specify an explicit name to be used"
                       },
                       "unique_id": {
                         "title": "Unique ID (Hub Router)",
@@ -311,7 +311,7 @@
                           "sizeXs": 4
                         },
                         "deleteOnEmpty": true,
-                        "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                        "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                       },
                       "bgp": {
                         "title": "BGP",
@@ -504,7 +504,7 @@
                           "sizeXs": 4
                         },
                         "deleteOnEmpty": true,
-                        "description": "This field is used to specify an explict name to be used"
+                        "description": "This field is used to specify an explicit name to be used"
                       },
                       "unique_id": {
                         "title": "Unique ID (Hub VPN Gateway)",
@@ -514,7 +514,7 @@
                           "sizeXs": 4
                         },
                         "deleteOnEmpty": true,
-                        "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                        "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                       },
                       "stack_type": {
                         "type": "string",
@@ -550,7 +550,7 @@
                           "sizeXs": 4
                         },
                         "deleteOnEmpty": true,
-                        "description": "This field is used to specify an explict name to be used"
+                        "description": "This field is used to specify an explicit name to be used"
                       },
                       "unique_id": {
                         "title": "Unique ID (Hub VPN Gateway)",
@@ -560,7 +560,7 @@
                           "sizeXs": 4
                         },
                         "deleteOnEmpty": true,
-                        "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                        "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                       },
                       "stack_type": {
                         "type": "string",
@@ -689,7 +689,7 @@
                                       "sizeXs": 4
                                     },
                                     "deleteOnEmpty": true,
-                                    "description": "This field is used to specify an explict name to be used"
+                                    "description": "This field is used to specify an explicit name to be used"
                                   },
                                   "unique_id": {
                                     "title": "Unique ID",
@@ -699,7 +699,7 @@
                                       "sizeXs": 4
                                     },
                                     "deleteOnEmpty": true,
-                                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                                    "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                                   },
                                   "project_id": {
                                     "title": "Project ID",
@@ -793,7 +793,7 @@
                                       "sizeXs": 4
                                     },
                                     "deleteOnEmpty": true,
-                                    "description": "This field is used to specify an explict name to be used"
+                                    "description": "This field is used to specify an explicit name to be used"
                                   },
                                   "unique_id": {
                                     "title": "Unique ID",
@@ -803,7 +803,7 @@
                                       "sizeXs": 4
                                     },
                                     "deleteOnEmpty": true,
-                                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                                    "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                                   },
                                   "project_id": {
                                     "title": "Project ID",
@@ -937,7 +937,7 @@
                                       "sizeXs": 4
                                     },
                                     "deleteOnEmpty": true,
-                                    "description": "This field is used to specify an explict name to be used"
+                                    "description": "This field is used to specify an explicit name to be used"
                                   },
                                   "unique_id": {
                                     "title": "Unique ID",
@@ -947,7 +947,7 @@
                                       "sizeXs": 4
                                     },
                                     "deleteOnEmpty": true,
-                                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                                    "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                                   },
                                   "bgp": {
                                     "title": "BGP",
@@ -982,7 +982,7 @@
                                               "view": {
                                                 "sizeXs": 4
                                               },
-                                              "title": "Advertised Route Prioirty",
+                                              "title": "Advertised Route Priority",
                                               "description": "The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win."
                                             },
                                             "bgp_advertisement_disabled": {
@@ -1130,7 +1130,7 @@
                                                     "maxLength": 0
                                                   },
                                                   "secret_manager_pre_shared_secret": {
-                                                    "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                                    "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                                     "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                                     "deleteOnEmpty": true,
                                                     "type": "string",
@@ -1223,7 +1223,7 @@
                                                     "maxLength": 0
                                                   },
                                                   "secret_manager_pre_shared_secret": {
-                                                    "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                                    "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                                     "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                                     "deleteOnEmpty": true,
                                                     "type": "string",
@@ -1319,7 +1319,7 @@
                                                     "maxLength": 0
                                                   },
                                                   "secret_manager_pre_shared_secret": {
-                                                    "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                                    "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                                     "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                                     "deleteOnEmpty": true,
                                                     "type": "string",
@@ -1472,7 +1472,7 @@
                                         ]
                                       },
                                       "custom_spoke_subnet_advertisements": {},
-                                      "override_hub_subnet_advertisments": {
+                                      "override_hub_subnet_advertisements": {
                                         "title": "Override Hub Custom Subnet Advertisements",
                                         "type": "boolean"
                                       }
@@ -1481,13 +1481,13 @@
                                       {
                                         "if": {
                                           "properties": {
-                                            "override_hub_subnet_advertisments": {
+                                            "override_hub_subnet_advertisements": {
                                               "type": "boolean",
                                               "const": true
                                             }
                                           },
                                           "required": [
-                                            "override_hub_subnet_advertisments"
+                                            "override_hub_subnet_advertisements"
                                           ]
                                         },
                                         "then": {
@@ -1574,7 +1574,7 @@
                                                 "hub_subnet_advertisements",
                                                 "spoke_subnet_advertisements",
                                                 "custom_hub_subnet_advertisements",
-                                                "override_hub_subnet_advertisments"
+                                                "override_hub_subnet_advertisements"
                                               ]
                                             }
                                           },
@@ -1602,7 +1602,7 @@
                                                 "advanced_tunnel_configuration",
                                                 "spoke_subnet_advertisements",
                                                 "custom_spoke_subnet_advertisements",
-                                                "override_hub_subnet_advertisments"
+                                                "override_hub_subnet_advertisements"
                                               ]
                                             }
                                           }
@@ -1647,7 +1647,7 @@
                                               "advanced_tunnel_configuration",
                                               "hub_subnet_advertisements",
                                               "spoke_subnet_advertisements",
-                                              "override_hub_subnet_advertisments"
+                                              "override_hub_subnet_advertisements"
                                             ]
                                           }
                                         }
@@ -1711,7 +1711,7 @@
                                               "advanced_tunnel_configuration",
                                               "spoke_subnet_advertisements",
                                               "custom_spoke_subnet_advertisements",
-                                              "override_hub_subnet_advertisments"
+                                              "override_hub_subnet_advertisements"
                                             ]
                                           }
                                         },
@@ -1739,7 +1739,7 @@
                                               "advanced_tunnel_configuration",
                                               "subnet_advertisements",
                                               "spoke_subnet_advertisements",
-                                              "override_hub_subnet_advertisments"
+                                              "override_hub_subnet_advertisements"
                                             ]
                                           }
                                         }
@@ -1767,7 +1767,7 @@
                                       "sizeXs": 4
                                     },
                                     "deleteOnEmpty": true,
-                                    "description": "This field is used to specify an explict name to be used"
+                                    "description": "This field is used to specify an explicit name to be used"
                                   },
                                   "unique_id": {
                                     "title": "Unique ID",
@@ -1777,7 +1777,7 @@
                                       "sizeXs": 4
                                     },
                                     "deleteOnEmpty": true,
-                                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                                    "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                                   },
                                   "bgp": {
                                     "title": "BGP",
@@ -1822,7 +1822,7 @@
                                               "view": {
                                                 "sizeXs": 4
                                               },
-                                              "title": "Advertised Route Prioirty",
+                                              "title": "Advertised Route Priority",
                                               "description": "The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win."
                                             },
                                             "bgp_advertisement_disabled": {
@@ -1970,7 +1970,7 @@
                                                     "maxLength": 0
                                                   },
                                                   "secret_manager_pre_shared_secret": {
-                                                    "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                                    "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                                     "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                                     "deleteOnEmpty": true,
                                                     "type": "string",
@@ -2063,7 +2063,7 @@
                                                     "maxLength": 0
                                                   },
                                                   "secret_manager_pre_shared_secret": {
-                                                    "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                                    "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                                     "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                                     "deleteOnEmpty": true,
                                                     "type": "string",
@@ -2159,7 +2159,7 @@
                                                     "maxLength": 0
                                                   },
                                                   "secret_manager_pre_shared_secret": {
-                                                    "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                                    "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                                     "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                                     "deleteOnEmpty": true,
                                                     "type": "string",
@@ -2312,7 +2312,7 @@
                                         ]
                                       },
                                       "custom_spoke_subnet_advertisements": {},
-                                      "override_hub_subnet_advertisments": {
+                                      "override_hub_subnet_advertisements": {
                                         "title": "Override Hub Custom Subnet Advertisements",
                                         "type": "boolean"
                                       }
@@ -2321,13 +2321,13 @@
                                       {
                                         "if": {
                                           "properties": {
-                                            "override_hub_subnet_advertisments": {
+                                            "override_hub_subnet_advertisements": {
                                               "type": "boolean",
                                               "const": true
                                             }
                                           },
                                           "required": [
-                                            "override_hub_subnet_advertisments"
+                                            "override_hub_subnet_advertisements"
                                           ]
                                         },
                                         "then": {
@@ -2415,7 +2415,7 @@
                                                 "custom_hub_subnet_advertisements",
                                                 "spoke_subnet_advertisements",
                                                 "custom_spoke_subnet_advertisements",
-                                                "override_hub_subnet_advertisments"
+                                                "override_hub_subnet_advertisements"
                                               ]
                                             }
                                           },
@@ -2444,7 +2444,7 @@
                                                 "hub_subnet_advertisements",
                                                 "spoke_subnet_advertisements",
                                                 "custom_spoke_subnet_advertisements",
-                                                "override_hub_subnet_advertisments"
+                                                "override_hub_subnet_advertisements"
                                               ]
                                             }
                                           }
@@ -2488,7 +2488,7 @@
                                               "asn",
                                               "advanced_tunnel_configuration",
                                               "spoke_subnet_advertisements",
-                                              "override_hub_subnet_advertisments",
+                                              "override_hub_subnet_advertisements",
                                               "custom_spoke_subnet_advertisements"
                                             ]
                                           }
@@ -2551,7 +2551,7 @@
                                             "enum": [
                                               "asn",
                                               "advanced_tunnel_configuration",
-                                              "override_hub_subnet_advertisments",
+                                              "override_hub_subnet_advertisements",
                                               "custom_hub_subnet_advertisements",
                                               "hub_subnet_advertisements",
                                               "spoke_subnet_advertisements",
@@ -2581,7 +2581,7 @@
                                             "enum": [
                                               "asn",
                                               "advanced_tunnel_configuration",
-                                              "override_hub_subnet_advertisments",
+                                              "override_hub_subnet_advertisements",
                                               "hub_subnet_advertisements",
                                               "custom_hub_subnet_advertisements",
                                               "spoke_subnet_advertisements"
@@ -2638,7 +2638,7 @@
                               "type": "string",
                               "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
                               "deleteOnEmpty": true,
-                              "description": "This field is used to specify an explict name to be used"
+                              "description": "This field is used to specify an explicit name to be used"
                             },
                             "project_id": {
                               "title": "Project ID",
@@ -2756,7 +2756,7 @@
                                         "view": {
                                           "sizeXs": 4
                                         },
-                                        "title": "Advertised Route Prioirty",
+                                        "title": "Advertised Route Priority",
                                         "description": "The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win."
                                       },
                                       "bgp_advertisement_disabled": {
@@ -2904,7 +2904,7 @@
                                               "maxLength": 0
                                             },
                                             "secret_manager_pre_shared_secret": {
-                                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                              "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                               "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                               "deleteOnEmpty": true,
                                               "type": "string",
@@ -2997,7 +2997,7 @@
                                               "maxLength": 0
                                             },
                                             "secret_manager_pre_shared_secret": {
-                                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                              "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                               "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                               "deleteOnEmpty": true,
                                               "type": "string",
@@ -3093,7 +3093,7 @@
                                               "maxLength": 0
                                             },
                                             "secret_manager_pre_shared_secret": {
-                                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                              "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                               "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                               "deleteOnEmpty": true,
                                               "type": "string",
@@ -3222,7 +3222,7 @@
                                     }
                                   ]
                                 },
-                                "override_hub_subnet_advertisments": {
+                                "override_hub_subnet_advertisements": {
                                   "title": "Override Hub Custom Subnet Advertisements",
                                   "type": "boolean"
                                 }
@@ -3231,13 +3231,13 @@
                                 {
                                   "if": {
                                     "properties": {
-                                      "override_hub_subnet_advertisments": {
+                                      "override_hub_subnet_advertisements": {
                                         "type": "boolean",
                                         "const": true
                                       }
                                     },
                                     "required": [
-                                      "override_hub_subnet_advertisments"
+                                      "override_hub_subnet_advertisements"
                                     ]
                                   },
                                   "then": {
@@ -3324,7 +3324,7 @@
                                           "advanced_tunnel_configuration",
                                           "hub_subnet_advertisements",
                                           "custom_hub_subnet_advertisements",
-                                          "override_hub_subnet_advertisments"
+                                          "override_hub_subnet_advertisements"
                                         ]
                                       }
                                     },
@@ -3352,7 +3352,7 @@
                                           "advanced_tunnel_configuration",
                                           "hub_subnet_advertisements",
                                           "custom_hub_subnet_advertisements",
-                                          "override_hub_subnet_advertisments"
+                                          "override_hub_subnet_advertisements"
                                         ]
                                       }
                                     }
@@ -3476,7 +3476,7 @@
                                       "sizeXs": 4
                                     },
                                     "deleteOnEmpty": true,
-                                    "description": "This field is used to specify an explict name to be used"
+                                    "description": "This field is used to specify an explicit name to be used"
                                   },
                                   "unique_id": {
                                     "title": "Unique ID",
@@ -3486,10 +3486,10 @@
                                       "sizeXs": 4
                                     },
                                     "deleteOnEmpty": true,
-                                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                                    "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                                   },
-                                  "redudancy_type": {
-                                    "title": "Redudancy Type (EMPTY)",
+                                  "redundancy_type": {
+                                    "title": "Redundancy Type (EMPTY)",
                                     "description": "This field should not be set and is only included for UI generation",
                                     "type": "string",
                                     "deleteOnEmpty": true,
@@ -3500,7 +3500,7 @@
                                     "oneOf": [
                                       {
                                         "const": "",
-                                        "description": "Select this option to remove `redudancy_type` from JSON",
+                                        "description": "Select this option to remove `redundancy_type` from JSON",
                                         "title": "Empty (Clear Field)"
                                       }
                                     ]
@@ -3580,7 +3580,7 @@
                                     "unique_id",
                                     "pre_existing",
                                     "tunnel_count",
-                                    "redudancy_type",
+                                    "redundancy_type",
                                     "ike_version"
                                   ]
                                 },
@@ -3599,7 +3599,7 @@
                                       "sizeXs": 4
                                     },
                                     "deleteOnEmpty": true,
-                                    "description": "This field is used to specify an explict name to be used"
+                                    "description": "This field is used to specify an explicit name to be used"
                                   },
                                   "unique_id": {
                                     "title": "Unique ID",
@@ -3609,10 +3609,10 @@
                                       "sizeXs": 4
                                     },
                                     "deleteOnEmpty": true,
-                                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                                    "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                                   },
-                                  "redudancy_type": {
-                                    "title": "Redudancy Type",
+                                  "redundancy_type": {
+                                    "title": "Redundancy Type",
                                     "type": "string",
                                     "deleteOnEmpty": true,
                                     "widget": "Select",
@@ -3623,7 +3623,7 @@
                                     "oneOf": [
                                       {
                                         "const": "ONE_INTERFACE",
-                                        "title": "Single Interface (No Redudancy)",
+                                        "title": "Single Interface (No Redundancy)",
                                         "description": ""
                                       },
                                       {
@@ -3721,13 +3721,13 @@
                                   {
                                     "if": {
                                       "properties": {
-                                        "redudancy_type": {
+                                        "redundancy_type": {
                                           "type": "string",
                                           "const": "ONE_INTERFACE"
                                         }
                                       },
                                       "required": [
-                                        "redudancy_type"
+                                        "redundancy_type"
                                       ]
                                     },
                                     "then": {
@@ -3749,13 +3749,13 @@
                                   {
                                     "if": {
                                       "properties": {
-                                        "redudancy_type": {
+                                        "redundancy_type": {
                                           "type": "string",
                                           "const": "TWO_INTERFACES"
                                         }
                                       },
                                       "required": [
-                                        "redudancy_type"
+                                        "redundancy_type"
                                       ]
                                     },
                                     "then": {
@@ -3777,13 +3777,13 @@
                                   {
                                     "if": {
                                       "properties": {
-                                        "redudancy_type": {
+                                        "redundancy_type": {
                                           "type": "string",
                                           "const": "FOUR_INTERFACES"
                                         }
                                       },
                                       "required": [
-                                        "redudancy_type"
+                                        "redundancy_type"
                                       ]
                                     },
                                     "then": {
@@ -3808,14 +3808,14 @@
                                     "name",
                                     "unique_id",
                                     "pre_existing",
-                                    "redudancy_type",
+                                    "redundancy_type",
                                     "tunnel_count",
                                     "ike_version",
                                     "interfaces"
                                   ]
                                 },
                                 "required": [
-                                  "redudancy_type",
+                                  "redundancy_type",
                                   "interfaces"
                                 ]
                               }
@@ -3860,7 +3860,7 @@
                                         "view": {
                                           "sizeXs": 4
                                         },
-                                        "title": "Advertised Route Prioirty",
+                                        "title": "Advertised Route Priority",
                                         "description": "The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win."
                                       },
                                       "bgp_advertisement_disabled": {
@@ -4008,7 +4008,7 @@
                                               "maxLength": 0
                                             },
                                             "secret_manager_pre_shared_secret": {
-                                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                              "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                               "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                               "deleteOnEmpty": true,
                                               "type": "string",
@@ -4101,7 +4101,7 @@
                                               "maxLength": 0
                                             },
                                             "secret_manager_pre_shared_secret": {
-                                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                              "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                               "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                               "deleteOnEmpty": true,
                                               "type": "string",
@@ -4197,7 +4197,7 @@
                                               "maxLength": 0
                                             },
                                             "secret_manager_pre_shared_secret": {
-                                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                              "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                               "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                               "deleteOnEmpty": true,
                                               "type": "string",
@@ -4326,7 +4326,7 @@
                                     }
                                   ]
                                 },
-                                "override_hub_subnet_advertisments": {
+                                "override_hub_subnet_advertisements": {
                                   "title": "Override Hub Custom Subnet Advertisements",
                                   "type": "boolean"
                                 }
@@ -4335,13 +4335,13 @@
                                 {
                                   "if": {
                                     "properties": {
-                                      "override_hub_subnet_advertisments": {
+                                      "override_hub_subnet_advertisements": {
                                         "type": "boolean",
                                         "const": true
                                       }
                                     },
                                     "required": [
-                                      "override_hub_subnet_advertisments"
+                                      "override_hub_subnet_advertisements"
                                     ]
                                   },
                                   "then": {
@@ -4428,7 +4428,7 @@
                                           "advanced_tunnel_configuration",
                                           "hub_subnet_advertisements",
                                           "custom_hub_subnet_advertisements",
-                                          "override_hub_subnet_advertisments"
+                                          "override_hub_subnet_advertisements"
                                         ]
                                       }
                                     },
@@ -4456,7 +4456,7 @@
                                           "advanced_tunnel_configuration",
                                           "hub_subnet_advertisements",
                                           "custom_hub_subnet_advertisements",
-                                          "override_hub_subnet_advertisments"
+                                          "override_hub_subnet_advertisements"
                                         ]
                                       }
                                     }
@@ -4558,7 +4558,7 @@
               "sizeXs": 4
             },
             "deleteOnEmpty": true,
-            "description": "This field is used to specify an explict name to be used"
+            "description": "This field is used to specify an explicit name to be used"
           },
           "unique_id": {
             "title": "Unique ID",
@@ -4568,7 +4568,7 @@
               "sizeXs": 4
             },
             "deleteOnEmpty": true,
-            "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+            "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
           },
           "project_id": {
             "title": "Project ID",
@@ -4646,7 +4646,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "This field is used to specify an explict name to be used"
+                    "description": "This field is used to specify an explicit name to be used"
                   },
                   "unique_id": {
                     "title": "Unique ID (Hub Router)",
@@ -4656,7 +4656,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                    "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                   },
                   "bgp": {
                     "title": "BGP",
@@ -4732,7 +4732,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "This field is used to specify an explict name to be used"
+                    "description": "This field is used to specify an explicit name to be used"
                   },
                   "unique_id": {
                     "title": "Unique ID (Hub Router)",
@@ -4742,7 +4742,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                    "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                   },
                   "bgp": {
                     "title": "BGP",
@@ -4934,7 +4934,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "This field is used to specify an explict name to be used"
+                    "description": "This field is used to specify an explicit name to be used"
                   },
                   "unique_id": {
                     "title": "Unique ID (Hub VPN Gateway)",
@@ -4944,7 +4944,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                    "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                   },
                   "stack_type": {
                     "type": "string",
@@ -4980,7 +4980,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "This field is used to specify an explict name to be used"
+                    "description": "This field is used to specify an explicit name to be used"
                   },
                   "unique_id": {
                     "title": "Unique ID (Hub VPN Gateway)",
@@ -4990,7 +4990,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                    "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                   },
                   "stack_type": {
                     "type": "string",
@@ -5056,7 +5056,7 @@
                         "view": {
                           "sizeXs": 4
                         },
-                        "title": "Advertised Route Prioirty",
+                        "title": "Advertised Route Priority",
                         "description": "The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win."
                       },
                       "bgp_advertisement_disabled": {
@@ -5204,7 +5204,7 @@
                               "maxLength": 0
                             },
                             "secret_manager_pre_shared_secret": {
-                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                              "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                               "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                               "deleteOnEmpty": true,
                               "type": "string",
@@ -5297,7 +5297,7 @@
                               "maxLength": 0
                             },
                             "secret_manager_pre_shared_secret": {
-                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                              "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                               "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                               "deleteOnEmpty": true,
                               "type": "string",
@@ -5393,7 +5393,7 @@
                               "maxLength": 0
                             },
                             "secret_manager_pre_shared_secret": {
-                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                              "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                               "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                               "deleteOnEmpty": true,
                               "type": "string",
@@ -5522,7 +5522,7 @@
                     }
                   ]
                 },
-                "override_hub_subnet_advertisments": {
+                "override_hub_subnet_advertisements": {
                   "title": "Override Hub Custom Subnet Advertisements",
                   "type": "boolean"
                 }
@@ -5531,13 +5531,13 @@
                 {
                   "if": {
                     "properties": {
-                      "override_hub_subnet_advertisments": {
+                      "override_hub_subnet_advertisements": {
                         "type": "boolean",
                         "const": true
                       }
                     },
                     "required": [
-                      "override_hub_subnet_advertisments"
+                      "override_hub_subnet_advertisements"
                     ]
                   },
                   "then": {
@@ -5624,7 +5624,7 @@
                           "advanced_tunnel_configuration",
                           "hub_subnet_advertisements",
                           "custom_hub_subnet_advertisements",
-                          "override_hub_subnet_advertisments"
+                          "override_hub_subnet_advertisements"
                         ]
                       }
                     },
@@ -5652,7 +5652,7 @@
                           "advanced_tunnel_configuration",
                           "hub_subnet_advertisements",
                           "custom_hub_subnet_advertisements",
-                          "override_hub_subnet_advertisments"
+                          "override_hub_subnet_advertisements"
                         ]
                       }
                     }
@@ -5757,7 +5757,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "This field is used to specify an explict name to be used"
+                    "description": "This field is used to specify an explicit name to be used"
                   },
                   "unique_id": {
                     "title": "Unique ID",
@@ -5767,7 +5767,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                    "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                   },
                   "bgp": {
                     "title": "BGP",
@@ -5802,7 +5802,7 @@
                               "view": {
                                 "sizeXs": 4
                               },
-                              "title": "Advertised Route Prioirty",
+                              "title": "Advertised Route Priority",
                               "description": "The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win."
                             },
                             "bgp_advertisement_disabled": {
@@ -5950,7 +5950,7 @@
                                     "maxLength": 0
                                   },
                                   "secret_manager_pre_shared_secret": {
-                                    "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                    "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                     "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                     "deleteOnEmpty": true,
                                     "type": "string",
@@ -6043,7 +6043,7 @@
                                     "maxLength": 0
                                   },
                                   "secret_manager_pre_shared_secret": {
-                                    "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                    "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                     "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                     "deleteOnEmpty": true,
                                     "type": "string",
@@ -6139,7 +6139,7 @@
                                     "maxLength": 0
                                   },
                                   "secret_manager_pre_shared_secret": {
-                                    "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                    "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                     "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                     "deleteOnEmpty": true,
                                     "type": "string",
@@ -6292,7 +6292,7 @@
                         ]
                       },
                       "custom_spoke_subnet_advertisements": {},
-                      "override_hub_subnet_advertisments": {
+                      "override_hub_subnet_advertisements": {
                         "title": "Override Hub Custom Subnet Advertisements",
                         "type": "boolean"
                       }
@@ -6301,13 +6301,13 @@
                       {
                         "if": {
                           "properties": {
-                            "override_hub_subnet_advertisments": {
+                            "override_hub_subnet_advertisements": {
                               "type": "boolean",
                               "const": true
                             }
                           },
                           "required": [
-                            "override_hub_subnet_advertisments"
+                            "override_hub_subnet_advertisements"
                           ]
                         },
                         "then": {
@@ -6394,7 +6394,7 @@
                                 "hub_subnet_advertisements",
                                 "spoke_subnet_advertisements",
                                 "custom_hub_subnet_advertisements",
-                                "override_hub_subnet_advertisments"
+                                "override_hub_subnet_advertisements"
                               ]
                             }
                           },
@@ -6422,7 +6422,7 @@
                                 "advanced_tunnel_configuration",
                                 "spoke_subnet_advertisements",
                                 "custom_spoke_subnet_advertisements",
-                                "override_hub_subnet_advertisments"
+                                "override_hub_subnet_advertisements"
                               ]
                             }
                           }
@@ -6467,7 +6467,7 @@
                               "advanced_tunnel_configuration",
                               "hub_subnet_advertisements",
                               "spoke_subnet_advertisements",
-                              "override_hub_subnet_advertisments"
+                              "override_hub_subnet_advertisements"
                             ]
                           }
                         }
@@ -6531,7 +6531,7 @@
                               "advanced_tunnel_configuration",
                               "spoke_subnet_advertisements",
                               "custom_spoke_subnet_advertisements",
-                              "override_hub_subnet_advertisments"
+                              "override_hub_subnet_advertisements"
                             ]
                           }
                         },
@@ -6559,7 +6559,7 @@
                               "advanced_tunnel_configuration",
                               "subnet_advertisements",
                               "spoke_subnet_advertisements",
-                              "override_hub_subnet_advertisments"
+                              "override_hub_subnet_advertisements"
                             ]
                           }
                         }
@@ -6587,7 +6587,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "This field is used to specify an explict name to be used"
+                    "description": "This field is used to specify an explicit name to be used"
                   },
                   "unique_id": {
                     "title": "Unique ID",
@@ -6597,7 +6597,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                    "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                   },
                   "bgp": {
                     "title": "BGP",
@@ -6642,7 +6642,7 @@
                               "view": {
                                 "sizeXs": 4
                               },
-                              "title": "Advertised Route Prioirty",
+                              "title": "Advertised Route Priority",
                               "description": "The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win."
                             },
                             "bgp_advertisement_disabled": {
@@ -6790,7 +6790,7 @@
                                     "maxLength": 0
                                   },
                                   "secret_manager_pre_shared_secret": {
-                                    "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                    "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                     "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                     "deleteOnEmpty": true,
                                     "type": "string",
@@ -6883,7 +6883,7 @@
                                     "maxLength": 0
                                   },
                                   "secret_manager_pre_shared_secret": {
-                                    "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                    "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                     "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                     "deleteOnEmpty": true,
                                     "type": "string",
@@ -6979,7 +6979,7 @@
                                     "maxLength": 0
                                   },
                                   "secret_manager_pre_shared_secret": {
-                                    "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                    "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                                     "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                                     "deleteOnEmpty": true,
                                     "type": "string",
@@ -7132,7 +7132,7 @@
                         ]
                       },
                       "custom_spoke_subnet_advertisements": {},
-                      "override_hub_subnet_advertisments": {
+                      "override_hub_subnet_advertisements": {
                         "title": "Override Hub Custom Subnet Advertisements",
                         "type": "boolean"
                       }
@@ -7141,13 +7141,13 @@
                       {
                         "if": {
                           "properties": {
-                            "override_hub_subnet_advertisments": {
+                            "override_hub_subnet_advertisements": {
                               "type": "boolean",
                               "const": true
                             }
                           },
                           "required": [
-                            "override_hub_subnet_advertisments"
+                            "override_hub_subnet_advertisements"
                           ]
                         },
                         "then": {
@@ -7235,7 +7235,7 @@
                                 "custom_hub_subnet_advertisements",
                                 "spoke_subnet_advertisements",
                                 "custom_spoke_subnet_advertisements",
-                                "override_hub_subnet_advertisments"
+                                "override_hub_subnet_advertisements"
                               ]
                             }
                           },
@@ -7264,7 +7264,7 @@
                                 "hub_subnet_advertisements",
                                 "spoke_subnet_advertisements",
                                 "custom_spoke_subnet_advertisements",
-                                "override_hub_subnet_advertisments"
+                                "override_hub_subnet_advertisements"
                               ]
                             }
                           }
@@ -7308,7 +7308,7 @@
                               "asn",
                               "advanced_tunnel_configuration",
                               "spoke_subnet_advertisements",
-                              "override_hub_subnet_advertisments",
+                              "override_hub_subnet_advertisements",
                               "custom_spoke_subnet_advertisements"
                             ]
                           }
@@ -7371,7 +7371,7 @@
                             "enum": [
                               "asn",
                               "advanced_tunnel_configuration",
-                              "override_hub_subnet_advertisments",
+                              "override_hub_subnet_advertisements",
                               "custom_hub_subnet_advertisements",
                               "hub_subnet_advertisements",
                               "spoke_subnet_advertisements",
@@ -7401,7 +7401,7 @@
                             "enum": [
                               "asn",
                               "advanced_tunnel_configuration",
-                              "override_hub_subnet_advertisments",
+                              "override_hub_subnet_advertisements",
                               "hub_subnet_advertisements",
                               "custom_hub_subnet_advertisements",
                               "spoke_subnet_advertisements"
@@ -7454,7 +7454,7 @@
                         "view": {
                           "sizeXs": 4
                         },
-                        "title": "Advertised Route Prioirty",
+                        "title": "Advertised Route Priority",
                         "description": "The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win."
                       },
                       "bgp_advertisement_disabled": {
@@ -7602,7 +7602,7 @@
                               "maxLength": 0
                             },
                             "secret_manager_pre_shared_secret": {
-                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                              "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                               "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                               "deleteOnEmpty": true,
                               "type": "string",
@@ -7695,7 +7695,7 @@
                               "maxLength": 0
                             },
                             "secret_manager_pre_shared_secret": {
-                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                              "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                               "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                               "deleteOnEmpty": true,
                               "type": "string",
@@ -7791,7 +7791,7 @@
                               "maxLength": 0
                             },
                             "secret_manager_pre_shared_secret": {
-                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                              "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                               "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                               "deleteOnEmpty": true,
                               "type": "string",
@@ -7920,7 +7920,7 @@
                     }
                   ]
                 },
-                "override_hub_subnet_advertisments": {
+                "override_hub_subnet_advertisements": {
                   "title": "Override Hub Custom Subnet Advertisements",
                   "type": "boolean"
                 }
@@ -7929,13 +7929,13 @@
                 {
                   "if": {
                     "properties": {
-                      "override_hub_subnet_advertisments": {
+                      "override_hub_subnet_advertisements": {
                         "type": "boolean",
                         "const": true
                       }
                     },
                     "required": [
-                      "override_hub_subnet_advertisments"
+                      "override_hub_subnet_advertisements"
                     ]
                   },
                   "then": {
@@ -8022,7 +8022,7 @@
                           "advanced_tunnel_configuration",
                           "hub_subnet_advertisements",
                           "custom_hub_subnet_advertisements",
-                          "override_hub_subnet_advertisments"
+                          "override_hub_subnet_advertisements"
                         ]
                       }
                     },
@@ -8050,7 +8050,7 @@
                           "advanced_tunnel_configuration",
                           "hub_subnet_advertisements",
                           "custom_hub_subnet_advertisements",
-                          "override_hub_subnet_advertisments"
+                          "override_hub_subnet_advertisements"
                         ]
                       }
                     }
@@ -8156,7 +8156,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "This field is used to specify an explict name to be used"
+                    "description": "This field is used to specify an explicit name to be used"
                   },
                   "unique_id": {
                     "title": "Unique ID",
@@ -8166,7 +8166,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                    "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                   },
                   "project_id": {
                     "title": "Project ID",
@@ -8260,7 +8260,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "This field is used to specify an explict name to be used"
+                    "description": "This field is used to specify an explicit name to be used"
                   },
                   "unique_id": {
                     "title": "Unique ID",
@@ -8270,7 +8270,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                    "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                   },
                   "project_id": {
                     "title": "Project ID",
@@ -8368,7 +8368,7 @@
               "type": "string",
               "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
               "deleteOnEmpty": true,
-              "description": "This field is used to specify an explict name to be used"
+              "description": "This field is used to specify an explicit name to be used"
             },
             "project_id": {
               "title": "Project ID",
@@ -8485,7 +8485,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "This field is used to specify an explict name to be used"
+                    "description": "This field is used to specify an explicit name to be used"
                   },
                   "unique_id": {
                     "title": "Unique ID",
@@ -8495,10 +8495,10 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                    "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                   },
-                  "redudancy_type": {
-                    "title": "Redudancy Type (EMPTY)",
+                  "redundancy_type": {
+                    "title": "Redundancy Type (EMPTY)",
                     "description": "This field should not be set and is only included for UI generation",
                     "type": "string",
                     "deleteOnEmpty": true,
@@ -8509,7 +8509,7 @@
                     "oneOf": [
                       {
                         "const": "",
-                        "description": "Select this option to remove `redudancy_type` from JSON",
+                        "description": "Select this option to remove `redundancy_type` from JSON",
                         "title": "Empty (Clear Field)"
                       }
                     ]
@@ -8589,7 +8589,7 @@
                     "unique_id",
                     "pre_existing",
                     "tunnel_count",
-                    "redudancy_type",
+                    "redundancy_type",
                     "ike_version"
                   ]
                 },
@@ -8608,7 +8608,7 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "This field is used to specify an explict name to be used"
+                    "description": "This field is used to specify an explicit name to be used"
                   },
                   "unique_id": {
                     "title": "Unique ID",
@@ -8618,10 +8618,10 @@
                       "sizeXs": 4
                     },
                     "deleteOnEmpty": true,
-                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                    "description": "Unique ID used to differentiate this resource from other 'like or similar' duplicate resources when the name is not explicitly specified"
                   },
-                  "redudancy_type": {
-                    "title": "Redudancy Type",
+                  "redundancy_type": {
+                    "title": "Redundancy Type",
                     "type": "string",
                     "deleteOnEmpty": true,
                     "widget": "Select",
@@ -8632,7 +8632,7 @@
                     "oneOf": [
                       {
                         "const": "ONE_INTERFACE",
-                        "title": "Single Interface (No Redudancy)",
+                        "title": "Single Interface (No Redundancy)",
                         "description": ""
                       },
                       {
@@ -8730,13 +8730,13 @@
                   {
                     "if": {
                       "properties": {
-                        "redudancy_type": {
+                        "redundancy_type": {
                           "type": "string",
                           "const": "ONE_INTERFACE"
                         }
                       },
                       "required": [
-                        "redudancy_type"
+                        "redundancy_type"
                       ]
                     },
                     "then": {
@@ -8758,13 +8758,13 @@
                   {
                     "if": {
                       "properties": {
-                        "redudancy_type": {
+                        "redundancy_type": {
                           "type": "string",
                           "const": "TWO_INTERFACES"
                         }
                       },
                       "required": [
-                        "redudancy_type"
+                        "redundancy_type"
                       ]
                     },
                     "then": {
@@ -8786,13 +8786,13 @@
                   {
                     "if": {
                       "properties": {
-                        "redudancy_type": {
+                        "redundancy_type": {
                           "type": "string",
                           "const": "FOUR_INTERFACES"
                         }
                       },
                       "required": [
-                        "redudancy_type"
+                        "redundancy_type"
                       ]
                     },
                     "then": {
@@ -8817,14 +8817,14 @@
                     "name",
                     "unique_id",
                     "pre_existing",
-                    "redudancy_type",
+                    "redundancy_type",
                     "tunnel_count",
                     "ike_version",
                     "interfaces"
                   ]
                 },
                 "required": [
-                  "redudancy_type",
+                  "redundancy_type",
                   "interfaces"
                 ]
               }
@@ -8905,8 +8905,8 @@
               }
             ]
           },
-          "redudancy_type_empty": {
-            "title": "Redudancy Type (EMPTY)",
+          "redundancy_type_empty": {
+            "title": "Redundancy Type (EMPTY)",
             "description": "This field should not be set and is only included for UI generation",
             "type": "string",
             "deleteOnEmpty": true,
@@ -8917,13 +8917,13 @@
             "oneOf": [
               {
                 "const": "",
-                "description": "Select this option to remove `redudancy_type` from JSON",
+                "description": "Select this option to remove `redundancy_type` from JSON",
                 "title": "Empty (Clear Field)"
               }
             ]
           },
-          "redudancy_type": {
-            "title": "Redudancy Type",
+          "redundancy_type": {
+            "title": "Redundancy Type",
             "type": "string",
             "deleteOnEmpty": true,
             "widget": "Select",
@@ -8934,7 +8934,7 @@
             "oneOf": [
               {
                 "const": "ONE_INTERFACE",
-                "title": "Single Interface (No Redudancy)",
+                "title": "Single Interface (No Redundancy)",
                 "description": ""
               },
               {
@@ -9012,7 +9012,7 @@
                   "view": {
                     "sizeXs": 4
                   },
-                  "title": "Advertised Route Prioirty",
+                  "title": "Advertised Route Priority",
                   "description": "The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win."
                 },
                 "bgp_advertisement_disabled": {
@@ -9160,7 +9160,7 @@
                         "maxLength": 0
                       },
                       "secret_manager_pre_shared_secret": {
-                        "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                        "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                         "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                         "deleteOnEmpty": true,
                         "type": "string",
@@ -9253,7 +9253,7 @@
                         "maxLength": 0
                       },
                       "secret_manager_pre_shared_secret": {
-                        "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                        "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                         "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                         "deleteOnEmpty": true,
                         "type": "string",
@@ -9349,7 +9349,7 @@
                         "maxLength": 0
                       },
                       "secret_manager_pre_shared_secret": {
-                        "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                        "title": "Secret Manager Pre-Shared Secret (EMPTY)",
                         "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
                         "deleteOnEmpty": true,
                         "type": "string",
@@ -9601,7 +9601,7 @@
             "minLength": 1
           },
           "secret_manager_pre_shared_secret_empty": {
-            "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+            "title": "Secret Manager Pre-Shared Secret (EMPTY)",
             "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
             "deleteOnEmpty": true,
             "type": "string",
@@ -9675,11 +9675,11 @@
               }
             ]
           },
-          "override_hub_subnet_advertisments": {
+          "override_hub_subnet_advertisements": {
             "title": "Override Hub Custom Subnet Advertisements",
             "type": "boolean"
           },
-          "override_spoke_subnet_advertisments": {
+          "override_spoke_subnet_advertisements": {
             "title": "Override Spoke Custom Subnet Advertisements",
             "type": "boolean"
           },

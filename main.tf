@@ -4,7 +4,7 @@ locals {
     max_random_subnet_ranges = 128,
   }
 
-  lookups_peer_vpn_gateway_redudancy_type = {
+  lookups_peer_vpn_gateway_redundancy_type = {
     ONE_INTERFACE   = "SINGLE_IP_INTERNALLY_REDUNDANT",
     TWO_INTERFACES  = "TWO_IPS_REDUNDANCY",
     FOUR_INTERFACES = "FOUR_IPS_REDUNDANCY",
@@ -23,7 +23,7 @@ locals {
   }
 
   defaults_peer_vpn_gateways = {
-    redudancy_type = "TWO_INTERFACES"
+    redundancy_type = "TWO_INTERFACES"
   }
 
   default_bgp_peers = {
@@ -246,7 +246,7 @@ locals {
       project_id = try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id
 
       interfaces      = try(v1.spoke_vpn_gateway.interfaces, [])
-      redundancy_type = try(lookup(local.lookups_peer_vpn_gateway_redudancy_type, v1.spoke_vpn_gateway.redudancy_type), local.defaults_peer_vpn_gateways.redudancy_type)
+      redundancy_type = try(lookup(local.lookups_peer_vpn_gateway_redundancy_type, v1.spoke_vpn_gateway.redundancy_type), local.defaults_peer_vpn_gateways.redundancy_type)
 
       uuidv5 = format("ha-peer-vpn-%s", uuidv5("x500", join(",", [for k, v in {
         NAME            = try(v1.spoke_vpn_gateway.name, null) != null ? v1.spoke_vpn_gateway.name : null,
@@ -256,7 +256,7 @@ locals {
         UNIQUE_ID       = try(v1.spoke_vpn_gateway.unique_id, null) != null ? v1.spoke_vpn_gateway.unique_id : null,
         PROJECT_ID      = try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id,
         INTERFACES      = try(md5(jsonencode(v1.spoke_vpn_gateway.interfaces)), null)
-        REDUNDANCY_TYPE = try(lookup(local.lookups_peer_vpn_gateway_redudancy_type, v1.spoke_vpn_gateway.redudancy_type), local.defaults_peer_vpn_gateways.redudancy_type),
+        REDUNDANCY_TYPE = try(lookup(local.lookups_peer_vpn_gateway_redundancy_type, v1.spoke_vpn_gateway.redundancy_type), local.defaults_peer_vpn_gateways.redundancy_type),
         } : format("%s=%s", k, v) if v != null])
       ))
 

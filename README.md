@@ -1,9 +1,9 @@
 
 # Overview
-This module was created to enable deployment of Cloud VPN resources quickly and at scale within GCP using a Hub and Spoke architecture. With the eventual goal of supporting both Classic and HA VPN within a single module driven through JSON. It is designed to opperate with minimum viable inputs and work in either greenfield or brownfield environments.
+This module was created to enable deployment of Cloud VPN resources quickly and at scale within GCP using a Hub and Spoke architecture. With the eventual goal of supporting both Classic and HA VPN within a single module driven through JSON. It is designed to operate with minimum viable inputs and work in either greenfield or brownfield environments.
 
 - **Q:** Why create this module instead of using the one created/maintained by google? --> https://github.com/terraform-google-modules/terraform-google-vpn
-  - **A:** I noticed that other engineers that were either not familiar with terraform or networking were often overwhelmed by the act of deploying a VPN within GCP. I wanted to simplify the expereince and create a module that required only the minimum number of inputs so that anyone cappable of crafting a json file could easily deploy multiple cloud vpns
+  - **A:** I noticed that other engineers that were either not familiar with terraform or networking were often overwhelmed by the act of deploying a VPN within GCP. I wanted to simplify the experience and create a module that required only the minimum number of inputs so that anyone capable of crafting a json file could easily deploy multiple cloud vpns
 
 <br>
 
@@ -170,12 +170,12 @@ This example snippet below creates one HA VPN Gateways (One Hub), one Cloud Rout
 ## Terraform Resource Dynamic Name Generation
 Terraform Resource state Id's and names are dynamically generated based on attributes of the resource formatted using x500 name-based uuids.
  - https://developer.hashicorp.com/terraform/language/functions/uuidv5
- - Including the `name` attribute in a resource will explitly name the resource based on that attribute but will still randomly generate a unique terraform state id
-> If the dynamically generated uuid based name are to long for your environment you can set the `var.generate_random_shortnames` to `true` and uuid will be trimmed by 28 characters to reduce resource name lenght considerably. Depending on the number of resources deployed this may result in duplicately named resources.
+ - Including the `name` attribute in a resource will explicitly name the resource based on that attribute but will still randomly generate a unique terraform state id
+> If the dynamically generated uuid based name are to long for your environment you can set the `var.generate_random_shortnames` to `true` and uuid will be trimmed by 28 characters to reduce resource name length considerably. Depending on the number of resources deployed this may result in duplicately named resources.
 
 
 <details>
-  <summary>Display Resource Name Generation Feilds</summary>
+  <summary>Display Resource Name Generation Felids</summary>
 
 ## Cloud Router (google_compute_router)
 ### Local Side
@@ -250,7 +250,7 @@ Terraform Resource state Id's and names are dynamically generated based on attri
 | LABEL           | (JSON) `.[].label`                                                 | N/A                       |      `null`      |
 | UNIQUE_ID       | (JSON) `.[].spoke_vpn_gateways[].spoke_vpn_gateway.unique_id`      | N/A                       |      `null`      |
 | PROJECT_ID      | (JSON) `.[].project_id`                                            | (TF VAR) `var.project_id` |       N/A        |
-| REDUNDANCY_TYPE | (JSON) `.[].spoke_vpn_gateways[].spoke_vpn_gateway.redudancy_type` | N/A                       | `TWO_INTERFACES` |
+| REDUNDANCY_TYPE | (JSON) `.[].spoke_vpn_gateways[].spoke_vpn_gateway.redundancy_type` | N/A                       | `TWO_INTERFACES` |
 
 ## VPN Tunnel | Router Interface | BGP Peer (google_compute_vpn_tunnel |google_compute_router_interface | google_compute_router_peer)
 ### Local Side
@@ -579,11 +579,11 @@ You may see the following error snippet when creating a bgp peer session range t
   - JSON Generation
     - Improve the UI for JSON generation
     - Introduce support for `Advanced Options` toggle that hides fields not required from a minimum viable configuration perspective
-    - Update Spoke Router and VPN Gateway UI to better explain how the combination of `pre_existing` flags is used to determine wheather or not to create tunnels
+    - Update Spoke Router and VPN Gateway UI to better explain how the combination of `pre_existing` flags is used to determine whether or not to create tunnels
   - JSON Import
     - Introduce support for importing pre-created JSON so that it can be manipulated within the UI
 - Output Template
-    - Introduce output configuration templates so that when Cloud VPN is integrated with 3rd party VPNs configuration is simplier
+    - Introduce output configuration templates so that when Cloud VPN is integrated with 3rd party VPNs configuration is simpler
 - Shared Secrets
   - ~~Introduce support this module to retrieve a pre_shared_secret from Secrets Manager instead of storing it in JSON~~ Introduced in v0.6.5
 - HA Cloud VPN

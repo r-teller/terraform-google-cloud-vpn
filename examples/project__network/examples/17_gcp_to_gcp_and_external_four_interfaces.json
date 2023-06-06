@@ -25,7 +25,7 @@
       {
         "spoke_vpn_gateway_type": "EXTERNAL",
         "spoke_vpn_gateway": {
-          "redudancy_type": "FOUR_INTERFACES",
+          "redundancy_type": "FOUR_INTERFACES",
           "interfaces": [
             "11.11.44.11",
             "11.11.44.12",

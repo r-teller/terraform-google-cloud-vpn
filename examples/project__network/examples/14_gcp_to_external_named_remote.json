@@ -19,7 +19,7 @@
         "spoke_vpn_gateway": {
           "pre_existing": false,
           "name": "my-peer-gateway",
-          "redudancy_type": "TWO_INTERFACES",
+          "redundancy_type": "TWO_INTERFACES",
           "interfaces": [
             "65.65.65.65",
             "65.65.65.66"

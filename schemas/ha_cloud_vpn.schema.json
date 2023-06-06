@@ -147,6 +147,10 @@
                                                 "title": "Google Cloud"
                                             },
                                             {
+                                                "const": "GCP_RESTRICTED",
+                                                "title": "Google Cloud (Restricted IAM)"
+                                            },
+                                            {
                                                 "const": "EXTERNAL",
                                                 "title": "On-Prem or Non-Google Cloud"
                                             }
@@ -159,6 +163,7 @@
                                 "allOf": [
                                     {
                                         "title": "Google Cloud",
+                                        "description": "Used to connect ha cloud vpn to peer vpn gateways running within google cloud that are managed by this terraform module.",
                                         "if": {
                                             "properties": {
                                                 "spoke_vpn_gateway_type": {
@@ -171,7 +176,6 @@
                                             ]
                                         },
                                         "then": {
-                                            "title": "Google Cloud",
                                             "properties": {
                                                 "spoke_vpn_gateway": {
                                                     "$ref": "#/definitions/shared/properties/spoke_vpn_gateway_gcp"
@@ -180,6 +184,45 @@
                                                     "$ref": "#/definitions/shared/properties/spoke_router_gcp"
                                                 }
                                             },
+                                            "required": [
+                                                "spoke_vpn_gateway"
+                                            ],
+                                            "propertyNames": {
+                                                "enum": [
+                                                    "spoke_vpn_gateway_type",
+                                                    "spoke_vpn_gateway",
+                                                    "spoke_router"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "title": "Google Cloud (Restricted IAM)",
+                                        "description": "Used to connect ha cloud vpn to peer vpn gateways running within google cloud that are not managed by this terraform module.",
+                                        "if": {
+                                            "properties": {
+                                                "spoke_vpn_gateway_type": {
+                                                    "type": "string",
+                                                    "const": "GCP_RESTRICTED"
+                                                }
+                                            },
+                                            "required": [
+                                                "spoke_vpn_gateway_type"
+                                            ]
+                                        },
+                                        "then": {
+                                            "properties": {
+                                                "spoke_vpn_gateway": {
+                                                    "$ref": "#/definitions/shared/properties/spoke_vpn_gateway_gcp_restricted"
+                                                },
+                                                "spoke_router": {
+                                                    "$ref": "#/definitions/shared/properties/spoke_router_gcp_restricted"
+                                                }
+                                            },
+                                            "required": [
+                                                "spoke_vpn_gateway",
+                                                "spoke_router"
+                                            ],
                                             "propertyNames": {
                                                 "enum": [
                                                     "spoke_vpn_gateway_type",
@@ -191,6 +234,7 @@
                                     },
                                     {
                                         "title": "On-Prem or Non-Google Cloud",
+                                        "description": "Used to connect ha cloud vpn to peer vpn gateways that can be either an on-premises or hosted by another cloud provider.",
                                         "if": {
                                             "properties": {
                                                 "spoke_vpn_gateway_type": {
@@ -203,7 +247,6 @@
                                             ]
                                         },
                                         "then": {
-                                            "title": "On-Prem or Non-Google Cloud",
                                             "properties": {
                                                 "spoke_vpn_gateway": {
                                                     "$ref": "#/definitions/shared/properties/spoke_vpn_gateway_external"
@@ -212,6 +255,10 @@
                                                     "$ref": "#/definitions/shared/properties/spoke_router_external"
                                                 }
                                             },
+                                            "required": [
+                                                "spoke_vpn_gateway",
+                                                "spoke_router"
+                                            ],
                                             "propertyNames": {
                                                 "enum": [
                                                     "spoke_vpn_gateway_type",
@@ -298,13 +345,6 @@
                     "widget": "Card",
                     "deleteOnEmpty": true,
                     "properties": {
-                        "name": {
-                            "$ref": "#/definitions/shared/properties/common/name"
-                        },
-                        "unique_id": {
-                            "title": "Unique ID (Hub Router)",
-                            "$ref": "#/definitions/shared/properties/common/unique_id"
-                        },
                         "pre_existing": {
                             "$ref": "#/definitions/shared/properties/common/pre_existing"
                         }
@@ -334,6 +374,13 @@
                                 "title": "Hub Router (Manged Externally)",
                                 "description": "If the `Hub Router` is manged outside of this Terraform Module",
                                 "properties": {
+                                    "name": {
+                                        "$ref": "#/definitions/shared/properties/common/name"
+                                    },
+                                    "unique_id": {
+                                        "title": "Unique ID (Hub Router)",
+                                        "$ref": "#/definitions/shared/properties/common/unique_id"
+                                    },
                                     "bgp": {
                                         "title": "BGP",
                                         "type": "object",
@@ -371,6 +418,13 @@
                                 "title": "Hub Router (Manged /w Terraform)",
                                 "description": "If the `Hub Router` is manged within this Terraform Module",
                                 "properties": {
+                                    "name": {
+                                        "$ref": "#/definitions/shared/properties/common/name"
+                                    },
+                                    "unique_id": {
+                                        "title": "Unique ID (Hub Router)",
+                                        "$ref": "#/definitions/shared/properties/common/unique_id"
+                                    },
                                     "bgp": {
                                         "title": "BGP",
                                         "type": "object",
@@ -446,13 +500,6 @@
                     "widget": "Card",
                     "deleteOnEmpty": true,
                     "properties": {
-                        "name": {
-                            "$ref": "#/definitions/shared/properties/common/name"
-                        },
-                        "unique_id": {
-                            "title": "Unique ID (Hub VPN Gateway)",
-                            "$ref": "#/definitions/shared/properties/common/unique_id"
-                        },
                         "pre_existing": {
                             "$ref": "#/definitions/shared/properties/common/pre_existing"
                         }
@@ -482,6 +529,13 @@
                                 "title": "Hub VPN Gateway (Manged Externally)",
                                 "description": "If the `Hub VPN Gateway` is manged outside of this Terraform Module",
                                 "properties": {
+                                    "name": {
+                                        "$ref": "#/definitions/shared/properties/common/name"
+                                    },
+                                    "unique_id": {
+                                        "title": "Unique ID (Hub VPN Gateway)",
+                                        "$ref": "#/definitions/shared/properties/common/unique_id"
+                                    },
                                     "stack_type": {
                                         "$ref": "#/definitions/shared/properties/vpn_attributes/stack_type_empty"
                                     }
@@ -494,6 +548,13 @@
                                 "title": "Hub VPN Gateway (Manged /w Terraform)",
                                 "description": "If the `Hub VPN Gateway` is manged within this Terraform Module",
                                 "properties": {
+                                    "name": {
+                                        "$ref": "#/definitions/shared/properties/common/name"
+                                    },
+                                    "unique_id": {
+                                        "title": "Unique ID (Hub VPN Gateway)",
+                                        "$ref": "#/definitions/shared/properties/common/unique_id"
+                                    },
                                     "stack_type": {
                                         "$ref": "#/definitions/shared/properties/vpn_attributes/stack_type"
                                     }
@@ -502,18 +563,137 @@
                         }
                     ]
                 },
+                "spoke_router_gcp_restricted": {
+                    "title": "Spoke Router (Manged Externally)",
+                    "type": "object",
+                    "widget": "Card",
+                    "deleteOnEmpty": true,
+                    "properties": {
+                        "bgp": {
+                            "title": "BGP",
+                            "type": "object",
+                            "deleteOnEmpty": true,
+                            "properties": {
+                                "asn": {
+                                    "view": {
+                                        "sizeXs": 12
+                                    },
+                                    "$ref": "#/definitions/shared/properties/router_attributes/asn_pre_existing"
+                                },
+                                "advanced_tunnel_configuration": {
+                                    "$ref": "#/definitions/shared/properties/vpn_attributes/advanced_tunnel_configuration"
+                                },
+                                "override_hub_subnet_advertisments": {
+                                    "$ref": "#/definitions/shared/properties/router_attributes/override_hub_subnet_advertisments"
+                                }
+                            },
+                            "allOf": [
+                                {
+                                    "if": {
+                                        "properties": {
+                                            "override_hub_subnet_advertisments": {
+                                                "type": "boolean",
+                                                "const": true
+                                            }
+                                        },
+                                        "required": [
+                                            "override_hub_subnet_advertisments"
+                                        ]
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "hub_subnet_advertisements": {
+                                                "title": "Hub Subnet Advertisements",
+                                                "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements"
+                                            }
+                                        },
+                                        "if": {
+                                            "properties": {
+                                                "hub_subnet_advertisements": {
+                                                    "oneOf": [
+                                                        {
+                                                            "type": "string",
+                                                            "const": "DEFAULT_CUSTOM"
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "const": "CUSTOM"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "required": [
+                                                "hub_subnet_advertisements"
+                                            ]
+                                        },
+                                        "then": {
+                                            "properties": {
+                                                "custom_hub_subnet_advertisements": {
+                                                    "title": "Custom Hub Subnet Advertisements",
+                                                    "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements"
+                                                }
+                                            },
+                                            "propertyNames": {
+                                                "enum": [
+                                                    "asn",
+                                                    "advanced_tunnel_configuration",
+                                                    "hub_subnet_advertisements",
+                                                    "custom_hub_subnet_advertisements",
+                                                    "override_hub_subnet_advertisments"
+                                                ]
+                                            }
+                                        },
+                                        "else": {
+                                            "properties": {
+                                                "custom_hub_subnet_advertisements": {
+                                                    "title": "Custom Hub Subnet Advertisements (EMPTY)",
+                                                    "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
+                                                }
+                                            },
+                                            "propertyNames": {
+                                                "enum": [
+                                                    "asn",
+                                                    "advanced_tunnel_configuration",
+                                                    "hub_subnet_advertisements",
+                                                    "custom_hub_subnet_advertisements",
+                                                    "override_hub_subnet_advertisments"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "else": {
+                                        "properties": {
+                                            "hub_subnet_advertisements": {
+                                                "title": "Hub Subnet Advertisements (EMPTY)",
+                                                "$ref": "#/definitions/shared/properties/router_attributes/subnet_advertisements_empty"
+                                            },
+                                            "custom_hub_subnet_advertisements": {
+                                                "title": "Custom Hub Subnet Advertisements (EMPTY)",
+                                                "$ref": "#/definitions/shared/properties/router_attributes/custom_subnet_advertisements_empty"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "required": [
+                                "asn"
+                            ]
+                        }
+                    },
+                    "propertyNames": {
+                        "enum": [
+                            "bgp"
+                        ]
+                    },
+                    "required": [
+                        "bgp"
+                    ]
+                },
                 "spoke_router_gcp": {
                     "type": "object",
                     "widget": "Card",
                     "deleteOnEmpty": true,
                     "properties": {
-                        "name": {
-                            "$ref": "#/definitions/shared/properties/common/name"
-                        },
-                        "unique_id": {
-                            "title": "Unique ID (Spoke Router)",
-                            "$ref": "#/definitions/shared/properties/common/unique_id"
-                        },
                         "pre_existing": {
                             "$ref": "#/definitions/shared/properties/common/pre_existing"
                         }
@@ -528,6 +708,7 @@
                     },
                     "allOf": [
                         {
+                            "title": "Spoke Router (Manged Externally)",
                             "if": {
                                 "properties": {
                                     "pre_existing": {
@@ -543,6 +724,12 @@
                                 "title": "Spoke Router (Manged Externally)",
                                 "description": "If the `Spoke Router` is manged outside of this Terraform Module",
                                 "properties": {
+                                    "name": {
+                                        "$ref": "#/definitions/shared/properties/common/name"
+                                    },
+                                    "unique_id": {
+                                        "$ref": "#/definitions/shared/properties/common/unique_id"
+                                    },
                                     "bgp": {
                                         "title": "BGP",
                                         "type": "object",
@@ -721,6 +908,7 @@
                                     }
                                 },
                                 "required": [
+                                    "bgp",
                                     "name"
                                 ]
                             },
@@ -728,6 +916,12 @@
                                 "title": "Spoke Router (Manged /w Terraform)",
                                 "description": "If the `Spoke Router` is manged within this Terraform Module",
                                 "properties": {
+                                    "name": {
+                                        "$ref": "#/definitions/shared/properties/common/name"
+                                    },
+                                    "unique_id": {
+                                        "$ref": "#/definitions/shared/properties/common/unique_id"
+                                    },
                                     "bgp": {
                                         "title": "BGP",
                                         "type": "object",
@@ -1027,6 +1221,9 @@
                             ]
                         }
                     },
+                    "required": [
+                        "bgp"
+                    ],
                     "propertyNames": {
                         "enum": [
                             "bgp"
@@ -1037,26 +1234,8 @@
                     "type": "object",
                     "widget": "Card",
                     "properties": {
-                        "name": {
-                            "$ref": "#/definitions/shared/properties/common/name"
-                        },
-                        "unique_id": {
-                            "$ref": "#/definitions/shared/properties/common/unique_id"
-                        },
                         "pre_existing": {
                             "$ref": "#/definitions/shared/properties/common/pre_existing"
-                        },
-                        "project_id": {
-                            "$ref": "#/definitions/shared/properties/common/project_id"
-                        },
-                        "network": {
-                            "$ref": "#/definitions/shared/properties/common/network"
-                        },
-                        "tunnel_count": {
-                            "$ref": "#/definitions/shared/properties/vpn_attributes/tunnel_count_gcp"
-                        },
-                        "ike_version": {
-                            "$ref": "#/definitions/shared/properties/vpn_attributes/ike_version"
                         }
                     },
                     "propertyNames": {
@@ -1086,6 +1265,26 @@
                             "then": {
                                 "title": "Spoke VPN Gateway (Manged Externally)",
                                 "description": "If the `Spoke VPN Gateway` is manged outside of this Terraform Module",
+                                "properties": {
+                                    "name": {
+                                        "$ref": "#/definitions/shared/properties/common/name"
+                                    },
+                                    "unique_id": {
+                                        "$ref": "#/definitions/shared/properties/common/unique_id"
+                                    },
+                                    "project_id": {
+                                        "$ref": "#/definitions/shared/properties/common/project_id"
+                                    },
+                                    "network": {
+                                        "$ref": "#/definitions/shared/properties/common/network"
+                                    },
+                                    "tunnel_count": {
+                                        "$ref": "#/definitions/shared/properties/vpn_attributes/tunnel_count_gcp"
+                                    },
+                                    "ike_version": {
+                                        "$ref": "#/definitions/shared/properties/vpn_attributes/ike_version"
+                                    }
+                                },
                                 "required": [
                                     "name"
                                 ]
@@ -1093,6 +1292,26 @@
                             "else": {
                                 "title": "Spoke VPN Gateway (Manged /w Terraform)",
                                 "description": "If the `Spoke VPN Gateway` is manged within this Terraform Module",
+                                "properties": {
+                                    "name": {
+                                        "$ref": "#/definitions/shared/properties/common/name"
+                                    },
+                                    "unique_id": {
+                                        "$ref": "#/definitions/shared/properties/common/unique_id"
+                                    },
+                                    "project_id": {
+                                        "$ref": "#/definitions/shared/properties/common/project_id"
+                                    },
+                                    "network": {
+                                        "$ref": "#/definitions/shared/properties/common/network"
+                                    },
+                                    "tunnel_count": {
+                                        "$ref": "#/definitions/shared/properties/vpn_attributes/tunnel_count_gcp"
+                                    },
+                                    "ike_version": {
+                                        "$ref": "#/definitions/shared/properties/vpn_attributes/ike_version"
+                                    }
+                                },
                                 "required": [
                                     "network"
                                 ]
@@ -1100,16 +1319,45 @@
                         }
                     ]
                 },
-                "spoke_vpn_gateway_external": {
+                "spoke_vpn_gateway_gcp_restricted": {
+                    "title": "Spoke VPN Gateway (Manged Externally)",
                     "type": "object",
                     "widget": "Card",
                     "properties": {
                         "name": {
-                            "$ref": "#/definitions/shared/properties/common/name"
+                            "$ref": "#/definitions/shared/properties/common/name",
+                            "view": {
+                                "sizeXs": 6
+                            }
                         },
-                        "unique_id": {
-                            "$ref": "#/definitions/shared/properties/common/unique_id"
+                        "project_id": {
+                            "$ref": "#/definitions/shared/properties/common/project_id"
                         },
+                        "tunnel_count": {
+                            "$ref": "#/definitions/shared/properties/vpn_attributes/tunnel_count_gcp"
+                        },
+                        "ike_version": {
+                            "$ref": "#/definitions/shared/properties/vpn_attributes/ike_version"
+                        }
+                    },
+                    "propertyNames": {
+                        "enum": [
+                            "name",
+                            "network",
+                            "project_id",
+                            "tunnel_count",
+                            "ike_version"
+                        ]
+                    },
+                    "required": [
+                        "name",
+                        "project_id"
+                    ]
+                },
+                "spoke_vpn_gateway_external": {
+                    "type": "object",
+                    "widget": "Card",
+                    "properties": {
                         "pre_existing": {
                             "$ref": "#/definitions/shared/properties/common/pre_existing"
                         }
@@ -1130,6 +1378,12 @@
                             "then": {
                                 "title": "Peer VPN Gateway (Managed Externally)",
                                 "properties": {
+                                    "name": {
+                                        "$ref": "#/definitions/shared/properties/common/name"
+                                    },
+                                    "unique_id": {
+                                        "$ref": "#/definitions/shared/properties/common/unique_id"
+                                    },
                                     "redudancy_type": {
                                         "$ref": "#/definitions/shared/properties/vpn_attributes/redudancy_type_empty"
                                     },
@@ -1160,6 +1414,12 @@
                             "else": {
                                 "title": "Peer VPN Gateway (Managed /w Terraform)",
                                 "properties": {
+                                    "name": {
+                                        "$ref": "#/definitions/shared/properties/common/name"
+                                    },
+                                    "unique_id": {
+                                        "$ref": "#/definitions/shared/properties/common/unique_id"
+                                    },
                                     "redudancy_type": {
                                         "$ref": "#/definitions/shared/properties/vpn_attributes/redudancy_type"
                                     },

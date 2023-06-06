@@ -106,7 +106,7 @@ locals {
       unique_id = try(v1.spoke_vpn_gateway.unique_id, null)
 
       project_id = try(v1.spoke_vpn_gateway.project_id, null) != null ? v1.spoke_vpn_gateway.project_id : try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id
-      network    = v1.spoke_vpn_gateway.network
+      network    = try(v1.spoke_vpn_gateway.pre_existing, false) ? null : v1.spoke_vpn_gateway.network
       region     = lower(try(v1.spoke_vpn_gateway.region, null) != null ? v1.spoke_vpn_gateway.region : try(cloud_vpn.region, null) != null ? cloud_vpn.region : var.region)
 
       uuidv5 = format("ha-spoke-vpn-%s", uuidv5("x500", join(",", [for k, v in {
@@ -116,7 +116,7 @@ locals {
         LABEL       = try(cloud_vpn.label, null) != null ? cloud_vpn.label : null,
         UNIQUE_ID   = try(v1.spoke_vpn_gateway.unique_id, null) != null ? v1.spoke_vpn_gateway.unique_id : null,
         PROJECT_ID  = try(v1.spoke_vpn_gateway.project_id, null) != null ? v1.spoke_vpn_gateway.project_id : try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id,
-        NETWORK     = v1.spoke_vpn_gateway.network,
+        NETWORK     = try(v1.spoke_vpn_gateway.network, null),
         REGION      = try(v1.spoke_vpn_gateway.region, null) != null ? v1.spoke_vpn_gateway.region : try(cloud_vpn.region, null) != null ? cloud_vpn.region : var.region,
         } : format("%s=%s", k, v) if v != null])
       ))
@@ -140,7 +140,7 @@ locals {
           LABEL       = try(cloud_vpn.label, null) != null ? cloud_vpn.label : null,
           UNIQUE_ID   = try(v1.spoke_router.unique_id, null) != null ? v1.spoke_router.unique_id : null,
           PROJECT_ID  = try(v1.spoke_vpn_gateway.project_id, null) != null ? v1.spoke_vpn_gateway.project_id : try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id,
-          NETWORK     = v1.spoke_vpn_gateway.network,
+          NETWORK     = try(v1.spoke_vpn_gateway.network, null),
           REGION      = try(v1.spoke_vpn_gateway.region, null) != null ? v1.spoke_vpn_gateway.region : try(cloud_vpn.region, null) != null ? cloud_vpn.region : var.region,
           BGP_ASN     = try(v1.spoke_router.bgp.asn, null) != null ? v1.spoke_router.bgp.asn : null,
           } : format("%s=%s", k, v) if v != null])
@@ -169,6 +169,74 @@ locals {
       }
 
     } if try(v1.spoke_vpn_gateway_type, null) == "GCP"]
+
+    ### Spoke VPN Gateway -- TO --> GCP Restricted IAM
+    spoke_vpn_gateways_gcp_restricted = [for v1 in try(cloud_vpn.spoke_vpn_gateways, {}) : {
+      name      = v1.spoke_vpn_gateway.name
+      unique_id = null
+
+      project_id = v1.spoke_vpn_gateway.project_id
+      network    = null
+      region     = lower(try(v1.spoke_vpn_gateway.region, null) != null ? v1.spoke_vpn_gateway.region : try(cloud_vpn.region, null) != null ? cloud_vpn.region : var.region)
+
+      uuidv5 = null
+      # uuidv5 = format("ha-spoke-vpn-%s", uuidv5("x500", join(",", [for k, v in {
+      #   NAME        = try(v1.spoke_vpn_gateway.name, null) != null ? v1.spoke_vpn_gateway.name : null,
+      #   PREFIX      = try(cloud_vpn.prefix, null) != null ? cloud_vpn.prefix : null,
+      #   ENVIRONMENT = try(cloud_vpn.environment, null) != null ? cloud_vpn.environment : null,
+      #   LABEL       = try(cloud_vpn.label, null) != null ? cloud_vpn.label : null,
+      #   UNIQUE_ID   = try(v1.spoke_vpn_gateway.unique_id, null) != null ? v1.spoke_vpn_gateway.unique_id : null,
+      #   PROJECT_ID  = try(v1.spoke_vpn_gateway.project_id, null) != null ? v1.spoke_vpn_gateway.project_id : try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id,
+      #   NETWORK     = v1.spoke_vpn_gateway.network,
+      #   REGION      = try(v1.spoke_vpn_gateway.region, null) != null ? v1.spoke_vpn_gateway.region : try(cloud_vpn.region, null) != null ? cloud_vpn.region : var.region,
+      #   } : format("%s=%s", k, v) if v != null])
+      # ))
+
+      pre_existing = true
+      ike_version  = try(v1.spoke_vpn_gateway.ike_version, null) != null ? v1.spoke_vpn_gateway.ike_version : local.default_ha_vpn_gateways.ike_version
+      tunnel_count = try(v1.spoke_vpn_gateway.tunnel_count, null) != null ? v1.spoke_vpn_gateway.tunnel_count : local.defaults_endpoints.tunnel_count
+
+      advanced_tunnel_configuration = try(v1.spoke_router.bgp.advanced_tunnel_configuration, null)
+
+      spoke_router = {
+        name      = null
+        unique_id = null
+
+        pre_existing = true
+
+        uuidv5 = null
+        # uuidv5 = format("cr-spoke-vpn-%s", uuidv5("x500", join(",", [for k, v in {
+        #   NAME        = try(v1.spoke_router.name, null) != null ? v1.spoke_router.name : null,
+        #   PREFIX      = try(cloud_vpn.prefix, null) != null ? cloud_vpn.prefix : null,
+        #   ENVIRONMENT = try(cloud_vpn.environment, null) != null ? cloud_vpn.environment : null,
+        #   LABEL       = try(cloud_vpn.label, null) != null ? cloud_vpn.label : null,
+        #   UNIQUE_ID   = try(v1.spoke_router.unique_id, null) != null ? v1.spoke_router.unique_id : null,
+        #   PROJECT_ID  = try(v1.spoke_vpn_gateway.project_id, null) != null ? v1.spoke_vpn_gateway.project_id : try(cloud_vpn.project_id, null) != null ? cloud_vpn.project_id : var.project_id,
+        #   NETWORK     = v1.spoke_vpn_gateway.network,
+        #   REGION      = try(v1.spoke_vpn_gateway.region, null) != null ? v1.spoke_vpn_gateway.region : try(cloud_vpn.region, null) != null ? cloud_vpn.region : var.region,
+        #   BGP_ASN     = try(v1.spoke_router.bgp.asn, null) != null ? v1.spoke_router.bgp.asn : null,
+        #   } : format("%s=%s", k, v) if v != null])
+        # ))
+
+        bgp = {
+          asn                  = v1.spoke_router.bgp.asn
+          advertise_mode       = null
+          advertised_groups    = null
+          advertised_ip_ranges = []
+        }
+      }
+
+      custom_routing = {
+        hub_advertise_mode       = lookup(local.lookups_bgp_advertise_mode, try(v1.spoke_router.bgp.hub_subnet_advertisements, "DEFAULT"))
+        hub_advertised_groups    = try(v1.spoke_router.bgp.hub_subnet_advertisements, null) == "DEFAULT_CUSTOM" ? ["ALL_SUBNETS"] : []
+        hub_advertised_ip_ranges = try(v1.spoke_router.bgp.custom_hub_subnet_advertisements, [])
+
+        spoke_advertise_mode       = null
+        spoke_advertised_groups    = null
+        spoke_advertised_ip_ranges = null
+      }
+
+    } if try(v1.spoke_vpn_gateway_type, null) == "GCP_RESTRICTED"]
 
     ### Spoke VPN Gateway -- TO --> External
     spoke_vpn_gateways_external = [for v1 in try(cloud_vpn.spoke_vpn_gateways, {}) : {
@@ -399,7 +467,6 @@ locals {
     prefix      = cloud_vpn.prefix
     environment = cloud_vpn.environment
 
-    # name      = cloud_vpn.hub_vpn_gateway.name != null ? cloud_vpn.hub_vpn_gateway.name : cloud_vpn.hub_vpn_gateway.uuidv5
     name      = cloud_vpn.hub_vpn_gateway.name != null ? cloud_vpn.hub_vpn_gateway.name : (var.generate_random_shortnames ? substr(cloud_vpn.hub_vpn_gateway.uuidv5, 0, length(cloud_vpn.hub_vpn_gateway.uuidv5) - 28) : cloud_vpn.hub_vpn_gateway.uuidv5)
     unique_id = cloud_vpn.hub_vpn_gateway.unique_id
     uuidv5    = cloud_vpn.hub_vpn_gateway.uuidv5
@@ -422,9 +489,8 @@ locals {
       environment = cloud_vpn.environment
 
       unique_id = v1.unique_id
-      # name      = try(v1.name, null) != null ? v1.name : v1.uuidv5
-      name   = v1.name != null ? v1.name : (var.generate_random_shortnames ? substr(v1.uuidv5, 0, length(v1.uuidv5) - 28) : v1.uuidv5)
-      uuidv5 = v1.uuidv5
+      name      = v1.name != null ? v1.name : (var.generate_random_shortnames ? substr(v1.uuidv5, 0, length(v1.uuidv5) - 28) : v1.uuidv5)
+      uuidv5    = v1.uuidv5
 
       project_id = v1.project_id
       region     = v1.region
@@ -445,9 +511,8 @@ locals {
       environment = cloud_vpn.environment
 
       unique_id = v1.unique_id
-      # name      = try(v1.name, null) != null ? v1.name : v1.uuidv5
-      name   = v1.name != null ? v1.name : (var.generate_random_shortnames ? substr(v1.uuidv5, 0, length(v1.uuidv5) - 28) : v1.uuidv5)
-      uuidv5 = v1.uuidv5
+      name      = v1.name != null ? v1.name : (var.generate_random_shortnames ? substr(v1.uuidv5, 0, length(v1.uuidv5) - 28) : v1.uuidv5)
+      uuidv5    = v1.uuidv5
 
       project_id = v1.project_id
 
@@ -613,6 +678,82 @@ locals {
           network      = v2.network
           region       = v2.region
           pre_existing = try(v2.pre_existing, null) != null ? v2.pre_existing : false
+          interfaces   = []
+        }
+
+        bgp_peers = {
+          hub_ipv4_address   = try(v2.advanced_tunnel_configuration[i].hub_ipv4_address, null) != "" ? try(v2.advanced_tunnel_configuration[i].hub_ipv4_address, null) : null,
+          hub_ipv6_address   = try(v2.advanced_tunnel_configuration[i].hub_ipv6_address, null) != "" ? try(v2.advanced_tunnel_configuration[i].hub_ipv6_address, null) : null,
+          spoke_ipv4_address = try(v2.advanced_tunnel_configuration[i].spoke_ipv4_address, null) != "" ? try(v2.advanced_tunnel_configuration[i].spoke_ipv4_address, null) : null,
+          spoke_ipv6_address = try(v2.advanced_tunnel_configuration[i].spoke_ipv6_address, null) != "" ? try(v2.advanced_tunnel_configuration[i].spoke_ipv6_address, null) : null,
+
+          ## If spoke_router.bgp.advanced_tunnel_configuration[i].disabled is true then set enabled `false` so that the bgp_peer is disabled
+          enabled                   = try(v2.advanced_tunnel_configuration[i].bgp_advertisement_disabled, false) != true
+          advertised_route_priority = try(v2.advanced_tunnel_configuration[i].advertised_route_priority, null)
+
+          ipv6_enabled = try(v2.advanced_tunnel_configuration[i].ipv6_enabled, local.default_bgp_peers.ipv6_enabled),
+        }
+
+        custom_routing = v2.custom_routing
+      }
+      ]
+    ],
+    ### Remote VPN Gateway -- TO --> GCP Restricted IAM
+    [for v2 in v1.spoke_vpn_gateways_gcp_restricted : [
+      for i in range(v2.tunnel_count) : {
+        region      = v1.region
+        label       = v1.label
+        prefix      = v1.prefix
+        environment = v1.environment
+
+        tunnel_index = i
+        ike_version  = v2.ike_version
+
+        pre_shared_secret_method  = try(v2.advanced_tunnel_configuration[i].pre_shared_secret_method, "DYNAMIC")
+        pre_shared_secret_manager = try(v2.advanced_tunnel_configuration[i].secret_manager_pre_shared_secret, null)
+
+        pre_shared_secret = (
+          try(v2.advanced_tunnel_configuration[i].pre_shared_secret_method, null) == "STATIC" ? v2.advanced_tunnel_configuration[i].static_pre_shared_secret :
+          try(v2.advanced_tunnel_configuration[i].pre_shared_secret_method, null) == "TERRAFORM_VARIABLE" ? var.variable_pre_shared_secret[v2.advanced_tunnel_configuration[i].terraform_variable_pre_shared_secret] :
+          null
+        )
+
+
+        hub_vpn_gateway = {
+          name       = v1.hub_vpn_gateway.name != null ? v1.hub_vpn_gateway.name : (var.generate_random_shortnames ? substr(v1.hub_vpn_gateway.uuidv5, 0, length(v1.hub_vpn_gateway.uuidv5) - 28) : v1.hub_vpn_gateway.uuidv5)
+          uuidv5     = v1.hub_vpn_gateway.uuidv5
+          unique_id  = v1.hub_vpn_gateway.unique_id
+          project_id = v1.project_id
+          network    = v1.network
+          stack_type = v1.hub_vpn_gateway.stack_type
+
+          hub_router = {
+            uuidv5 = v1.hub_router.uuidv5
+            name   = v1.hub_router.name != null ? v1.hub_router.name : (var.generate_random_shortnames ? substr(v1.hub_router.uuidv5, 0, length(v1.hub_router.uuidv5) - 28) : v1.hub_router.uuidv5)
+            bgp = {
+              asn = local.hub_routers[v1.hub_router.uuidv5].bgp.asn
+            }
+          }
+        }
+
+        spoke_vpn_gateway = {
+          type = "gcp"
+
+          uuidv5    = null
+          name      = v2.name
+          unique_id = null
+
+          spoke_router = {
+            name   = null
+            uuidv5 = null
+            bgp = {
+              asn = v2.spoke_router.bgp.asn
+            }
+          }
+          project_id   = v2.project_id
+          network      = null
+          region       = v2.region
+          pre_existing = true
           interfaces   = []
         }
 
@@ -843,7 +984,7 @@ locals {
       SPOKE_VPN_GATEWAY_NETWORK    = v1.hub_vpn_gateway.network,
       SPOKE_VPN_GATEWAY_UUIDV5     = v1.hub_vpn_gateway.uuidv5,
       SPOKE_ROUTER_NAME            = v1.hub_vpn_gateway.hub_router.name,
-    } : format("%s=%s", k2, v2) if v2 != null]))) => v1
+    } : format("%s=%s", k2, v2) if v2 != null]))) => v1 if v1.spoke_vpn_gateway.uuidv5 != null
   }
 
   spoke_vpn_tunnels = { for k1, v1 in local.kv_spoke_vpn_tunnels : k1 => merge(v1, {
@@ -858,7 +999,6 @@ resource "null_resource" "hub_vpn_tunnels" {
     interfaces               = md5(jsonencode(each.value.spoke_vpn_gateway.interfaces))
     hub_router_uuidv5        = each.value.hub_vpn_gateway.hub_router.uuidv5
     spoke_vpn_gateway_uuidv5 = each.value.spoke_vpn_gateway.uuidv5
-
   }
 }
 
@@ -932,7 +1072,8 @@ resource "google_compute_vpn_tunnel" "hub_vpn_tunnels" {
 }
 
 resource "null_resource" "spoke_vpn_tunnels" {
-  for_each = { for k1, v1 in local.spoke_vpn_tunnels : k1 => v1 if v1.spoke_vpn_gateway.pre_existing == false }
+  # for_each = { for k1, v1 in local.spoke_vpn_tunnels : k1 => v1 if v1.spoke_vpn_gateway.pre_existing == false }
+  for_each = local.spoke_vpn_tunnels
   triggers = {
     spoke_router_uuidv5 = each.value.spoke_vpn_gateway.spoke_router.uuidv5
   }
@@ -941,7 +1082,8 @@ resource "null_resource" "spoke_vpn_tunnels" {
 resource "google_compute_vpn_tunnel" "spoke_vpn_tunnels" {
   provider = google-beta
 
-  for_each = { for k1, v1 in local.spoke_vpn_tunnels : k1 => v1 if v1.spoke_vpn_gateway.pre_existing == false }
+  # for_each = { for k1, v1 in local.spoke_vpn_tunnels : k1 => v1 if v1.spoke_vpn_gateway.pre_existing == false }
+  for_each = local.spoke_vpn_tunnels
 
   name = each.value.name
 
@@ -993,6 +1135,8 @@ resource "google_compute_vpn_tunnel" "spoke_vpn_tunnels" {
 
 # # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_router_interface
 resource "google_compute_router_interface" "hub_router_interfaces" {
+  provider = google-beta
+
   for_each = local.hub_vpn_tunnels
   project  = each.value.hub_vpn_gateway.project_id
   region   = each.value.region
@@ -1010,9 +1154,13 @@ resource "google_compute_router_interface" "hub_router_interfaces" {
 }
 
 resource "google_compute_router_interface" "spoke_router_interfaces" {
-  for_each = { for k1, v1 in local.spoke_vpn_tunnels : k1 => v1 if v1.spoke_vpn_gateway.pre_existing == false }
-  project  = each.value.spoke_vpn_gateway.project_id
-  region   = each.value.spoke_vpn_gateway.region
+  provider = google-beta
+
+  # for_each = { for k1, v1 in local.spoke_vpn_tunnels : k1 => v1 if v1.spoke_vpn_gateway.pre_existing == false }
+  for_each = local.spoke_vpn_tunnels
+
+  project = each.value.spoke_vpn_gateway.project_id
+  region  = each.value.spoke_vpn_gateway.region
 
   name       = each.value.name
   router     = each.value.spoke_vpn_gateway.spoke_router.name
@@ -1083,7 +1231,8 @@ resource "google_compute_router_peer" "hub_bgp_peers" {
 resource "google_compute_router_peer" "spoke_bgp_peers" {
   provider = google-beta
 
-  for_each = { for k1, v1 in local.spoke_vpn_tunnels : k1 => v1 if v1.spoke_vpn_gateway.pre_existing == false }
+  # for_each = { for k1, v1 in local.spoke_vpn_tunnels : k1 => v1 if v1.spoke_vpn_gateway.pre_existing == false }
+  for_each = local.spoke_vpn_tunnels
 
   project = each.value.spoke_vpn_gateway.project_id
   region  = each.value.spoke_vpn_gateway.region

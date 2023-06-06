@@ -172,26 +172,6 @@
               "widget": "Card",
               "deleteOnEmpty": true,
               "properties": {
-                "name": {
-                  "title": "Name",
-                  "type": "string",
-                  "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
-                  "view": {
-                    "sizeXs": 4
-                  },
-                  "deleteOnEmpty": true,
-                  "description": "This field is used to specify an explict name to be used"
-                },
-                "unique_id": {
-                  "title": "Unique ID (Hub Router)",
-                  "type": "string",
-                  "pattern": "^[a-z][a-z0-9-_]{0,62}$",
-                  "view": {
-                    "sizeXs": 4
-                  },
-                  "deleteOnEmpty": true,
-                  "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
-                },
                 "pre_existing": {
                   "type": "boolean",
                   "view": {
@@ -227,6 +207,26 @@
                     "title": "Hub Router (Manged Externally)",
                     "description": "If the `Hub Router` is manged outside of this Terraform Module",
                     "properties": {
+                      "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                        "view": {
+                          "sizeXs": 4
+                        },
+                        "deleteOnEmpty": true,
+                        "description": "This field is used to specify an explict name to be used"
+                      },
+                      "unique_id": {
+                        "title": "Unique ID (Hub Router)",
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                        "view": {
+                          "sizeXs": 4
+                        },
+                        "deleteOnEmpty": true,
+                        "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                      },
                       "bgp": {
                         "title": "BGP",
                         "type": "object",
@@ -293,6 +293,26 @@
                     "title": "Hub Router (Manged /w Terraform)",
                     "description": "If the `Hub Router` is manged within this Terraform Module",
                     "properties": {
+                      "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                        "view": {
+                          "sizeXs": 4
+                        },
+                        "deleteOnEmpty": true,
+                        "description": "This field is used to specify an explict name to be used"
+                      },
+                      "unique_id": {
+                        "title": "Unique ID (Hub Router)",
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                        "view": {
+                          "sizeXs": 4
+                        },
+                        "deleteOnEmpty": true,
+                        "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                      },
                       "bgp": {
                         "title": "BGP",
                         "type": "object",
@@ -441,26 +461,6 @@
               "widget": "Card",
               "deleteOnEmpty": true,
               "properties": {
-                "name": {
-                  "title": "Name",
-                  "type": "string",
-                  "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
-                  "view": {
-                    "sizeXs": 4
-                  },
-                  "deleteOnEmpty": true,
-                  "description": "This field is used to specify an explict name to be used"
-                },
-                "unique_id": {
-                  "title": "Unique ID (Hub VPN Gateway)",
-                  "type": "string",
-                  "pattern": "^[a-z][a-z0-9-_]{0,62}$",
-                  "view": {
-                    "sizeXs": 4
-                  },
-                  "deleteOnEmpty": true,
-                  "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
-                },
                 "pre_existing": {
                   "type": "boolean",
                   "view": {
@@ -496,6 +496,26 @@
                     "title": "Hub VPN Gateway (Manged Externally)",
                     "description": "If the `Hub VPN Gateway` is manged outside of this Terraform Module",
                     "properties": {
+                      "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                        "view": {
+                          "sizeXs": 4
+                        },
+                        "deleteOnEmpty": true,
+                        "description": "This field is used to specify an explict name to be used"
+                      },
+                      "unique_id": {
+                        "title": "Unique ID (Hub VPN Gateway)",
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                        "view": {
+                          "sizeXs": 4
+                        },
+                        "deleteOnEmpty": true,
+                        "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                      },
                       "stack_type": {
                         "type": "string",
                         "deleteOnEmpty": true,
@@ -522,6 +542,26 @@
                     "title": "Hub VPN Gateway (Manged /w Terraform)",
                     "description": "If the `Hub VPN Gateway` is manged within this Terraform Module",
                     "properties": {
+                      "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                        "view": {
+                          "sizeXs": 4
+                        },
+                        "deleteOnEmpty": true,
+                        "description": "This field is used to specify an explict name to be used"
+                      },
+                      "unique_id": {
+                        "title": "Unique ID (Hub VPN Gateway)",
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                        "view": {
+                          "sizeXs": 4
+                        },
+                        "deleteOnEmpty": true,
+                        "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                      },
                       "stack_type": {
                         "type": "string",
                         "widget": "Select",
@@ -569,6 +609,10 @@
                         "title": "Google Cloud"
                       },
                       {
+                        "const": "GCP_RESTRICTED",
+                        "title": "Google Cloud (Restricted IAM)"
+                      },
+                      {
                         "const": "EXTERNAL",
                         "title": "On-Prem or Non-Google Cloud"
                       }
@@ -581,6 +625,7 @@
                 "allOf": [
                   {
                     "title": "Google Cloud",
+                    "description": "Used to connect ha cloud vpn to peer vpn gateways running within google cloud that are managed by this terraform module.",
                     "if": {
                       "properties": {
                         "spoke_vpn_gateway_type": {
@@ -593,32 +638,11 @@
                       ]
                     },
                     "then": {
-                      "title": "Google Cloud",
                       "properties": {
                         "spoke_vpn_gateway": {
                           "type": "object",
                           "widget": "Card",
                           "properties": {
-                            "name": {
-                              "title": "Name",
-                              "type": "string",
-                              "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
-                              "view": {
-                                "sizeXs": 4
-                              },
-                              "deleteOnEmpty": true,
-                              "description": "This field is used to specify an explict name to be used"
-                            },
-                            "unique_id": {
-                              "title": "Unique ID",
-                              "type": "string",
-                              "pattern": "^[a-z][a-z0-9-_]{0,62}$",
-                              "view": {
-                                "sizeXs": 4
-                              },
-                              "deleteOnEmpty": true,
-                              "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
-                            },
                             "pre_existing": {
                               "type": "boolean",
                               "view": {
@@ -627,81 +651,6 @@
                               "deleteOnEmpty": true,
                               "title": "Pre-Existing",
                               "description": "If true, this resource should be considered managed external to this module and should not be created and/or updated."
-                            },
-                            "project_id": {
-                              "title": "Project ID",
-                              "type": "string",
-                              "pattern": "^[a-z][a-z0-9-]{4,28}[a-z0-9]$",
-                              "view": {
-                                "sizeXs": 6
-                              },
-                              "deleteOnEmpty": true,
-                              "description": "If specified this 'Project ID' value will override the default value specified in the Terraform module",
-                              "examples": [
-                                "phrasal-bank-387121",
-                                "gold-setup-387121"
-                              ]
-                            },
-                            "network": {
-                              "title": "Network",
-                              "type": "string",
-                              "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
-                              "view": {
-                                "sizeXs": 6
-                              },
-                              "deleteOnEmpty": true,
-                              "description": "The name of the vpc network to be connected with using Cloud VPN.",
-                              "examples": [
-                                "prod-network"
-                              ]
-                            },
-                            "tunnel_count": {
-                              "title": "Tunnel Count",
-                              "type": "number",
-                              "widget": "Select",
-                              "view": {
-                                "sizeXs": 8
-                              },
-                              "description": "Number of tunnels that should be deployed",
-                              "minimum": 0,
-                              "maximum": 2,
-                              "default": 2,
-                              "oneOf": [
-                                {
-                                  "title": "Zero Tunnels",
-                                  "description": "Useful for troubleshooting VPN Gateways without the need for tunnel creation",
-                                  "const": 0
-                                },
-                                {
-                                  "title": "Single VPN tunnel",
-                                  "description": "A single tunnel won't provide high availability. You can add more tunnels later when needed.",
-                                  "const": 1
-                                },
-                                {
-                                  "title": "Dual VPN tunnels",
-                                  "description": "Recommended for high availability - 99.99% SLA",
-                                  "const": 2
-                                }
-                              ]
-                            },
-                            "ike_version": {
-                              "type": "number",
-                              "deleteOnEmpty": true,
-                              "view": {
-                                "sizeXs": 4
-                              },
-                              "title": "IKE Version",
-                              "description": " IKE protocol version to use when establishing the VPN tunnel with peer VPN gateway",
-                              "widget": "Select",
-                              "default": 2,
-                              "oneOf": [
-                                {
-                                  "const": 2
-                                },
-                                {
-                                  "const": 1
-                                }
-                              ]
                             }
                           },
                           "propertyNames": {
@@ -731,6 +680,103 @@
                               "then": {
                                 "title": "Spoke VPN Gateway (Manged Externally)",
                                 "description": "If the `Spoke VPN Gateway` is manged outside of this Terraform Module",
+                                "properties": {
+                                  "name": {
+                                    "title": "Name",
+                                    "type": "string",
+                                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                                    "view": {
+                                      "sizeXs": 4
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "description": "This field is used to specify an explict name to be used"
+                                  },
+                                  "unique_id": {
+                                    "title": "Unique ID",
+                                    "type": "string",
+                                    "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                                    "view": {
+                                      "sizeXs": 4
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                                  },
+                                  "project_id": {
+                                    "title": "Project ID",
+                                    "type": "string",
+                                    "pattern": "^[a-z][a-z0-9-]{4,28}[a-z0-9]$",
+                                    "view": {
+                                      "sizeXs": 6
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "description": "If specified this 'Project ID' value will override the default value specified in the Terraform module",
+                                    "examples": [
+                                      "phrasal-bank-387121",
+                                      "gold-setup-387121"
+                                    ]
+                                  },
+                                  "network": {
+                                    "title": "Network",
+                                    "type": "string",
+                                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                                    "view": {
+                                      "sizeXs": 6
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "description": "The name of the vpc network to be connected with using Cloud VPN.",
+                                    "examples": [
+                                      "prod-network"
+                                    ]
+                                  },
+                                  "tunnel_count": {
+                                    "title": "Tunnel Count",
+                                    "type": "number",
+                                    "widget": "Select",
+                                    "view": {
+                                      "sizeXs": 8
+                                    },
+                                    "description": "Number of tunnels that should be deployed",
+                                    "minimum": 0,
+                                    "maximum": 2,
+                                    "default": 2,
+                                    "oneOf": [
+                                      {
+                                        "title": "Zero Tunnels",
+                                        "description": "Useful for troubleshooting VPN Gateways without the need for tunnel creation",
+                                        "const": 0
+                                      },
+                                      {
+                                        "title": "Single VPN tunnel",
+                                        "description": "A single tunnel won't provide high availability. You can add more tunnels later when needed.",
+                                        "const": 1
+                                      },
+                                      {
+                                        "title": "Dual VPN tunnels",
+                                        "description": "Recommended for high availability - 99.99% SLA",
+                                        "const": 2
+                                      }
+                                    ]
+                                  },
+                                  "ike_version": {
+                                    "type": "number",
+                                    "deleteOnEmpty": true,
+                                    "view": {
+                                      "sizeXs": 4
+                                    },
+                                    "title": "IKE Version",
+                                    "description": " IKE protocol version to use when establishing the VPN tunnel with peer VPN gateway",
+                                    "widget": "Select",
+                                    "default": 2,
+                                    "oneOf": [
+                                      {
+                                        "const": 2
+                                      },
+                                      {
+                                        "const": 1
+                                      }
+                                    ]
+                                  }
+                                },
                                 "required": [
                                   "name"
                                 ]
@@ -738,6 +784,103 @@
                               "else": {
                                 "title": "Spoke VPN Gateway (Manged /w Terraform)",
                                 "description": "If the `Spoke VPN Gateway` is manged within this Terraform Module",
+                                "properties": {
+                                  "name": {
+                                    "title": "Name",
+                                    "type": "string",
+                                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                                    "view": {
+                                      "sizeXs": 4
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "description": "This field is used to specify an explict name to be used"
+                                  },
+                                  "unique_id": {
+                                    "title": "Unique ID",
+                                    "type": "string",
+                                    "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                                    "view": {
+                                      "sizeXs": 4
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                                  },
+                                  "project_id": {
+                                    "title": "Project ID",
+                                    "type": "string",
+                                    "pattern": "^[a-z][a-z0-9-]{4,28}[a-z0-9]$",
+                                    "view": {
+                                      "sizeXs": 6
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "description": "If specified this 'Project ID' value will override the default value specified in the Terraform module",
+                                    "examples": [
+                                      "phrasal-bank-387121",
+                                      "gold-setup-387121"
+                                    ]
+                                  },
+                                  "network": {
+                                    "title": "Network",
+                                    "type": "string",
+                                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                                    "view": {
+                                      "sizeXs": 6
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "description": "The name of the vpc network to be connected with using Cloud VPN.",
+                                    "examples": [
+                                      "prod-network"
+                                    ]
+                                  },
+                                  "tunnel_count": {
+                                    "title": "Tunnel Count",
+                                    "type": "number",
+                                    "widget": "Select",
+                                    "view": {
+                                      "sizeXs": 8
+                                    },
+                                    "description": "Number of tunnels that should be deployed",
+                                    "minimum": 0,
+                                    "maximum": 2,
+                                    "default": 2,
+                                    "oneOf": [
+                                      {
+                                        "title": "Zero Tunnels",
+                                        "description": "Useful for troubleshooting VPN Gateways without the need for tunnel creation",
+                                        "const": 0
+                                      },
+                                      {
+                                        "title": "Single VPN tunnel",
+                                        "description": "A single tunnel won't provide high availability. You can add more tunnels later when needed.",
+                                        "const": 1
+                                      },
+                                      {
+                                        "title": "Dual VPN tunnels",
+                                        "description": "Recommended for high availability - 99.99% SLA",
+                                        "const": 2
+                                      }
+                                    ]
+                                  },
+                                  "ike_version": {
+                                    "type": "number",
+                                    "deleteOnEmpty": true,
+                                    "view": {
+                                      "sizeXs": 4
+                                    },
+                                    "title": "IKE Version",
+                                    "description": " IKE protocol version to use when establishing the VPN tunnel with peer VPN gateway",
+                                    "widget": "Select",
+                                    "default": 2,
+                                    "oneOf": [
+                                      {
+                                        "const": 2
+                                      },
+                                      {
+                                        "const": 1
+                                      }
+                                    ]
+                                  }
+                                },
                                 "required": [
                                   "network"
                                 ]
@@ -750,26 +893,6 @@
                           "widget": "Card",
                           "deleteOnEmpty": true,
                           "properties": {
-                            "name": {
-                              "title": "Name",
-                              "type": "string",
-                              "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
-                              "view": {
-                                "sizeXs": 4
-                              },
-                              "deleteOnEmpty": true,
-                              "description": "This field is used to specify an explict name to be used"
-                            },
-                            "unique_id": {
-                              "title": "Unique ID (Spoke Router)",
-                              "type": "string",
-                              "pattern": "^[a-z][a-z0-9-_]{0,62}$",
-                              "view": {
-                                "sizeXs": 4
-                              },
-                              "deleteOnEmpty": true,
-                              "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
-                            },
                             "pre_existing": {
                               "type": "boolean",
                               "view": {
@@ -790,6 +913,7 @@
                           },
                           "allOf": [
                             {
+                              "title": "Spoke Router (Manged Externally)",
                               "if": {
                                 "properties": {
                                   "pre_existing": {
@@ -805,6 +929,26 @@
                                 "title": "Spoke Router (Manged Externally)",
                                 "description": "If the `Spoke Router` is manged outside of this Terraform Module",
                                 "properties": {
+                                  "name": {
+                                    "title": "Name",
+                                    "type": "string",
+                                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                                    "view": {
+                                      "sizeXs": 4
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "description": "This field is used to specify an explict name to be used"
+                                  },
+                                  "unique_id": {
+                                    "title": "Unique ID",
+                                    "type": "string",
+                                    "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                                    "view": {
+                                      "sizeXs": 4
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                                  },
                                   "bgp": {
                                     "title": "BGP",
                                     "type": "object",
@@ -1607,6 +1751,7 @@
                                   }
                                 },
                                 "required": [
+                                  "bgp",
                                   "name"
                                 ]
                               },
@@ -1614,6 +1759,26 @@
                                 "title": "Spoke Router (Manged /w Terraform)",
                                 "description": "If the `Spoke Router` is manged within this Terraform Module",
                                 "properties": {
+                                  "name": {
+                                    "title": "Name",
+                                    "type": "string",
+                                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                                    "view": {
+                                      "sizeXs": 4
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "description": "This field is used to specify an explict name to be used"
+                                  },
+                                  "unique_id": {
+                                    "title": "Unique ID",
+                                    "type": "string",
+                                    "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                                    "view": {
+                                      "sizeXs": 4
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                                  },
                                   "bgp": {
                                     "title": "BGP",
                                     "type": "object",
@@ -2432,6 +2597,822 @@
                           ]
                         }
                       },
+                      "required": [
+                        "spoke_vpn_gateway"
+                      ],
+                      "propertyNames": {
+                        "enum": [
+                          "spoke_vpn_gateway_type",
+                          "spoke_vpn_gateway",
+                          "spoke_router"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "title": "Google Cloud (Restricted IAM)",
+                    "description": "Used to connect ha cloud vpn to peer vpn gateways running within google cloud that are not managed by this terraform module.",
+                    "if": {
+                      "properties": {
+                        "spoke_vpn_gateway_type": {
+                          "type": "string",
+                          "const": "GCP_RESTRICTED"
+                        }
+                      },
+                      "required": [
+                        "spoke_vpn_gateway_type"
+                      ]
+                    },
+                    "then": {
+                      "properties": {
+                        "spoke_vpn_gateway": {
+                          "title": "Spoke VPN Gateway (Manged Externally)",
+                          "type": "object",
+                          "widget": "Card",
+                          "properties": {
+                            "name": {
+                              "view": {
+                                "sizeXs": 6
+                              },
+                              "title": "Name",
+                              "type": "string",
+                              "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                              "deleteOnEmpty": true,
+                              "description": "This field is used to specify an explict name to be used"
+                            },
+                            "project_id": {
+                              "title": "Project ID",
+                              "type": "string",
+                              "pattern": "^[a-z][a-z0-9-]{4,28}[a-z0-9]$",
+                              "view": {
+                                "sizeXs": 6
+                              },
+                              "deleteOnEmpty": true,
+                              "description": "If specified this 'Project ID' value will override the default value specified in the Terraform module",
+                              "examples": [
+                                "phrasal-bank-387121",
+                                "gold-setup-387121"
+                              ]
+                            },
+                            "tunnel_count": {
+                              "title": "Tunnel Count",
+                              "type": "number",
+                              "widget": "Select",
+                              "view": {
+                                "sizeXs": 8
+                              },
+                              "description": "Number of tunnels that should be deployed",
+                              "minimum": 0,
+                              "maximum": 2,
+                              "default": 2,
+                              "oneOf": [
+                                {
+                                  "title": "Zero Tunnels",
+                                  "description": "Useful for troubleshooting VPN Gateways without the need for tunnel creation",
+                                  "const": 0
+                                },
+                                {
+                                  "title": "Single VPN tunnel",
+                                  "description": "A single tunnel won't provide high availability. You can add more tunnels later when needed.",
+                                  "const": 1
+                                },
+                                {
+                                  "title": "Dual VPN tunnels",
+                                  "description": "Recommended for high availability - 99.99% SLA",
+                                  "const": 2
+                                }
+                              ]
+                            },
+                            "ike_version": {
+                              "type": "number",
+                              "deleteOnEmpty": true,
+                              "view": {
+                                "sizeXs": 4
+                              },
+                              "title": "IKE Version",
+                              "description": " IKE protocol version to use when establishing the VPN tunnel with peer VPN gateway",
+                              "widget": "Select",
+                              "default": 2,
+                              "oneOf": [
+                                {
+                                  "const": 2
+                                },
+                                {
+                                  "const": 1
+                                }
+                              ]
+                            }
+                          },
+                          "propertyNames": {
+                            "enum": [
+                              "name",
+                              "network",
+                              "project_id",
+                              "tunnel_count",
+                              "ike_version"
+                            ]
+                          },
+                          "required": [
+                            "name",
+                            "project_id"
+                          ]
+                        },
+                        "spoke_router": {
+                          "title": "Spoke Router (Manged Externally)",
+                          "type": "object",
+                          "widget": "Card",
+                          "deleteOnEmpty": true,
+                          "properties": {
+                            "bgp": {
+                              "title": "BGP",
+                              "type": "object",
+                              "deleteOnEmpty": true,
+                              "properties": {
+                                "asn": {
+                                  "view": {
+                                    "sizeXs": 12
+                                  },
+                                  "title": "16-bit or 32-bit Autonomous System Numbers",
+                                  "type": "number",
+                                  "minimum": 1,
+                                  "maximum": 9999999999
+                                },
+                                "advanced_tunnel_configuration": {
+                                  "title": "Advanced Tunnel Configurations",
+                                  "description": "Any values specified here will be applied to tunnels that are created. If more tunnels are created than addresses specified here they will be randomly assigned",
+                                  "type": "array",
+                                  "widget": "GenericList",
+                                  "view": {
+                                    "btnSize": "medium"
+                                  },
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "advertised_route_priority": {
+                                        "type": "number",
+                                        "deleteOnEmpty": true,
+                                        "minimum": 0,
+                                        "maximum": 65535,
+                                        "view": {
+                                          "sizeXs": 4
+                                        },
+                                        "title": "Advertised Route Prioirty",
+                                        "description": "The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win."
+                                      },
+                                      "bgp_advertisement_disabled": {
+                                        "type": "boolean",
+                                        "view": {
+                                          "sizeXs": 8
+                                        },
+                                        "title": "Disable BGP Session",
+                                        "description": " If disabled, any active session with the peer is terminated and all associated routing information is removed."
+                                      },
+                                      "hub_ipv4_address": {
+                                        "type": "string",
+                                        "view": {
+                                          "sizeXs": 6
+                                        },
+                                        "deleteOnEmpty": true,
+                                        "title": "Hub IPv4 BGP Peer Address",
+                                        "description": "IPv4 address of the BGP interface, if not specified this IPv4 address will automatically assigned",
+                                        "pattern": "^169.254((\\.([0-9]|[1-9][0-9]{0,1}|1[0-9]{1,2}|2[0-4][0-9]|25[0-4])){2})$"
+                                      },
+                                      "spoke_ipv4_address": {
+                                        "type": "string",
+                                        "view": {
+                                          "sizeXs": 6
+                                        },
+                                        "deleteOnEmpty": true,
+                                        "title": "Spoke IPv4 BGP Peer Address",
+                                        "description": "IPv4 address of the BGP interface, if the `hub_ipv4_address` is not specified this IPv4 address will automatically assigned",
+                                        "pattern": "^169.254((\\.([0-9]|[1-9][0-9]{0,1}|1[0-9]{1,2}|2[0-4][0-9]|25[0-4])){2})$"
+                                      },
+                                      "ipv6_enabled": {
+                                        "type": "boolean",
+                                        "deleteOnEmpty": true,
+                                        "title": "Enable IPv6 Advertisement",
+                                        "description": "If IPv6 is enabled, the peer connection can be established with IPv6 route exchange. IPv6 addresses are dynamically generated"
+                                      },
+                                      "pre_shared_secret_method": {
+                                        "title": "Pre-Shared Secret Method",
+                                        "type": "string",
+                                        "widget": "Select",
+                                        "default": "DYNAMIC",
+                                        "oneOf": [
+                                          {
+                                            "const": "DYNAMIC",
+                                            "title": "Dynamic Pre-Shared Secret",
+                                            "description": "When dynamic pre-shared secret is selected, the terraform module will 'randomly' generate a pre-shared key to use"
+                                          },
+                                          {
+                                            "const": "STATIC",
+                                            "title": "Static Pre-Shared Secret",
+                                            "description": "When static pre-shared secret is selected, the terraform module will use the string included in this field as the secret for phase 1 encryption\\>All arguments including the following potentially sensitive values will be stored in the raw state as plain text: shared_secret"
+                                          },
+                                          {
+                                            "const": "TERRAFORM_VARIABLE",
+                                            "title": "Terraform Variable",
+                                            "description": "When terraform variable pre-shared secret is selected, the terraform module will use the terraform variable name included in this field as the path to the secret for phase 1 encryption"
+                                          },
+                                          {
+                                            "const": "SECRET_MANAGER",
+                                            "title": "GCP Secret Manager",
+                                            "description": "When secret manager is selected, the terraform module will use the string referenced in Secret Manager for phase 1 encryption"
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    "propertyNames": {
+                                      "enum": [
+                                        "advertised_route_priority",
+                                        "bgp_advertisement_disabled",
+                                        "hub_ipv4_address",
+                                        "spoke_ipv4_address",
+                                        "ipv6_enabled",
+                                        "pre_shared_secret_method",
+                                        "static_pre_shared_secret",
+                                        "terraform_variable_pre_shared_secret",
+                                        "secret_manager_pre_shared_secret"
+                                      ]
+                                    },
+                                    "allOf": [
+                                      {
+                                        "title": "Dynamic Pre-Shared Secret",
+                                        "description": "When `dynamic` pre-shared secret is selected and [`static`,`terraform_variable`,`secret_manager`] pre-shared should be empty",
+                                        "if": {
+                                          "properties": {
+                                            "pre_shared_secret_method": {
+                                              "type": "string",
+                                              "const": "DYNAMIC"
+                                            }
+                                          },
+                                          "oneOf": [
+                                            {
+                                              "properties": {
+                                                "static_pre_shared_secret": {
+                                                  "type": "string",
+                                                  "pattern": "^(.*)$"
+                                                }
+                                              },
+                                              "required": [
+                                                "static_pre_shared_secret"
+                                              ]
+                                            },
+                                            {
+                                              "properties": {
+                                                "terraform_variable_pre_shared_secret": {
+                                                  "type": "string",
+                                                  "pattern": "^(.*)$"
+                                                }
+                                              },
+                                              "required": [
+                                                "terraform_variable_pre_shared_secret"
+                                              ]
+                                            },
+                                            {
+                                              "properties": {
+                                                "secret_manager_pre_shared_secret": {
+                                                  "type": "string",
+                                                  "pattern": "^(.*)$"
+                                                }
+                                              },
+                                              "required": [
+                                                "secret_manager_pre_shared_secret"
+                                              ]
+                                            }
+                                          ],
+                                          "required": [
+                                            "pre_shared_secret_method"
+                                          ]
+                                        },
+                                        "then": {
+                                          "properties": {
+                                            "static_pre_shared_secret": {
+                                              "title": "Static Pre-Shared Secret (EMPTY)",
+                                              "description": "This field should be set to empty remove `static_pre_shared_secret` from JSON",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "pattern": "^(?!.*)",
+                                              "maxLength": 0
+                                            },
+                                            "terraform_variable_pre_shared_secret": {
+                                              "title": "Terraform Variable Pre-Shared Secret (EMPTY)",
+                                              "description": "This field should be set to empty remove `terraform_variable_pre_shared_secret` from JSON",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "pattern": "^(?!.*)",
+                                              "maxLength": 0
+                                            },
+                                            "secret_manager_pre_shared_secret": {
+                                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                              "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "pattern": "^(?!.*)",
+                                              "maxLength": 0
+                                            }
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "title": "Static Pre-Shared Secret",
+                                        "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are empty",
+                                        "if": {
+                                          "properties": {
+                                            "pre_shared_secret_method": {
+                                              "type": "string",
+                                              "const": "STATIC"
+                                            }
+                                          },
+                                          "required": [
+                                            "pre_shared_secret_method"
+                                          ]
+                                        },
+                                        "then": {
+                                          "properties": {
+                                            "static_pre_shared_secret": {
+                                              "title": "Static Pre-Shared Secret",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "minLength": 1
+                                            }
+                                          },
+                                          "required": [
+                                            "static_pre_shared_secret"
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        "title": "Static Pre-Shared Secret (NON-EMPTY Others)",
+                                        "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are not empty",
+                                        "if": {
+                                          "properties": {
+                                            "pre_shared_secret_method": {
+                                              "type": "string",
+                                              "const": "STATIC"
+                                            }
+                                          },
+                                          "oneOf": [
+                                            {
+                                              "properties": {
+                                                "terraform_variable_pre_shared_secret": {
+                                                  "type": "string",
+                                                  "pattern": "^(.*)$"
+                                                }
+                                              },
+                                              "required": [
+                                                "terraform_variable_pre_shared_secret"
+                                              ]
+                                            },
+                                            {
+                                              "properties": {
+                                                "secret_manager_pre_shared_secret": {
+                                                  "type": "string",
+                                                  "pattern": "^(.*)$"
+                                                }
+                                              },
+                                              "required": [
+                                                "secret_manager_pre_shared_secret"
+                                              ]
+                                            }
+                                          ],
+                                          "required": [
+                                            "pre_shared_secret_method"
+                                          ]
+                                        },
+                                        "then": {
+                                          "properties": {
+                                            "static_pre_shared_secret": {
+                                              "title": "Static Pre-Shared Secret",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "minLength": 1
+                                            },
+                                            "terraform_variable_pre_shared_secret": {
+                                              "title": "Terraform Variable Pre-Shared Secret (EMPTY)",
+                                              "description": "This field should be set to empty remove `terraform_variable_pre_shared_secret` from JSON",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "pattern": "^(?!.*)",
+                                              "maxLength": 0
+                                            },
+                                            "secret_manager_pre_shared_secret": {
+                                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                              "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "pattern": "^(?!.*)",
+                                              "maxLength": 0
+                                            }
+                                          },
+                                          "required": [
+                                            "static_pre_shared_secret"
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        "title": "Terraform Variable Pre-Shared Secret",
+                                        "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are empty",
+                                        "if": {
+                                          "properties": {
+                                            "pre_shared_secret_method": {
+                                              "type": "string",
+                                              "const": "TERRAFORM_VARIABLE"
+                                            }
+                                          },
+                                          "required": [
+                                            "pre_shared_secret_method"
+                                          ]
+                                        },
+                                        "then": {
+                                          "properties": {
+                                            "terraform_variable_pre_shared_secret": {
+                                              "title": "Terraform Variable Pre-Shared Secret",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "minLength": 1
+                                            }
+                                          },
+                                          "required": [
+                                            "terraform_variable_pre_shared_secret"
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        "title": "Terraform Variable Pre-Shared Secret (NON-EMPTY Others)",
+                                        "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are not empty",
+                                        "if": {
+                                          "properties": {
+                                            "pre_shared_secret_method": {
+                                              "type": "string",
+                                              "const": "TERRAFORM_VARIABLE"
+                                            }
+                                          },
+                                          "oneOf": [
+                                            {
+                                              "properties": {
+                                                "static_pre_shared_secret": {
+                                                  "type": "string",
+                                                  "pattern": "^(.*)$"
+                                                }
+                                              },
+                                              "required": [
+                                                "static_pre_shared_secret"
+                                              ]
+                                            },
+                                            {
+                                              "properties": {
+                                                "secret_manager_pre_shared_secret": {
+                                                  "type": "string",
+                                                  "pattern": "^(.*)$"
+                                                }
+                                              },
+                                              "required": [
+                                                "secret_manager_pre_shared_secret"
+                                              ]
+                                            }
+                                          ],
+                                          "required": [
+                                            "pre_shared_secret_method"
+                                          ]
+                                        },
+                                        "then": {
+                                          "properties": {
+                                            "terraform_variable_pre_shared_secret": {
+                                              "title": "Terraform Variable Pre-Shared Secret",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "minLength": 1
+                                            },
+                                            "static_pre_shared_secret": {
+                                              "title": "Static Pre-Shared Secret (EMPTY)",
+                                              "description": "This field should be set to empty remove `static_pre_shared_secret` from JSON",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "pattern": "^(?!.*)",
+                                              "maxLength": 0
+                                            },
+                                            "secret_manager_pre_shared_secret": {
+                                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                                              "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "pattern": "^(?!.*)",
+                                              "maxLength": 0
+                                            }
+                                          },
+                                          "required": [
+                                            "terraform_variable_pre_shared_secret"
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        "title": "Secret Manager Pre-Shared Secret",
+                                        "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are empty",
+                                        "if": {
+                                          "properties": {
+                                            "pre_shared_secret_method": {
+                                              "type": "string",
+                                              "const": "SECRET_MANAGER"
+                                            }
+                                          },
+                                          "required": [
+                                            "pre_shared_secret_method"
+                                          ]
+                                        },
+                                        "then": {
+                                          "properties": {
+                                            "secret_manager_pre_shared_secret": {
+                                              "title": "Secret Manager Pre-Shared Secret",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "minLength": 1
+                                            }
+                                          },
+                                          "required": [
+                                            "secret_manager_pre_shared_secret"
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        "title": "Secret Manager Pre-Shared Secret (NON-EMPTY Others)",
+                                        "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are not empty",
+                                        "if": {
+                                          "properties": {
+                                            "pre_shared_secret_method": {
+                                              "type": "string",
+                                              "const": "SECRET_MANAGER"
+                                            }
+                                          },
+                                          "oneOf": [
+                                            {
+                                              "properties": {
+                                                "static_pre_shared_secret": {
+                                                  "type": "string",
+                                                  "pattern": "^(.*)$"
+                                                }
+                                              },
+                                              "required": [
+                                                "static_pre_shared_secret"
+                                              ]
+                                            },
+                                            {
+                                              "properties": {
+                                                "terraform_variable_pre_shared_secret": {
+                                                  "type": "string",
+                                                  "pattern": "^(.*)$"
+                                                }
+                                              },
+                                              "required": [
+                                                "terraform_variable_pre_shared_secret"
+                                              ]
+                                            }
+                                          ],
+                                          "required": [
+                                            "pre_shared_secret_method"
+                                          ]
+                                        },
+                                        "then": {
+                                          "properties": {
+                                            "secret_manager_pre_shared_secret": {
+                                              "title": "Secret Manager Pre-Shared Secret",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "minLength": 1
+                                            },
+                                            "static_pre_shared_secret": {
+                                              "title": "Static Pre-Shared Secret (EMPTY)",
+                                              "description": "This field should be set to empty remove `static_pre_shared_secret` from JSON",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "pattern": "^(?!.*)",
+                                              "maxLength": 0
+                                            },
+                                            "terraform_variable_pre_shared_secret": {
+                                              "title": "Terraform Variable Pre-Shared Secret (EMPTY)",
+                                              "description": "This field should be set to empty remove `terraform_variable_pre_shared_secret` from JSON",
+                                              "deleteOnEmpty": true,
+                                              "type": "string",
+                                              "pattern": "^(?!.*)",
+                                              "maxLength": 0
+                                            }
+                                          },
+                                          "required": [
+                                            "secret_manager_pre_shared_secret"
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "examples": [
+                                    {
+                                      "hub_ipv4_address": "169.254.0.1",
+                                      "spoke_ipv4_address": "169.254.0.2"
+                                    },
+                                    {
+                                      "disabled": true,
+                                      "hub_ipv4_address": "169.254.0.5",
+                                      "spoke_ipv4_address": "169.254.0.6"
+                                    },
+                                    {
+                                      "disabled": true,
+                                      "hub_ipv4_address": "169.254.0.5",
+                                      "spoke_ipv4_address": "169.254.0.6",
+                                      "ipv6_enabled": true
+                                    }
+                                  ]
+                                },
+                                "override_hub_subnet_advertisments": {
+                                  "title": "Override Hub Custom Subnet Advertisements",
+                                  "type": "boolean"
+                                }
+                              },
+                              "allOf": [
+                                {
+                                  "if": {
+                                    "properties": {
+                                      "override_hub_subnet_advertisments": {
+                                        "type": "boolean",
+                                        "const": true
+                                      }
+                                    },
+                                    "required": [
+                                      "override_hub_subnet_advertisments"
+                                    ]
+                                  },
+                                  "then": {
+                                    "properties": {
+                                      "hub_subnet_advertisements": {
+                                        "title": "Hub Subnet Advertisements",
+                                        "type": "string",
+                                        "deleteOnEmpty": true,
+                                        "widget": "Select",
+                                        "view": {
+                                          "sizeXs": 12
+                                        },
+                                        "oneOf": [
+                                          {
+                                            "const": "DEFAULT",
+                                            "title": "Advertise all subnets visible to the Cloud Router"
+                                          },
+                                          {
+                                            "const": "DEFAULT_CUSTOM",
+                                            "title": "Advertise all subnets visible to the Cloud Router & all Custom subnets specified"
+                                          },
+                                          {
+                                            "const": "CUSTOM",
+                                            "title": "Advertise all Custom subnets specified"
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    "if": {
+                                      "properties": {
+                                        "hub_subnet_advertisements": {
+                                          "oneOf": [
+                                            {
+                                              "type": "string",
+                                              "const": "DEFAULT_CUSTOM"
+                                            },
+                                            {
+                                              "type": "string",
+                                              "const": "CUSTOM"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "hub_subnet_advertisements"
+                                      ]
+                                    },
+                                    "then": {
+                                      "properties": {
+                                        "custom_hub_subnet_advertisements": {
+                                          "title": "Custom Hub Subnet Advertisements",
+                                          "type": "array",
+                                          "uniqueItems": true,
+                                          "deleteOnEmpty": true,
+                                          "widget": "GenericList",
+                                          "view": {
+                                            "sizeXs": 12,
+                                            "btnSize": "medium"
+                                          },
+                                          "items": {
+                                            "type": "string",
+                                            "oneOf": [
+                                              {
+                                                "title": "IPv4 Subnet Advertisements",
+                                                "pattern": "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\/[0-9]{1,2}$"
+                                              },
+                                              {
+                                                "title": "IPv6 Subnet Advertisements",
+                                                "pattern": "^([0-9a-fA-F]{0,4}:){0,7}[0-9a-fA-F]{0,4}\\/[0-9]{1,3}$"
+                                              }
+                                            ]
+                                          },
+                                          "examples": [
+                                            "192.168.0.0/16",
+                                            "172.16.0.0/12",
+                                            "10.0.0.0/8",
+                                            "2001:db8::/112"
+                                          ]
+                                        }
+                                      },
+                                      "propertyNames": {
+                                        "enum": [
+                                          "asn",
+                                          "advanced_tunnel_configuration",
+                                          "hub_subnet_advertisements",
+                                          "custom_hub_subnet_advertisements",
+                                          "override_hub_subnet_advertisments"
+                                        ]
+                                      }
+                                    },
+                                    "else": {
+                                      "properties": {
+                                        "custom_hub_subnet_advertisements": {
+                                          "title": "Custom Hub Subnet Advertisements (EMPTY)",
+                                          "type": "array",
+                                          "widget": "GenericList",
+                                          "notAddable": true,
+                                          "uniqueItems": true,
+                                          "deleteOnEmpty": true,
+                                          "items": {
+                                            "type": "string",
+                                            "deleteOnEmpty": true,
+                                            "maxLength": 0,
+                                            "pattern": "^(?!.*)"
+                                          },
+                                          "maxItems": 0
+                                        }
+                                      },
+                                      "propertyNames": {
+                                        "enum": [
+                                          "asn",
+                                          "advanced_tunnel_configuration",
+                                          "hub_subnet_advertisements",
+                                          "custom_hub_subnet_advertisements",
+                                          "override_hub_subnet_advertisments"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "else": {
+                                    "properties": {
+                                      "hub_subnet_advertisements": {
+                                        "title": "Hub Subnet Advertisements (EMPTY)",
+                                        "type": "string",
+                                        "deleteOnEmpty": true,
+                                        "widget": "Select",
+                                        "view": {
+                                          "sizeXs": 12
+                                        },
+                                        "oneOf": [
+                                          {
+                                            "const": "",
+                                            "description": "Select this option to remove subnet_advertisements from JSON",
+                                            "title": "Empty (Clear Field)"
+                                          }
+                                        ]
+                                      },
+                                      "custom_hub_subnet_advertisements": {
+                                        "title": "Custom Hub Subnet Advertisements (EMPTY)",
+                                        "type": "array",
+                                        "widget": "GenericList",
+                                        "notAddable": true,
+                                        "uniqueItems": true,
+                                        "deleteOnEmpty": true,
+                                        "items": {
+                                          "type": "string",
+                                          "deleteOnEmpty": true,
+                                          "maxLength": 0,
+                                          "pattern": "^(?!.*)"
+                                        },
+                                        "maxItems": 0
+                                      }
+                                    }
+                                  }
+                                }
+                              ],
+                              "required": [
+                                "asn"
+                              ]
+                            }
+                          },
+                          "propertyNames": {
+                            "enum": [
+                              "bgp"
+                            ]
+                          },
+                          "required": [
+                            "bgp"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "spoke_vpn_gateway",
+                        "spoke_router"
+                      ],
                       "propertyNames": {
                         "enum": [
                           "spoke_vpn_gateway_type",
@@ -2443,6 +3424,7 @@
                   },
                   {
                     "title": "On-Prem or Non-Google Cloud",
+                    "description": "Used to connect ha cloud vpn to peer vpn gateways that can be either an on-premises or hosted by another cloud provider.",
                     "if": {
                       "properties": {
                         "spoke_vpn_gateway_type": {
@@ -2455,32 +3437,11 @@
                       ]
                     },
                     "then": {
-                      "title": "On-Prem or Non-Google Cloud",
                       "properties": {
                         "spoke_vpn_gateway": {
                           "type": "object",
                           "widget": "Card",
                           "properties": {
-                            "name": {
-                              "title": "Name",
-                              "type": "string",
-                              "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
-                              "view": {
-                                "sizeXs": 4
-                              },
-                              "deleteOnEmpty": true,
-                              "description": "This field is used to specify an explict name to be used"
-                            },
-                            "unique_id": {
-                              "title": "Unique ID",
-                              "type": "string",
-                              "pattern": "^[a-z][a-z0-9-_]{0,62}$",
-                              "view": {
-                                "sizeXs": 4
-                              },
-                              "deleteOnEmpty": true,
-                              "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
-                            },
                             "pre_existing": {
                               "type": "boolean",
                               "view": {
@@ -2507,6 +3468,26 @@
                               "then": {
                                 "title": "Peer VPN Gateway (Managed Externally)",
                                 "properties": {
+                                  "name": {
+                                    "title": "Name",
+                                    "type": "string",
+                                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                                    "view": {
+                                      "sizeXs": 4
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "description": "This field is used to specify an explict name to be used"
+                                  },
+                                  "unique_id": {
+                                    "title": "Unique ID",
+                                    "type": "string",
+                                    "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                                    "view": {
+                                      "sizeXs": 4
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                                  },
                                   "redudancy_type": {
                                     "title": "Redudancy Type (EMPTY)",
                                     "description": "This field should not be set and is only included for UI generation",
@@ -2610,6 +3591,26 @@
                               "else": {
                                 "title": "Peer VPN Gateway (Managed /w Terraform)",
                                 "properties": {
+                                  "name": {
+                                    "title": "Name",
+                                    "type": "string",
+                                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                                    "view": {
+                                      "sizeXs": 4
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "description": "This field is used to specify an explict name to be used"
+                                  },
+                                  "unique_id": {
+                                    "title": "Unique ID",
+                                    "type": "string",
+                                    "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                                    "view": {
+                                      "sizeXs": 4
+                                    },
+                                    "deleteOnEmpty": true,
+                                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                                  },
                                   "redudancy_type": {
                                     "title": "Redudancy Type",
                                     "type": "string",
@@ -3502,6 +4503,9 @@
                               ]
                             }
                           },
+                          "required": [
+                            "bgp"
+                          ],
                           "propertyNames": {
                             "enum": [
                               "bgp"
@@ -3509,6 +4513,10 @@
                           }
                         }
                       },
+                      "required": [
+                        "spoke_vpn_gateway",
+                        "spoke_router"
+                      ],
                       "propertyNames": {
                         "enum": [
                           "spoke_vpn_gateway_type",
@@ -3595,26 +4603,6 @@
           "widget": "Card",
           "deleteOnEmpty": true,
           "properties": {
-            "name": {
-              "title": "Name",
-              "type": "string",
-              "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
-              "view": {
-                "sizeXs": 4
-              },
-              "deleteOnEmpty": true,
-              "description": "This field is used to specify an explict name to be used"
-            },
-            "unique_id": {
-              "title": "Unique ID (Hub Router)",
-              "type": "string",
-              "pattern": "^[a-z][a-z0-9-_]{0,62}$",
-              "view": {
-                "sizeXs": 4
-              },
-              "deleteOnEmpty": true,
-              "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
-            },
             "pre_existing": {
               "type": "boolean",
               "view": {
@@ -3650,6 +4638,26 @@
                 "title": "Hub Router (Manged Externally)",
                 "description": "If the `Hub Router` is manged outside of this Terraform Module",
                 "properties": {
+                  "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "This field is used to specify an explict name to be used"
+                  },
+                  "unique_id": {
+                    "title": "Unique ID (Hub Router)",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                  },
                   "bgp": {
                     "title": "BGP",
                     "type": "object",
@@ -3716,6 +4724,26 @@
                 "title": "Hub Router (Manged /w Terraform)",
                 "description": "If the `Hub Router` is manged within this Terraform Module",
                 "properties": {
+                  "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "This field is used to specify an explict name to be used"
+                  },
+                  "unique_id": {
+                    "title": "Unique ID (Hub Router)",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                  },
                   "bgp": {
                     "title": "BGP",
                     "type": "object",
@@ -3863,26 +4891,6 @@
           "widget": "Card",
           "deleteOnEmpty": true,
           "properties": {
-            "name": {
-              "title": "Name",
-              "type": "string",
-              "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
-              "view": {
-                "sizeXs": 4
-              },
-              "deleteOnEmpty": true,
-              "description": "This field is used to specify an explict name to be used"
-            },
-            "unique_id": {
-              "title": "Unique ID (Hub VPN Gateway)",
-              "type": "string",
-              "pattern": "^[a-z][a-z0-9-_]{0,62}$",
-              "view": {
-                "sizeXs": 4
-              },
-              "deleteOnEmpty": true,
-              "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
-            },
             "pre_existing": {
               "type": "boolean",
               "view": {
@@ -3918,6 +4926,26 @@
                 "title": "Hub VPN Gateway (Manged Externally)",
                 "description": "If the `Hub VPN Gateway` is manged outside of this Terraform Module",
                 "properties": {
+                  "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "This field is used to specify an explict name to be used"
+                  },
+                  "unique_id": {
+                    "title": "Unique ID (Hub VPN Gateway)",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                  },
                   "stack_type": {
                     "type": "string",
                     "deleteOnEmpty": true,
@@ -3944,6 +4972,26 @@
                 "title": "Hub VPN Gateway (Manged /w Terraform)",
                 "description": "If the `Hub VPN Gateway` is manged within this Terraform Module",
                 "properties": {
+                  "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "This field is used to specify an explict name to be used"
+                  },
+                  "unique_id": {
+                    "title": "Unique ID (Hub VPN Gateway)",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                  },
                   "stack_type": {
                     "type": "string",
                     "widget": "Select",
@@ -3969,31 +5017,702 @@
             }
           ]
         },
+        "spoke_router_gcp_restricted": {
+          "title": "Spoke Router (Manged Externally)",
+          "type": "object",
+          "widget": "Card",
+          "deleteOnEmpty": true,
+          "properties": {
+            "bgp": {
+              "title": "BGP",
+              "type": "object",
+              "deleteOnEmpty": true,
+              "properties": {
+                "asn": {
+                  "view": {
+                    "sizeXs": 12
+                  },
+                  "title": "16-bit or 32-bit Autonomous System Numbers",
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 9999999999
+                },
+                "advanced_tunnel_configuration": {
+                  "title": "Advanced Tunnel Configurations",
+                  "description": "Any values specified here will be applied to tunnels that are created. If more tunnels are created than addresses specified here they will be randomly assigned",
+                  "type": "array",
+                  "widget": "GenericList",
+                  "view": {
+                    "btnSize": "medium"
+                  },
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "advertised_route_priority": {
+                        "type": "number",
+                        "deleteOnEmpty": true,
+                        "minimum": 0,
+                        "maximum": 65535,
+                        "view": {
+                          "sizeXs": 4
+                        },
+                        "title": "Advertised Route Prioirty",
+                        "description": "The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win."
+                      },
+                      "bgp_advertisement_disabled": {
+                        "type": "boolean",
+                        "view": {
+                          "sizeXs": 8
+                        },
+                        "title": "Disable BGP Session",
+                        "description": " If disabled, any active session with the peer is terminated and all associated routing information is removed."
+                      },
+                      "hub_ipv4_address": {
+                        "type": "string",
+                        "view": {
+                          "sizeXs": 6
+                        },
+                        "deleteOnEmpty": true,
+                        "title": "Hub IPv4 BGP Peer Address",
+                        "description": "IPv4 address of the BGP interface, if not specified this IPv4 address will automatically assigned",
+                        "pattern": "^169.254((\\.([0-9]|[1-9][0-9]{0,1}|1[0-9]{1,2}|2[0-4][0-9]|25[0-4])){2})$"
+                      },
+                      "spoke_ipv4_address": {
+                        "type": "string",
+                        "view": {
+                          "sizeXs": 6
+                        },
+                        "deleteOnEmpty": true,
+                        "title": "Spoke IPv4 BGP Peer Address",
+                        "description": "IPv4 address of the BGP interface, if the `hub_ipv4_address` is not specified this IPv4 address will automatically assigned",
+                        "pattern": "^169.254((\\.([0-9]|[1-9][0-9]{0,1}|1[0-9]{1,2}|2[0-4][0-9]|25[0-4])){2})$"
+                      },
+                      "ipv6_enabled": {
+                        "type": "boolean",
+                        "deleteOnEmpty": true,
+                        "title": "Enable IPv6 Advertisement",
+                        "description": "If IPv6 is enabled, the peer connection can be established with IPv6 route exchange. IPv6 addresses are dynamically generated"
+                      },
+                      "pre_shared_secret_method": {
+                        "title": "Pre-Shared Secret Method",
+                        "type": "string",
+                        "widget": "Select",
+                        "default": "DYNAMIC",
+                        "oneOf": [
+                          {
+                            "const": "DYNAMIC",
+                            "title": "Dynamic Pre-Shared Secret",
+                            "description": "When dynamic pre-shared secret is selected, the terraform module will 'randomly' generate a pre-shared key to use"
+                          },
+                          {
+                            "const": "STATIC",
+                            "title": "Static Pre-Shared Secret",
+                            "description": "When static pre-shared secret is selected, the terraform module will use the string included in this field as the secret for phase 1 encryption\\>All arguments including the following potentially sensitive values will be stored in the raw state as plain text: shared_secret"
+                          },
+                          {
+                            "const": "TERRAFORM_VARIABLE",
+                            "title": "Terraform Variable",
+                            "description": "When terraform variable pre-shared secret is selected, the terraform module will use the terraform variable name included in this field as the path to the secret for phase 1 encryption"
+                          },
+                          {
+                            "const": "SECRET_MANAGER",
+                            "title": "GCP Secret Manager",
+                            "description": "When secret manager is selected, the terraform module will use the string referenced in Secret Manager for phase 1 encryption"
+                          }
+                        ]
+                      }
+                    },
+                    "propertyNames": {
+                      "enum": [
+                        "advertised_route_priority",
+                        "bgp_advertisement_disabled",
+                        "hub_ipv4_address",
+                        "spoke_ipv4_address",
+                        "ipv6_enabled",
+                        "pre_shared_secret_method",
+                        "static_pre_shared_secret",
+                        "terraform_variable_pre_shared_secret",
+                        "secret_manager_pre_shared_secret"
+                      ]
+                    },
+                    "allOf": [
+                      {
+                        "title": "Dynamic Pre-Shared Secret",
+                        "description": "When `dynamic` pre-shared secret is selected and [`static`,`terraform_variable`,`secret_manager`] pre-shared should be empty",
+                        "if": {
+                          "properties": {
+                            "pre_shared_secret_method": {
+                              "type": "string",
+                              "const": "DYNAMIC"
+                            }
+                          },
+                          "oneOf": [
+                            {
+                              "properties": {
+                                "static_pre_shared_secret": {
+                                  "type": "string",
+                                  "pattern": "^(.*)$"
+                                }
+                              },
+                              "required": [
+                                "static_pre_shared_secret"
+                              ]
+                            },
+                            {
+                              "properties": {
+                                "terraform_variable_pre_shared_secret": {
+                                  "type": "string",
+                                  "pattern": "^(.*)$"
+                                }
+                              },
+                              "required": [
+                                "terraform_variable_pre_shared_secret"
+                              ]
+                            },
+                            {
+                              "properties": {
+                                "secret_manager_pre_shared_secret": {
+                                  "type": "string",
+                                  "pattern": "^(.*)$"
+                                }
+                              },
+                              "required": [
+                                "secret_manager_pre_shared_secret"
+                              ]
+                            }
+                          ],
+                          "required": [
+                            "pre_shared_secret_method"
+                          ]
+                        },
+                        "then": {
+                          "properties": {
+                            "static_pre_shared_secret": {
+                              "title": "Static Pre-Shared Secret (EMPTY)",
+                              "description": "This field should be set to empty remove `static_pre_shared_secret` from JSON",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "pattern": "^(?!.*)",
+                              "maxLength": 0
+                            },
+                            "terraform_variable_pre_shared_secret": {
+                              "title": "Terraform Variable Pre-Shared Secret (EMPTY)",
+                              "description": "This field should be set to empty remove `terraform_variable_pre_shared_secret` from JSON",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "pattern": "^(?!.*)",
+                              "maxLength": 0
+                            },
+                            "secret_manager_pre_shared_secret": {
+                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                              "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "pattern": "^(?!.*)",
+                              "maxLength": 0
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "title": "Static Pre-Shared Secret",
+                        "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are empty",
+                        "if": {
+                          "properties": {
+                            "pre_shared_secret_method": {
+                              "type": "string",
+                              "const": "STATIC"
+                            }
+                          },
+                          "required": [
+                            "pre_shared_secret_method"
+                          ]
+                        },
+                        "then": {
+                          "properties": {
+                            "static_pre_shared_secret": {
+                              "title": "Static Pre-Shared Secret",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "static_pre_shared_secret"
+                          ]
+                        }
+                      },
+                      {
+                        "title": "Static Pre-Shared Secret (NON-EMPTY Others)",
+                        "description": "When `static` pre-shared secret is selected and [`terraform_variable`,`secret_manager`] pre-shared are not empty",
+                        "if": {
+                          "properties": {
+                            "pre_shared_secret_method": {
+                              "type": "string",
+                              "const": "STATIC"
+                            }
+                          },
+                          "oneOf": [
+                            {
+                              "properties": {
+                                "terraform_variable_pre_shared_secret": {
+                                  "type": "string",
+                                  "pattern": "^(.*)$"
+                                }
+                              },
+                              "required": [
+                                "terraform_variable_pre_shared_secret"
+                              ]
+                            },
+                            {
+                              "properties": {
+                                "secret_manager_pre_shared_secret": {
+                                  "type": "string",
+                                  "pattern": "^(.*)$"
+                                }
+                              },
+                              "required": [
+                                "secret_manager_pre_shared_secret"
+                              ]
+                            }
+                          ],
+                          "required": [
+                            "pre_shared_secret_method"
+                          ]
+                        },
+                        "then": {
+                          "properties": {
+                            "static_pre_shared_secret": {
+                              "title": "Static Pre-Shared Secret",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "terraform_variable_pre_shared_secret": {
+                              "title": "Terraform Variable Pre-Shared Secret (EMPTY)",
+                              "description": "This field should be set to empty remove `terraform_variable_pre_shared_secret` from JSON",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "pattern": "^(?!.*)",
+                              "maxLength": 0
+                            },
+                            "secret_manager_pre_shared_secret": {
+                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                              "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "pattern": "^(?!.*)",
+                              "maxLength": 0
+                            }
+                          },
+                          "required": [
+                            "static_pre_shared_secret"
+                          ]
+                        }
+                      },
+                      {
+                        "title": "Terraform Variable Pre-Shared Secret",
+                        "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are empty",
+                        "if": {
+                          "properties": {
+                            "pre_shared_secret_method": {
+                              "type": "string",
+                              "const": "TERRAFORM_VARIABLE"
+                            }
+                          },
+                          "required": [
+                            "pre_shared_secret_method"
+                          ]
+                        },
+                        "then": {
+                          "properties": {
+                            "terraform_variable_pre_shared_secret": {
+                              "title": "Terraform Variable Pre-Shared Secret",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "terraform_variable_pre_shared_secret"
+                          ]
+                        }
+                      },
+                      {
+                        "title": "Terraform Variable Pre-Shared Secret (NON-EMPTY Others)",
+                        "description": "When `terraform_variable` pre-shared secret is selected and [`static`,`secret_manager`] pre-shared are not empty",
+                        "if": {
+                          "properties": {
+                            "pre_shared_secret_method": {
+                              "type": "string",
+                              "const": "TERRAFORM_VARIABLE"
+                            }
+                          },
+                          "oneOf": [
+                            {
+                              "properties": {
+                                "static_pre_shared_secret": {
+                                  "type": "string",
+                                  "pattern": "^(.*)$"
+                                }
+                              },
+                              "required": [
+                                "static_pre_shared_secret"
+                              ]
+                            },
+                            {
+                              "properties": {
+                                "secret_manager_pre_shared_secret": {
+                                  "type": "string",
+                                  "pattern": "^(.*)$"
+                                }
+                              },
+                              "required": [
+                                "secret_manager_pre_shared_secret"
+                              ]
+                            }
+                          ],
+                          "required": [
+                            "pre_shared_secret_method"
+                          ]
+                        },
+                        "then": {
+                          "properties": {
+                            "terraform_variable_pre_shared_secret": {
+                              "title": "Terraform Variable Pre-Shared Secret",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "static_pre_shared_secret": {
+                              "title": "Static Pre-Shared Secret (EMPTY)",
+                              "description": "This field should be set to empty remove `static_pre_shared_secret` from JSON",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "pattern": "^(?!.*)",
+                              "maxLength": 0
+                            },
+                            "secret_manager_pre_shared_secret": {
+                              "title": "Secrfet Manager Pre-Shared Secret (EMPTY)",
+                              "description": "This field should be set to empty remove `secret_manager_pre_shared_secret` from JSON",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "pattern": "^(?!.*)",
+                              "maxLength": 0
+                            }
+                          },
+                          "required": [
+                            "terraform_variable_pre_shared_secret"
+                          ]
+                        }
+                      },
+                      {
+                        "title": "Secret Manager Pre-Shared Secret",
+                        "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are empty",
+                        "if": {
+                          "properties": {
+                            "pre_shared_secret_method": {
+                              "type": "string",
+                              "const": "SECRET_MANAGER"
+                            }
+                          },
+                          "required": [
+                            "pre_shared_secret_method"
+                          ]
+                        },
+                        "then": {
+                          "properties": {
+                            "secret_manager_pre_shared_secret": {
+                              "title": "Secret Manager Pre-Shared Secret",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "required": [
+                            "secret_manager_pre_shared_secret"
+                          ]
+                        }
+                      },
+                      {
+                        "title": "Secret Manager Pre-Shared Secret (NON-EMPTY Others)",
+                        "description": "When `secret_manager` pre-shared secret is selected and [`static`,`terraform_variable`] pre-shared are not empty",
+                        "if": {
+                          "properties": {
+                            "pre_shared_secret_method": {
+                              "type": "string",
+                              "const": "SECRET_MANAGER"
+                            }
+                          },
+                          "oneOf": [
+                            {
+                              "properties": {
+                                "static_pre_shared_secret": {
+                                  "type": "string",
+                                  "pattern": "^(.*)$"
+                                }
+                              },
+                              "required": [
+                                "static_pre_shared_secret"
+                              ]
+                            },
+                            {
+                              "properties": {
+                                "terraform_variable_pre_shared_secret": {
+                                  "type": "string",
+                                  "pattern": "^(.*)$"
+                                }
+                              },
+                              "required": [
+                                "terraform_variable_pre_shared_secret"
+                              ]
+                            }
+                          ],
+                          "required": [
+                            "pre_shared_secret_method"
+                          ]
+                        },
+                        "then": {
+                          "properties": {
+                            "secret_manager_pre_shared_secret": {
+                              "title": "Secret Manager Pre-Shared Secret",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "static_pre_shared_secret": {
+                              "title": "Static Pre-Shared Secret (EMPTY)",
+                              "description": "This field should be set to empty remove `static_pre_shared_secret` from JSON",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "pattern": "^(?!.*)",
+                              "maxLength": 0
+                            },
+                            "terraform_variable_pre_shared_secret": {
+                              "title": "Terraform Variable Pre-Shared Secret (EMPTY)",
+                              "description": "This field should be set to empty remove `terraform_variable_pre_shared_secret` from JSON",
+                              "deleteOnEmpty": true,
+                              "type": "string",
+                              "pattern": "^(?!.*)",
+                              "maxLength": 0
+                            }
+                          },
+                          "required": [
+                            "secret_manager_pre_shared_secret"
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "examples": [
+                    {
+                      "hub_ipv4_address": "169.254.0.1",
+                      "spoke_ipv4_address": "169.254.0.2"
+                    },
+                    {
+                      "disabled": true,
+                      "hub_ipv4_address": "169.254.0.5",
+                      "spoke_ipv4_address": "169.254.0.6"
+                    },
+                    {
+                      "disabled": true,
+                      "hub_ipv4_address": "169.254.0.5",
+                      "spoke_ipv4_address": "169.254.0.6",
+                      "ipv6_enabled": true
+                    }
+                  ]
+                },
+                "override_hub_subnet_advertisments": {
+                  "title": "Override Hub Custom Subnet Advertisements",
+                  "type": "boolean"
+                }
+              },
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "override_hub_subnet_advertisments": {
+                        "type": "boolean",
+                        "const": true
+                      }
+                    },
+                    "required": [
+                      "override_hub_subnet_advertisments"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "hub_subnet_advertisements": {
+                        "title": "Hub Subnet Advertisements",
+                        "type": "string",
+                        "deleteOnEmpty": true,
+                        "widget": "Select",
+                        "view": {
+                          "sizeXs": 12
+                        },
+                        "oneOf": [
+                          {
+                            "const": "DEFAULT",
+                            "title": "Advertise all subnets visible to the Cloud Router"
+                          },
+                          {
+                            "const": "DEFAULT_CUSTOM",
+                            "title": "Advertise all subnets visible to the Cloud Router & all Custom subnets specified"
+                          },
+                          {
+                            "const": "CUSTOM",
+                            "title": "Advertise all Custom subnets specified"
+                          }
+                        ]
+                      }
+                    },
+                    "if": {
+                      "properties": {
+                        "hub_subnet_advertisements": {
+                          "oneOf": [
+                            {
+                              "type": "string",
+                              "const": "DEFAULT_CUSTOM"
+                            },
+                            {
+                              "type": "string",
+                              "const": "CUSTOM"
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "hub_subnet_advertisements"
+                      ]
+                    },
+                    "then": {
+                      "properties": {
+                        "custom_hub_subnet_advertisements": {
+                          "title": "Custom Hub Subnet Advertisements",
+                          "type": "array",
+                          "uniqueItems": true,
+                          "deleteOnEmpty": true,
+                          "widget": "GenericList",
+                          "view": {
+                            "sizeXs": 12,
+                            "btnSize": "medium"
+                          },
+                          "items": {
+                            "type": "string",
+                            "oneOf": [
+                              {
+                                "title": "IPv4 Subnet Advertisements",
+                                "pattern": "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\/[0-9]{1,2}$"
+                              },
+                              {
+                                "title": "IPv6 Subnet Advertisements",
+                                "pattern": "^([0-9a-fA-F]{0,4}:){0,7}[0-9a-fA-F]{0,4}\\/[0-9]{1,3}$"
+                              }
+                            ]
+                          },
+                          "examples": [
+                            "192.168.0.0/16",
+                            "172.16.0.0/12",
+                            "10.0.0.0/8",
+                            "2001:db8::/112"
+                          ]
+                        }
+                      },
+                      "propertyNames": {
+                        "enum": [
+                          "asn",
+                          "advanced_tunnel_configuration",
+                          "hub_subnet_advertisements",
+                          "custom_hub_subnet_advertisements",
+                          "override_hub_subnet_advertisments"
+                        ]
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "custom_hub_subnet_advertisements": {
+                          "title": "Custom Hub Subnet Advertisements (EMPTY)",
+                          "type": "array",
+                          "widget": "GenericList",
+                          "notAddable": true,
+                          "uniqueItems": true,
+                          "deleteOnEmpty": true,
+                          "items": {
+                            "type": "string",
+                            "deleteOnEmpty": true,
+                            "maxLength": 0,
+                            "pattern": "^(?!.*)"
+                          },
+                          "maxItems": 0
+                        }
+                      },
+                      "propertyNames": {
+                        "enum": [
+                          "asn",
+                          "advanced_tunnel_configuration",
+                          "hub_subnet_advertisements",
+                          "custom_hub_subnet_advertisements",
+                          "override_hub_subnet_advertisments"
+                        ]
+                      }
+                    }
+                  },
+                  "else": {
+                    "properties": {
+                      "hub_subnet_advertisements": {
+                        "title": "Hub Subnet Advertisements (EMPTY)",
+                        "type": "string",
+                        "deleteOnEmpty": true,
+                        "widget": "Select",
+                        "view": {
+                          "sizeXs": 12
+                        },
+                        "oneOf": [
+                          {
+                            "const": "",
+                            "description": "Select this option to remove subnet_advertisements from JSON",
+                            "title": "Empty (Clear Field)"
+                          }
+                        ]
+                      },
+                      "custom_hub_subnet_advertisements": {
+                        "title": "Custom Hub Subnet Advertisements (EMPTY)",
+                        "type": "array",
+                        "widget": "GenericList",
+                        "notAddable": true,
+                        "uniqueItems": true,
+                        "deleteOnEmpty": true,
+                        "items": {
+                          "type": "string",
+                          "deleteOnEmpty": true,
+                          "maxLength": 0,
+                          "pattern": "^(?!.*)"
+                        },
+                        "maxItems": 0
+                      }
+                    }
+                  }
+                }
+              ],
+              "required": [
+                "asn"
+              ]
+            }
+          },
+          "propertyNames": {
+            "enum": [
+              "bgp"
+            ]
+          },
+          "required": [
+            "bgp"
+          ]
+        },
         "spoke_router_gcp": {
           "type": "object",
           "widget": "Card",
           "deleteOnEmpty": true,
           "properties": {
-            "name": {
-              "title": "Name",
-              "type": "string",
-              "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
-              "view": {
-                "sizeXs": 4
-              },
-              "deleteOnEmpty": true,
-              "description": "This field is used to specify an explict name to be used"
-            },
-            "unique_id": {
-              "title": "Unique ID (Spoke Router)",
-              "type": "string",
-              "pattern": "^[a-z][a-z0-9-_]{0,62}$",
-              "view": {
-                "sizeXs": 4
-              },
-              "deleteOnEmpty": true,
-              "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
-            },
             "pre_existing": {
               "type": "boolean",
               "view": {
@@ -4014,6 +5733,7 @@
           },
           "allOf": [
             {
+              "title": "Spoke Router (Manged Externally)",
               "if": {
                 "properties": {
                   "pre_existing": {
@@ -4029,6 +5749,26 @@
                 "title": "Spoke Router (Manged Externally)",
                 "description": "If the `Spoke Router` is manged outside of this Terraform Module",
                 "properties": {
+                  "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "This field is used to specify an explict name to be used"
+                  },
+                  "unique_id": {
+                    "title": "Unique ID",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                  },
                   "bgp": {
                     "title": "BGP",
                     "type": "object",
@@ -4831,6 +6571,7 @@
                   }
                 },
                 "required": [
+                  "bgp",
                   "name"
                 ]
               },
@@ -4838,6 +6579,26 @@
                 "title": "Spoke Router (Manged /w Terraform)",
                 "description": "If the `Spoke Router` is manged within this Terraform Module",
                 "properties": {
+                  "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "This field is used to specify an explict name to be used"
+                  },
+                  "unique_id": {
+                    "title": "Unique ID",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                  },
                   "bgp": {
                     "title": "BGP",
                     "type": "object",
@@ -6336,6 +8097,9 @@
               ]
             }
           },
+          "required": [
+            "bgp"
+          ],
           "propertyNames": {
             "enum": [
               "bgp"
@@ -6346,26 +8110,6 @@
           "type": "object",
           "widget": "Card",
           "properties": {
-            "name": {
-              "title": "Name",
-              "type": "string",
-              "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
-              "view": {
-                "sizeXs": 4
-              },
-              "deleteOnEmpty": true,
-              "description": "This field is used to specify an explict name to be used"
-            },
-            "unique_id": {
-              "title": "Unique ID",
-              "type": "string",
-              "pattern": "^[a-z][a-z0-9-_]{0,62}$",
-              "view": {
-                "sizeXs": 4
-              },
-              "deleteOnEmpty": true,
-              "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
-            },
             "pre_existing": {
               "type": "boolean",
               "view": {
@@ -6374,6 +8118,257 @@
               "deleteOnEmpty": true,
               "title": "Pre-Existing",
               "description": "If true, this resource should be considered managed external to this module and should not be created and/or updated."
+            }
+          },
+          "propertyNames": {
+            "enum": [
+              "name",
+              "unique_id",
+              "pre_existing",
+              "network",
+              "project_id",
+              "tunnel_count",
+              "ike_version"
+            ]
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "pre_existing": {
+                    "type": "boolean",
+                    "const": true
+                  }
+                },
+                "required": [
+                  "pre_existing"
+                ]
+              },
+              "then": {
+                "title": "Spoke VPN Gateway (Manged Externally)",
+                "description": "If the `Spoke VPN Gateway` is manged outside of this Terraform Module",
+                "properties": {
+                  "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "This field is used to specify an explict name to be used"
+                  },
+                  "unique_id": {
+                    "title": "Unique ID",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                  },
+                  "project_id": {
+                    "title": "Project ID",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]{4,28}[a-z0-9]$",
+                    "view": {
+                      "sizeXs": 6
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "If specified this 'Project ID' value will override the default value specified in the Terraform module",
+                    "examples": [
+                      "phrasal-bank-387121",
+                      "gold-setup-387121"
+                    ]
+                  },
+                  "network": {
+                    "title": "Network",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                    "view": {
+                      "sizeXs": 6
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "The name of the vpc network to be connected with using Cloud VPN.",
+                    "examples": [
+                      "prod-network"
+                    ]
+                  },
+                  "tunnel_count": {
+                    "title": "Tunnel Count",
+                    "type": "number",
+                    "widget": "Select",
+                    "view": {
+                      "sizeXs": 8
+                    },
+                    "description": "Number of tunnels that should be deployed",
+                    "minimum": 0,
+                    "maximum": 2,
+                    "default": 2,
+                    "oneOf": [
+                      {
+                        "title": "Zero Tunnels",
+                        "description": "Useful for troubleshooting VPN Gateways without the need for tunnel creation",
+                        "const": 0
+                      },
+                      {
+                        "title": "Single VPN tunnel",
+                        "description": "A single tunnel won't provide high availability. You can add more tunnels later when needed.",
+                        "const": 1
+                      },
+                      {
+                        "title": "Dual VPN tunnels",
+                        "description": "Recommended for high availability - 99.99% SLA",
+                        "const": 2
+                      }
+                    ]
+                  },
+                  "ike_version": {
+                    "type": "number",
+                    "deleteOnEmpty": true,
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "title": "IKE Version",
+                    "description": " IKE protocol version to use when establishing the VPN tunnel with peer VPN gateway",
+                    "widget": "Select",
+                    "default": 2,
+                    "oneOf": [
+                      {
+                        "const": 2
+                      },
+                      {
+                        "const": 1
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              },
+              "else": {
+                "title": "Spoke VPN Gateway (Manged /w Terraform)",
+                "description": "If the `Spoke VPN Gateway` is manged within this Terraform Module",
+                "properties": {
+                  "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "This field is used to specify an explict name to be used"
+                  },
+                  "unique_id": {
+                    "title": "Unique ID",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                  },
+                  "project_id": {
+                    "title": "Project ID",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]{4,28}[a-z0-9]$",
+                    "view": {
+                      "sizeXs": 6
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "If specified this 'Project ID' value will override the default value specified in the Terraform module",
+                    "examples": [
+                      "phrasal-bank-387121",
+                      "gold-setup-387121"
+                    ]
+                  },
+                  "network": {
+                    "title": "Network",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                    "view": {
+                      "sizeXs": 6
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "The name of the vpc network to be connected with using Cloud VPN.",
+                    "examples": [
+                      "prod-network"
+                    ]
+                  },
+                  "tunnel_count": {
+                    "title": "Tunnel Count",
+                    "type": "number",
+                    "widget": "Select",
+                    "view": {
+                      "sizeXs": 8
+                    },
+                    "description": "Number of tunnels that should be deployed",
+                    "minimum": 0,
+                    "maximum": 2,
+                    "default": 2,
+                    "oneOf": [
+                      {
+                        "title": "Zero Tunnels",
+                        "description": "Useful for troubleshooting VPN Gateways without the need for tunnel creation",
+                        "const": 0
+                      },
+                      {
+                        "title": "Single VPN tunnel",
+                        "description": "A single tunnel won't provide high availability. You can add more tunnels later when needed.",
+                        "const": 1
+                      },
+                      {
+                        "title": "Dual VPN tunnels",
+                        "description": "Recommended for high availability - 99.99% SLA",
+                        "const": 2
+                      }
+                    ]
+                  },
+                  "ike_version": {
+                    "type": "number",
+                    "deleteOnEmpty": true,
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "title": "IKE Version",
+                    "description": " IKE protocol version to use when establishing the VPN tunnel with peer VPN gateway",
+                    "widget": "Select",
+                    "default": 2,
+                    "oneOf": [
+                      {
+                        "const": 2
+                      },
+                      {
+                        "const": 1
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "network"
+                ]
+              }
+            }
+          ]
+        },
+        "spoke_vpn_gateway_gcp_restricted": {
+          "title": "Spoke VPN Gateway (Manged Externally)",
+          "type": "object",
+          "widget": "Card",
+          "properties": {
+            "name": {
+              "view": {
+                "sizeXs": 6
+              },
+              "title": "Name",
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+              "deleteOnEmpty": true,
+              "description": "This field is used to specify an explict name to be used"
             },
             "project_id": {
               "title": "Project ID",
@@ -6387,19 +8382,6 @@
               "examples": [
                 "phrasal-bank-387121",
                 "gold-setup-387121"
-              ]
-            },
-            "network": {
-              "title": "Network",
-              "type": "string",
-              "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
-              "view": {
-                "sizeXs": 6
-              },
-              "deleteOnEmpty": true,
-              "description": "The name of the vpc network to be connected with using Cloud VPN.",
-              "examples": [
-                "prod-network"
               ]
             },
             "tunnel_count": {
@@ -6454,68 +8436,21 @@
           "propertyNames": {
             "enum": [
               "name",
-              "unique_id",
-              "pre_existing",
               "network",
               "project_id",
               "tunnel_count",
               "ike_version"
             ]
           },
-          "allOf": [
-            {
-              "if": {
-                "properties": {
-                  "pre_existing": {
-                    "type": "boolean",
-                    "const": true
-                  }
-                },
-                "required": [
-                  "pre_existing"
-                ]
-              },
-              "then": {
-                "title": "Spoke VPN Gateway (Manged Externally)",
-                "description": "If the `Spoke VPN Gateway` is manged outside of this Terraform Module",
-                "required": [
-                  "name"
-                ]
-              },
-              "else": {
-                "title": "Spoke VPN Gateway (Manged /w Terraform)",
-                "description": "If the `Spoke VPN Gateway` is manged within this Terraform Module",
-                "required": [
-                  "network"
-                ]
-              }
-            }
+          "required": [
+            "name",
+            "project_id"
           ]
         },
         "spoke_vpn_gateway_external": {
           "type": "object",
           "widget": "Card",
           "properties": {
-            "name": {
-              "title": "Name",
-              "type": "string",
-              "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
-              "view": {
-                "sizeXs": 4
-              },
-              "deleteOnEmpty": true,
-              "description": "This field is used to specify an explict name to be used"
-            },
-            "unique_id": {
-              "title": "Unique ID",
-              "type": "string",
-              "pattern": "^[a-z][a-z0-9-_]{0,62}$",
-              "view": {
-                "sizeXs": 4
-              },
-              "deleteOnEmpty": true,
-              "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
-            },
             "pre_existing": {
               "type": "boolean",
               "view": {
@@ -6542,6 +8477,26 @@
               "then": {
                 "title": "Peer VPN Gateway (Managed Externally)",
                 "properties": {
+                  "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "This field is used to specify an explict name to be used"
+                  },
+                  "unique_id": {
+                    "title": "Unique ID",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                  },
                   "redudancy_type": {
                     "title": "Redudancy Type (EMPTY)",
                     "description": "This field should not be set and is only included for UI generation",
@@ -6645,6 +8600,26 @@
               "else": {
                 "title": "Peer VPN Gateway (Managed /w Terraform)",
                 "properties": {
+                  "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-]{0,61}(?<!-)$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "This field is used to specify an explict name to be used"
+                  },
+                  "unique_id": {
+                    "title": "Unique ID",
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9-_]{0,62}$",
+                    "view": {
+                      "sizeXs": 4
+                    },
+                    "deleteOnEmpty": true,
+                    "description": "Unique ID used to differentiate this resource from other 'like or similiar' duplicate resources when the name is not explitily specified"
+                  },
                   "redudancy_type": {
                     "title": "Redudancy Type",
                     "type": "string",

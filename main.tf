@@ -23,7 +23,7 @@ locals {
   }
 
   defaults_peer_vpn_gateways = {
-    redundancy_type = "TWO_INTERFACES"
+    redundancy_type = "TWO_IPS_REDUNDANCY"
   }
 
   default_bgp_peers = {

@@ -602,6 +602,7 @@ This tool provides a way of validating that the cloud_vpn json input matches the
 ```bash
 npm install -g ajv-cli
 
+ajv validate -s ".terraform\modules\cloud_vpn\schemas\resolved\resolved.schema.json" -d "./cloud_vpns/*.json" --strict=false
 ajv validate -s "./schemas/resolved/resolved.schema.json" -d "./examples/project__network/examples/*.json" --strict=false
 ajv validate -s "../schemas/resolved/resolved.schema.json" -d "../examples/project__network/examples/*.json" --strict=false
 ```

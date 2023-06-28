@@ -4,4 +4,5 @@ region     = "__REGION__"
 
 variable_pre_shared_secret = {
   alpha = "SomeSecretGoesHere"
+  bravo = "SomeSecretGoesHere"
 }

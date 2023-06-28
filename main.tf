@@ -789,8 +789,8 @@ locals {
         pre_shared_secret_manager = try(v2.advanced_tunnel_configuration[i].secret_manager_pre_shared_secret, null)
 
         pre_shared_secret = (
-          v2.advanced_tunnel_configuration[i].pre_shared_secret_method == "STATIC" ? v2.advanced_tunnel_configuration[i].static_pre_shared_secret :
-          v2.advanced_tunnel_configuration[i].pre_shared_secret_method == "TERRAFORM_VARIABLE" ? var.variable_pre_shared_secret[v2.advanced_tunnel_configuration[i].terraform_variable_pre_shared_secret] :
+          try(v2.advanced_tunnel_configuration[i].pre_shared_secret_method, null) == "STATIC" ? v2.advanced_tunnel_configuration[i].static_pre_shared_secret :
+          try(v2.advanced_tunnel_configuration[i].pre_shared_secret_method, null) == "TERRAFORM_VARIABLE" ? var.variable_pre_shared_secret[v2.advanced_tunnel_configuration[i].terraform_variable_pre_shared_secret] :
           null
         )
 
@@ -984,7 +984,7 @@ locals {
       SPOKE_VPN_GATEWAY_NETWORK    = v1.hub_vpn_gateway.network,
       SPOKE_VPN_GATEWAY_UUIDV5     = v1.hub_vpn_gateway.uuidv5,
       SPOKE_ROUTER_NAME            = v1.hub_vpn_gateway.hub_router.name,
-    } : format("%s=%s", k2, v2) if v2 != null]))) => v1 if v1.spoke_vpn_gateway.uuidv5 != null
+    } : format("%s=%s", k2, v2) if v2 != null]))) => v1 if (v1.spoke_vpn_gateway.uuidv5 != null && v1.spoke_vpn_gateway.type != "external")
   }
 
   spoke_vpn_tunnels = { for k1, v1 in local.kv_spoke_vpn_tunnels : k1 => merge(v1, {

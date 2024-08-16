@@ -1,15 +1,30 @@
 variable "project_id" {
-  description = "Project id of the project that holds the network."
+  description = "Default Project id that holds the network."
+  type        = string
   default     = null
 }
 
 variable "network" {
-  description = "Name of the network this set of firewall rules applies to."
+  description = "Name of the default network this set of cloud vpn applies to."
+  type        = string
+  default     = null
+}
+
+variable "peer_network" {
+  description = "Name of the peer network this set of cloud vpn applies to. (This can only be passed once per module)"
+  type        = string
+  default     = null
+}
+
+variable "peer_project_id" {
+  description = "Name of the peer project_id this set of cloud vpn applies to. (This can only be passed once per module)"
+  type        = string
   default     = null
 }
 
 variable "region" {
-  description = "Name of the network this set of firewall rules applies to."
+  description = "Name of the default region this set of cloud vpn applies to."
+  type        = string
   default     = null
 }
 

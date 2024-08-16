@@ -984,7 +984,7 @@ locals {
       SPOKE_VPN_GATEWAY_NETWORK    = v1.hub_vpn_gateway.network,
       SPOKE_VPN_GATEWAY_UUIDV5     = v1.hub_vpn_gateway.uuidv5,
       SPOKE_ROUTER_NAME            = v1.hub_vpn_gateway.hub_router.name,
-    } : format("%s=%s", k2, v2) if v2 != null]))) => v1 if (v1.spoke_vpn_gateway.uuidv5 != null && v1.spoke_vpn_gateway.type != "external")
+    } : format("%s=%s", k2, v2) if v2 != null]))) => v1 if(v1.spoke_vpn_gateway.uuidv5 != null && v1.spoke_vpn_gateway.type != "external")
   }
 
   spoke_vpn_tunnels = { for k1, v1 in local.kv_spoke_vpn_tunnels : k1 => merge(v1, {
